@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package>
-  <name>riptide_gazebo</name>
-  <version>0.0.15</version>
-  <description>Simulation package for OSU's Riptide AUV.</description>
+  <name>grotto</name>
+  <version>0.0.1</version>
+  <description>Simulation package for RoboSub.</description>
 
   <maintainer email="cary.42@osu.edu">Conor Cary</maintainer>
 
   <license>BSD</license>
 
   <url type="website">http://go.osu.edu/uwrt</url>
-  <url type="repository">http://github.com/uwrt-osu/riptide</url>
+  <url type="repository">http://github.com/uwrt-osu/underwater-gazebo</url>
 
   <author email="cary.42@osu.edu">Conor Cary</author>
 
