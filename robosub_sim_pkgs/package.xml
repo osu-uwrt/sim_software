@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+  <name>robosub_sim_pkgs</name>
+  <version>0.0.2</version>
+  <description>Assets for simulating RoboSub.</description>
+
+  <maintainer email="cary.42@osu.edu">Conor Cary</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://go.osu.edu/uwrt</url>
+  <url type="repository">http://github.com/osu-uwrt/robosub-sim-pkgs</url>
+
+  <author email="cary.42@osu.edu">Conor Cary</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>robosub_gazebo</run_depend>
+  <run_depend>robosub_stage</run_depend>
+  <run_depend>robosub_unreal</run_depend>
+
+  <export>
+    <metapackage />
+  </export>
+</package>
