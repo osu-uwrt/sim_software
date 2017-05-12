@@ -1,0 +1,33 @@
+include "create2.inc"
+include "cave.inc"
+
+quit_time 3600
+
+paused 1
+
+resolution 0.02
+
+window
+(
+  size [ 635.000 666.000 ]
+  scale 36.995
+  center [ -0.040  -0.274 ]
+  rotate [ 0  0 ]
+  show_data 1
+)
+
+floorplan
+(
+  name "cave"
+  size [16.000 16.000 0.800]
+  pose [0 0 0 0]
+  bitmap "bitmaps/cave.png"
+)
+
+create2
+(
+  name "dumbo"
+  pose [ -6.946 -6.947 0 45.000 ]
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
