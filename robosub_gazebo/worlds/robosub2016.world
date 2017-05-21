@@ -7,30 +7,5 @@
     <include>
       <uri>model://sun</uri>
     </include>
-    <include>
-      <uri>file://../models/buoy</uri>
-      <name>buoy</name>
-      <pose>16 0 0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>file://../models/channel</uri>
-      <name>channel</name>
-      <pose>11 3 0 0 0 -0.2</pose>
-    </include>
-    <include>
-      <uri>file://../models/gate</uri>
-      <name>gate</name>
-      <pose>4 4 0 0 0 0.2</pose>
-    </include>
-    <include>
-      <uri>file://../models/path</uri>
-      <name>path1</name>
-      <pose>6 4 0 0 0 -0.3</pose>
-    </include>
-    <include>
-      <uri>file://../models/path</uri>
-      <name>path2</name>
-      <pose>13 2 0 0 0 -.8</pose>
-    </include>
   </world>
 </sdf>

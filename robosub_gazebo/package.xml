@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>robosub_gazebo</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>Assets for simulating RoboSub in Gazebo.</description>
 
   <maintainer email="cary.42@osu.edu">Conor Cary</maintainer>

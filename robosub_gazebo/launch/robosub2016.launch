@@ -1,5 +1,12 @@
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find grotto)/worlds/robosub2016.world"/>
+    <arg name="world_name" value="$(find robosub_gazebo)/worlds/robosub2016.world"/>
   </include>
+
+  <node name="spawn_buoy" pkg="gazebo_ros" type="spawn_model" args="-sdf -file $(find robosub_gazebo)/models/buoy/model.sdf -model buoy -x 16" />
+  <node name="spawn_channel" pkg="gazebo_ros" type="spawn_model" args="-sdf -file $(find robosub_gazebo)/models/channel/model.sdf -model channel -x 11 -y 3 -Y -0.2" />
+  <node name="spawn_gate" pkg="gazebo_ros" type="spawn_model" args="-sdf -file $(find robosub_gazebo)/models/gate/model.sdf -model gate -x 4 -y 4 -Y 0.2" />
+  <node name="spawn_path1" pkg="gazebo_ros" type="spawn_model" args="-sdf -file $(find robosub_gazebo)/models/path/model.sdf -model path1 -x 6 -y 4 -Y -0.3" />
+  <node name="spawn_path2" pkg="gazebo_ros" type="spawn_model" args="-sdf -file $(find robosub_gazebo)/models/path/model.sdf -model path2 -x 13 -y 2 -Y -0.8" />
+
 </launch>
