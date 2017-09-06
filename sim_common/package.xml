@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>sim_common</name>
+  <version>0.0.1</version>
+  <description>Common simulation package for The OSU Underwater Robotics Team.</description>
+
+  <maintainer email="justice.251@osu.edu">Benji Justice</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://go.osu.edu/uwrt</url>
+  <url type="repository">http://github.com/uwrt-osu/sim_software</url>
+
+  <author email="justice.251@osu.edu">Benji Justice</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  
+  <export>
+  </export>
+</package>
