@@ -1,0 +1,7 @@
+<launch>
+    <node name="stage_ros" pkg="stage_ros" type="stageros" args="$(find robosub_stage)/worlds/create2.world">
+    </node>
+    <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find robosub_stage)/worlds/cave.yaml">
+        <param name="frame_id" value="/map"/>
+    </node> -->
+</launch>
