@@ -1,4 +1,4 @@
-sim_software
+Simulation Software
 =================================
 
 This repository contains the simulation code designed to work in conjunction with UWRT's main codebase [riptide_software](https://github.com/osu-uwrt/riptide_software.git). This repo is designed to work with the Gazebo simulator, which is part of the [Robot Operating System](http://www.ros.org/) framework.
@@ -25,7 +25,7 @@ git clone <your_forked_repo> src
 ## Setting up Git Remotes
 Since you just cloned your fork to your computer, your remote called "origin" will point to your fork. Now, create a new remote that points to this main repo.
 ```
-cd ~/osu-uwrt/riptide_software/src
+cd ~/osu-uwrt/sim_software/src/
 git remote add upstream https://github.com/osu-uwrt/sim_software.git
 ```
 
@@ -38,7 +38,7 @@ You will see both a remote to your fork and to the main repo. You will use these
 ## Compiling
 To compile this repo, you simply execute the "catkin_make" command from a terminal. As a word of caution, you MUST be inside the folder ~/osu-uwrt/riptide_software to run "catkin_make"
 ```
-cd ~/osu-uwrt/sim_software
+cd ~/osu-uwrt/sim_software/
 catkin_make
 ```
 
