@@ -9,7 +9,7 @@ The Ohio State University
 [Website](https://uwrt.engineering.osu.edu) | [RoboSub](https://www.auvsifoundation.org/competition/robosub) | [License](LICENSE)
 
 
-![OSU UWRT Logo](logos/UWRT_Logo_small.png)
+![OSU UWRT Logo](https://github.com/osu-uwrt/riptide_software/blob/master/logos/UWRT_Logo_small.png)
 
 # Building
 ROS is compiled using the catkin build system, and so this repos will use catkin. 
