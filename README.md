@@ -12,7 +12,7 @@ The Ohio State University
 ![OSU UWRT Logo](https://github.com/osu-uwrt/riptide_software/blob/master/logos/UWRT_Logo_small.png)
 
 # Building
-ROS is compiled using the catkin build system, and so this repos will use catkin. 
+ROS is compiled using the catkin build system, and so this repo will use catkin. 
 
 ## Cloning
 To collaborate with the sim_software platform, you must fork this repo (click "Fork" at the top-right of this page). When executing the commands below, you will need to enter the URL to your forked repo. Form YOUR forked repo, click "Clone or download" at the top-right of the page, copy the URL, and then insert that URL in place of "<your_forked_repo>".
