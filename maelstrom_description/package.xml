@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>maelstrom_description</name>
+  <version>0.0.1</version>
+  <description>Contains URDF for the OSU Underwater Robotics Team Maelstrom vehicle.</description>
+
+  <maintainer email="justice.251@osu.edu">Benji Justice</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">uwrt.engineering.osu.edu</url>
+  <url type="repository">http://github.com/uwrt-osu/sim_software</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>
