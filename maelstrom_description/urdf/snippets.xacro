@@ -102,7 +102,7 @@
         <!-- TODO: Find good thruster model -->
         <conversion>
           <type>Basic</type>
-          <rotorConstant>0.00031</rotorConstant>
+          <rotorConstant>0.005</rotorConstant>
         </conversion>
 
       </plugin>
