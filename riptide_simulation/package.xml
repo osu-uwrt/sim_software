@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>sim_common</name>
+  <name>riptide_simulation</name>
   <version>0.0.1</version>
-  <description>Common simulation package for The OSU Underwater Robotics Team.</description>
+  <description>Common simulation package for The OSU Underwater Robotics Team's Riptide AUV software platform.</description>
 
   <maintainer email="justice.251@osu.edu">Benji Justice</maintainer>
 
