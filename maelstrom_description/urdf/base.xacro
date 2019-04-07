@@ -43,6 +43,17 @@
       <selfCollide>false</selfCollide>
     </gazebo>
 
+    <!--<gazebo reference="${namespace}/base_link">
+      <visual>
+        <material>
+          <script>
+              <name>maelstrom/supreme</name>
+              <uri>$(find maelstrom_description)/meshes/maelstrom/scripts/supreme.material</uri>
+          </script>
+        </material>
+      </visual>
+    </gazebo> -->
+
     <!-- Set up hydrodynamic plugin given as input parameter -->
     <xacro:insert_block name="gazebo"/>
 

@@ -8,6 +8,52 @@
     more examples or add you own custom sensor units.
   -->
 
+<xacro:regular_camera_plugin_macro
+      namespace="sensors"
+      suffix="_forward_R"
+      parent_link="${namespace}/base_link"
+      topic="camera"
+      mass="0.001"
+      update_rate="30"
+      hfov="1.5125"
+      width="768"
+      height="492"
+      stddev="0.02"
+      scale="1.0">
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      <xacro:insert_block name="forward_camera_R_pos" />
+</xacro:regular_camera_plugin_macro>
 
+<xacro:regular_camera_plugin_macro
+      namespace="sensors"
+      suffix="_forward_L"
+      parent_link="${namespace}/base_link"
+      topic="camera"
+      mass="0.001"
+      update_rate="30"
+      hfov="1.5125"
+      width="768"
+      height="492"
+      stddev="0.02"
+      scale="1.0">
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      <xacro:insert_block name="forward_camera_L_pos" />
+</xacro:regular_camera_plugin_macro>
+
+<xacro:regular_camera_plugin_macro
+      namespace="sensors"
+      suffix="_downward"
+      parent_link="${namespace}/base_link"
+      topic="camera"
+      mass="0.001"
+      update_rate="30"
+      hfov="1.5125"
+      width="768"
+      height="492"
+      stddev="0.02"
+      scale="1.0">
+      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      <xacro:insert_block name="downward_camera_pos" />
+</xacro:regular_camera_plugin_macro>
 
 </robot>

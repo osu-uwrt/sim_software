@@ -1,0 +1,624 @@
+<sdf version='1.6'>
+  <model name='maelstrom'>
+    <link name='maelstrom/base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>36.1</mass>
+        <inertia>
+          <ixx>0.69</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.62</iyy>
+          <iyz>0</iyz>
+          <izz>2.51</izz>
+        </inertia>
+      </inertial>
+      <collision name='maelstrom/base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/collision.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='maelstrom/base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/maelstrom.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>maelstrom/supreme</name>
+            <uri>/home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/maelstrom/scripts/supreme.material</uri>
+          </script>
+        </material>
+      </visual>
+      <velocity_decay/>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <link name='maelstrom/thruster_HPA'>
+      <pose frame=''>-0.32577 0.18946 -0.01509 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_HPA_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_HPA_joint' type='revolute'>
+      <child>maelstrom/thruster_HPA</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_HPF'>
+      <pose frame=''>0.37273 0.18946 -0.01509 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_HPF_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_HPF_joint' type='revolute'>
+      <child>maelstrom/thruster_HPF</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_HSA'>
+      <pose frame=''>-0.32577 -0.18946 -0.01509 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_HSA_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_HSA_joint' type='revolute'>
+      <child>maelstrom/thruster_HSA</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_HSF'>
+      <pose frame=''>0.37273 -0.18946 -0.01509 3.14159 1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_HSF_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_HSF_joint' type='revolute'>
+      <child>maelstrom/thruster_HSF</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_VPA'>
+      <pose frame=''>-0.37225 0.30628 0.10615 0 -0 0.785398</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_VPA_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_VPA_joint' type='revolute'>
+      <child>maelstrom/thruster_VPA</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_VPF'>
+      <pose frame=''>0.41921 0.30628 0.10615 0 0 -0.785398</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_VPF_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_VPF_joint' type='revolute'>
+      <child>maelstrom/thruster_VPF</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_VSA'>
+      <pose frame=''>-0.37225 -0.30628 0.10615 0 0 -0.785398</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_VSA_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_VSA_joint' type='revolute'>
+      <child>maelstrom/thruster_VSA</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0.707107 -0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='maelstrom/thruster_VSF'>
+      <pose frame=''>0.41921 -0.30628 0.10615 0 -0 0.785398</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>1.7e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.7e-08</iyy>
+          <iyz>0</iyz>
+          <izz>1.7e-08</izz>
+        </inertia>
+      </inertial>
+      <visual name='maelstrom/thruster_VSF_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/noah/osu-uwrt/sim_software/src/maelstrom_description/meshes/prop.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+    </link>
+    <joint name='maelstrom/thruster_VSF_joint' type='revolute'>
+      <child>maelstrom/thruster_VSF</child>
+      <parent>maelstrom/base_link</parent>
+      <axis>
+        <xyz>0.707107 0.707107 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <plugin name='uuv_plugin' filename='libunderwater_object_ros_plugin.so'>
+      <fluid_density>1028.0</fluid_density>
+      <flow_velocity_topic>hydrodynamics/current_velocity</flow_velocity_topic>
+      <debug>0</debug>
+      <link name='maelstrom/base_link'>
+        <neutrally_buoyant>0</neutrally_buoyant>
+        <volume>0.0386</volume>
+        <box>
+          <width>0.346</width>
+          <length>0.782</length>
+          <height>0.967</height>
+        </box>
+        <center_of_buoyancy>0 0 0</center_of_buoyancy>
+        <hydrodynamic_model>
+          <type>fossen</type>
+          <added_mass>1.7 0 0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 1.5 0 0 0 0 0 0 0 .4</added_mass>
+          <linear_damping>-11.7391 -20 -31.8678 -25 -44.9085 -5</linear_damping>
+        </hydrodynamic_model>
+      </link>
+    </plugin>
+    <plugin name='maelstrom_HSA_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_HSA</linkName>
+      <jointName>maelstrom/thruster_HSA_joint</jointName>
+      <thrusterID>HSA</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_HPA_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_HPA</linkName>
+      <jointName>maelstrom/thruster_HPA_joint</jointName>
+      <thrusterID>HPA</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_HPF_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_HPF</linkName>
+      <jointName>maelstrom/thruster_HPF_joint</jointName>
+      <thrusterID>HPF</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_HSF_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_HSF</linkName>
+      <jointName>maelstrom/thruster_HSF_joint</jointName>
+      <thrusterID>HSF</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_VPF_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_VPF</linkName>
+      <jointName>maelstrom/thruster_VPF_joint</jointName>
+      <thrusterID>VPF</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_VPA_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_VPA</linkName>
+      <jointName>maelstrom/thruster_VPA_joint</jointName>
+      <thrusterID>VPA</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_VSF_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_VSF</linkName>
+      <jointName>maelstrom/thruster_VSF_joint</jointName>
+      <thrusterID>VSF</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <plugin name='maelstrom_VSA_thruster_model' filename='libthruster_ros_plugin.so'>
+      <linkName>maelstrom/thruster_VSA</linkName>
+      <jointName>maelstrom/thruster_VSA_joint</jointName>
+      <thrusterID>VSA</thrusterID>
+      <gain>1</gain>
+      <clampMax>24</clampMax>
+      <clampMin>-24</clampMin>
+      <thrustMin>-24</thrustMin>
+      <thrustMax>24</thrustMax>
+      <thrust_efficiency>1</thrust_efficiency>
+      <propeller_efficiency>1</propeller_efficiency>
+      <dynamics>
+        <type>ZeroOrder</type>
+      </dynamics>
+      <conversion>
+        <type>Basic</type>
+        <rotorConstant>0.005</rotorConstant>
+      </conversion>
+    </plugin>
+    <static>0</static>
+    <plugin name='joint_state_publisher' filename='libjoint_state_publisher.so'>
+      <robotNamespace>maelstrom</robotNamespace>
+      <updateRate>10</updateRate>
+    </plugin>
+  </model>
+</sdf>
