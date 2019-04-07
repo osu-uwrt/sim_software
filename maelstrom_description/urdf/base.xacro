@@ -43,7 +43,7 @@
       <selfCollide>false</selfCollide>
     </gazebo>
 
-    <gazebo reference="${namespace}/base_link">
+    <!--<gazebo reference="${namespace}/base_link">
       <visual>
         <material>
           <script>
@@ -52,7 +52,7 @@
           </script>
         </material>
       </visual>
-    </gazebo>
+    </gazebo> -->
 
     <!-- Set up hydrodynamic plugin given as input parameter -->
     <xacro:insert_block name="gazebo"/>

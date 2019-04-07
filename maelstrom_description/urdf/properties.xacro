@@ -56,6 +56,10 @@
     <xacro:property name="vpa_pos"><origin xyz="-0.37225 0.30628 0.10615" rpy="0 0 ${pi/4}" /></xacro:property>
     <xacro:property name="vsf_pos"><origin xyz="0.41921 -0.30628 0.10615" rpy="0 0 ${pi/4}" /></xacro:property>
     <xacro:property name="vsa_pos"><origin xyz="-0.37225 -0.30628 0.10615" rpy="0 0 ${-pi/4}" /></xacro:property>
+    <xacro:property name="forward_camera_R_pos"><origin xyz="0.3818 0.05038 0.11999" rpy="0 0 0" /></xacro:property>  
+    <xacro:property name="forward_camera_L_pos"><origin xyz="0.3818 -0.05038 0.11999" rpy="0 0 0" /></xacro:property>
+    <xacro:property name="downward_camera_pos"><origin xyz="0.0711 0.0004 0" rpy="0 ${pi/2} 0" /></xacro:property> 
+    
 
     <!--
     Visual mesh file for the vehicle, usually in DAE (Collada) format. Be sure to store the
@@ -63,7 +67,7 @@
     the mesh pose will have to be corrected below in the <visual> block.
     Open the meshes for the RexROV vehicle in Blender to see an example on the mesh placement.
     -->
-    <xacro:property name="visual_mesh_file" value="file://$(find maelstrom_description)/meshes/maelstrom.dae"/>
+    <xacro:property name="visual_mesh_file" value="file://$(find maelstrom_description)/meshes/maelstromColored.dae"/>
 
     <!-- Collision geometry mesh, usually in STL format (it is recommended to keep
     this geometry as simple as possible to improve the performance the physics engine
