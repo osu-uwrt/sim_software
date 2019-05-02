@@ -8,6 +8,7 @@
     more examples or add you own custom sensor units.
   -->
 
+<!-- right forward camerea-->
 <xacro:regular_camera_plugin_macro
       namespace="sensors"
       suffix="_forward_R"
@@ -22,8 +23,9 @@
       scale="1.0">
       <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
       <xacro:insert_block name="forward_camera_R_pos" />
-</xacro:regular_camera_plugin_macro>
+</xacro:regular_camera_plugin_macro> 
 
+<!-- left forward camera-->
 <xacro:regular_camera_plugin_macro
       namespace="sensors"
       suffix="_forward_L"
@@ -40,6 +42,7 @@
       <xacro:insert_block name="forward_camera_L_pos" />
 </xacro:regular_camera_plugin_macro>
 
+<!-- downward camera-->
 <xacro:regular_camera_plugin_macro
       namespace="sensors"
       suffix="_downward"
@@ -55,5 +58,26 @@
       <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
       <xacro:insert_block name="downward_camera_pos" />
 </xacro:regular_camera_plugin_macro>
+
+<!-- IMU -->
+<xacro:default_imu_macro
+      namespace="${namespace}"
+      parent_link="${namespace}/base_link"
+      inertial_reference_frame="world_ned">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+</xacro:default_imu_macro> 
+
+<!--DVL-->
+<xacro:default_dvl_macro
+      namespace="${namespace}"
+      parent_link="${namespace}/base_link"
+      inertial_reference_frame="world_ned">
+      <origin xyz="-0.081297 -0.081297 0.0" rpy="0 ${0.5*pi} 0"/>
+</xacro:default_dvl_macro>
+
+<!--Depth Sensor-->
+<xacro:default_pressure_macro namespace="${namespace}" parent_link="${namespace}/base_link">
+      <origin xyz="0 -0.0004 0.0711" rpy="0 0 0"/>
+</xacro:default_pressure_macro>
 
 </robot>

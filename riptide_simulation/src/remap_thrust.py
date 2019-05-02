@@ -10,7 +10,7 @@ from riptide_msgs.msg import PwmStamped, Pwm
 from uuv_gazebo_ros_plugins_msgs.msg import FloatStamped
 
 rpack = rospkg.RosPack()
-config_path = rpack.get_path('sim_common') + "/cfg/remap_thrust_cfg.yml"
+config_path = rpack.get_path('riptide_simulation') + "/cfg/remap_thrust_cfg.yml"
 pubs = {}
 cfg = {}
 
