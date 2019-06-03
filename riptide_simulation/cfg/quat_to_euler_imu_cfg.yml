@@ -5,4 +5,3 @@
 
 sim_topic: /maelstrom/imu
 real_topic: /imu_name/filter 
-
