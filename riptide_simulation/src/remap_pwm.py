@@ -1,16 +1,16 @@
 #!/usr/bin/env python
-# remap_thrust.py
+# remap_pwm.py
 # This node converts real Riptide thruster inputs to UUV sim simulated thruster inputs
-# as defined in remap_thrust_cfg.yml
+# as defined in remap_pwm_cfg.yml
 
 import rospy
 import rospkg
 import yaml
-from riptide_msgs.msg import ThrustStamped, Thrust
+from riptide_msgs.msg import PwmStamped, Pwm
 from uuv_gazebo_ros_plugins_msgs.msg import FloatStamped
 
 rpack = rospkg.RosPack()
-config_path = rpack.get_path('riptide_simulation') + "/cfg/remap_thrust_cfg.yml"
+config_path = rpack.get_path('riptide_simulation') + "/cfg/remap_pwm_cfg.yml"
 pubs = {}
 cfg = {}
 
@@ -37,10 +37,10 @@ def main():
         pub = rospy.Publisher(sim_topic, FloatStamped, queue_size=10)
         pubs[t[0]] = pub
 
-    sub = rospy.Subscriber(cfg['real_topic'], ThrustStamped, callback)
+    sub = rospy.Subscriber(cfg['real_topic'], PwmStamped, callback)
 
     rospy.spin()
 
 if __name__ == "__main__":
-    rospy.init_node("remap_thrust")
+    rospy.init_node("remap_pwm")
     main()
