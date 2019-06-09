@@ -20,7 +20,7 @@ def callback(msg):
         f.header = msg.header
 
         # e.g. f.data = msg.pwm.heave_stbd_aft.data
-        code = "f.data = msg.pwm." + t[1]
+        code = "f.data = msg.force." + t[1]
         exec(code)
 
         pubs[t[0]].publish(f)
