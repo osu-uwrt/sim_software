@@ -35,6 +35,11 @@ git remote -v
 ```
 You will see both a remote to your fork and to the main repo. You will use these two remotes a lot when pushing code to your fork, submitting pull-requests, and pulling down the latest code.
 
+## Install Dependencies
+```
+sudo apt-get install protobuf-compiler protobuf-c-compiler
+```
+
 ## Compiling
 To compile this repo, you simply execute the "catkin_make" command from a terminal. As a word of caution, you MUST be inside the folder "~/osu-uwrt/sim_software" to run "catkin_make"
 ```
