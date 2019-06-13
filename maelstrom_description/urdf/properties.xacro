@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <!-- Center of buoyancy -->
-    <xacro:property name="maelstrom_cob" value="0 0 0"/>
+    <xacro:property name="maelstrom_cob" value=".027 -.002 .08"/>
 
     <!-- Vehicle's actual volume (Gazebo cannot compute the volume out of the mesh) -->
-    <xacro:property name="maelstrom_volume" value="0.0386"/>
+    <xacro:property name="maelstrom_volume" value="0.0428"/>
 
     <!-- Describing the dimensions of the vehicle's bounding box -->
     <xacro:property name="maelstrom_length" value="0.782"/>
@@ -15,7 +15,7 @@
      <xacro:property name="rho" value="1028" />
 
 
-    <xacro:property name="maelstrom_mass" value="36.1"/>
+    <xacro:property name="maelstrom_mass" value="40.85"/>
     <!-- Center of gravity -->
     <xacro:property name="maelstrom_cog" value="0 0 0"/>
 
@@ -34,7 +34,7 @@
         <added_mass>
         1.7 0 0 0 0 0
         0 0 0 0 0 0
-        0 0 5 0 0 0
+        0 0 5 0 0 0 
         0 0 0 0 0 0
         0 0 0 1.5 0 0
         0 0 0 0 0 .4
