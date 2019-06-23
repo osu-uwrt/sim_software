@@ -9,4 +9,6 @@
 
     <node name="remap_pwm" pkg="riptide_simulation" type="remap_pwm.py"/>
 
+    <node name="dvl_formatting" pkg="riptide_simulation" type="dvl_formatting.py"/>
+
 </launch>
