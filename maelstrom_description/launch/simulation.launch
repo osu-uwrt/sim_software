@@ -1,0 +1,14 @@
+<launch>
+
+    <include file="$(find uuv_descriptions)/launch/lake.launch"/>
+    <include file="$(find maelstrom_description)/launch/upload.launch"/>
+
+    <node name="quat_to_euler_imu" pkg="riptide_simulation" type="quat_to_euler_imu.py"/>
+
+    <node name="remap_thrust" pkg="riptide_simulation" type="remap_thrust.py"/>
+
+    <node name="remap_pwm" pkg="riptide_simulation" type="remap_pwm.py"/>
+
+    <node name="dvl_formatting" pkg="riptide_simulation" type="dvl_formatting.py"/>
+
+</launch>
