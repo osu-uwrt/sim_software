@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<package>
+<?xml version=".0"?>
+<package format="2">
   <name>riptide_simulation</name>
   <version>0.0.1</version>
   <description>Common simulation package for The OSU Underwater Robotics Team's Riptide AUV software platform.</description>
@@ -12,6 +12,10 @@
   <url type="repository">http://github.com/uwrt-osu/sim_software</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>uuv_sensor_ros_plugins_msgs</depend>
+  <depend>nortek_dvl</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
   
   <export>
   </export>

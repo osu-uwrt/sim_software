@@ -1,6 +1,6 @@
 <launch>
 
-    <include file="$(find uuv_descriptions)/launch/lake.launch"/>
+    <include file="$(find uuv_gazebo_worlds)/launch/lake.launch"/>
     <include file="$(find maelstrom_description)/launch/upload.launch"/>
 
     <node name="quat_to_euler_imu" pkg="riptide_simulation" type="quat_to_euler_imu.py"/>

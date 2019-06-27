@@ -3,4 +3,4 @@
 # to convert the simulation dvl output to fomatted dvl input for riptide
 
 sim_topic: /maelstrom/dvl
-real_topic: /dvl
+real_topic: /dvl/dvl

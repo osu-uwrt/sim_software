@@ -7,7 +7,7 @@ import rospkg
 import yaml
 import tf
 import math
-from uuv_sensor_plugins_ros_msgs.msg import DVL as SimDvl
+from uuv_sensor_ros_plugins_msgs.msg import DVL as SimDvl
 from nortek_dvl.msg import Dvl as RealDvl
 from geometry_msgs.msg import Vector3
 from std_msgs.msg import Header
