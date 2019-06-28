@@ -1,6 +1,7 @@
 <launch>
   <!-- Debug flag -->
   <arg name="debug" default="0"/>
+  <rosparam param="/use_sim_time">true</rosparam>
 
   <!-- Vehicle's initial pose -->
   <arg name="x"     default="0"/>
