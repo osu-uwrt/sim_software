@@ -7,5 +7,7 @@ catkin_package(
       uuv_sensor_ros_plugins_msgs
       nortek_dvl
       geometry_msgs
+      sensor_msgs
       std_msgs
+      riptide_msgs
 )

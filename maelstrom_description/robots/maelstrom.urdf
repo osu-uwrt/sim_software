@@ -82,7 +82,7 @@
   </gazebo>
   <!-- Set up hydrodynamic plugin given as input parameter -->
   <gazebo>
-    <plugin filename="libunderwater_object_ros_plugin.so" name="uuv_plugin">
+    <plugin filename="libuuv_underwater_object_ros_plugin.so" name="uuv_plugin">
       <fluid_density>1028.0</fluid_density>
       <flow_velocity_topic>hydrodynamics/current_velocity</flow_velocity_topic>
       <debug>0</debug>
@@ -161,7 +161,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_HSA_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_HSA_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_HSA</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -243,7 +243,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_HPA_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_HPA_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_HPA</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -325,7 +325,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_HPF_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_HPF_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_HPF</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -407,7 +407,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_HSF_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_HSF_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_HSF</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -489,7 +489,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_VPF_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_VPF_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_VPF</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -571,7 +571,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_VPA_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_VPA_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_VPA</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -653,7 +653,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_VSF_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_VSF_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_VSF</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -735,7 +735,7 @@
   </joint>
   <gazebo>
     <!-- Thruster ROS plugin -->
-    <plugin filename="libthruster_ros_plugin.so" name="maelstrom_VSA_thruster_model">
+    <plugin filename="libuuv_thruster_ros_plugin.so" name="maelstrom_VSA_thruster_model">
       <!-- Name of the thruster link -->
       <linkName>maelstrom/thruster_VSA</linkName>
       <!-- Name of the joint between thruster and vehicle base link -->
@@ -798,7 +798,7 @@
     more examples or add you own custom sensor units.
   -->
   <gazebo>
-    <plugin filename="libjoint_state_publisher.so" name="joint_state_publisher">
+    <plugin filename="libuuv_joint_state_publisher.so" name="joint_state_publisher">
       <robotNamespace>maelstrom</robotNamespace>
       <updateRate>10</updateRate>
     </plugin>

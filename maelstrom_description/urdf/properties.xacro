@@ -12,7 +12,7 @@
     <xacro:property name="maelstrom_height" value="0.967"/>
 
       <!-- Fluid density -->
-     <xacro:property name="rho" value="1028" />
+     <xacro:property name="rho" value="1000" />
 
 
     <xacro:property name="maelstrom_mass" value="40.85"/>
@@ -45,8 +45,8 @@
         </linear_damping>
     </xacro:property>
 
-    <xacro:property name="max_thrust" value="24" />
-    <xacro:property name="min_thrust" value="-24" />
+    <xacro:property name="max_thrust" value="40" />
+    <xacro:property name="min_thrust" value="-40" />
 
     <xacro:property name="hpf_pos"><origin xyz="0.37273 0.18946 -0.01509" rpy="0 ${pi/2} 0" /></xacro:property>
     <xacro:property name="hpa_pos"><origin xyz="-0.32577 0.18946 -0.01509" rpy="0 ${pi/2} 0" /></xacro:property>

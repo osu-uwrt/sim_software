@@ -9,10 +9,9 @@ import yaml
 from riptide_msgs.msg import ThrustStamped, Thrust
 from uuv_gazebo_ros_plugins_msgs.msg import FloatStamped
 
-rpack = rospkg.RosPack()
-config_path = rpack.get_path('riptide_simulation') + "/cfg/remap_thrust_cfg.yml"
 pubs = {}
 cfg = {}
+
 
 def callback(msg):
     for t in cfg['thruster_mapping']:
@@ -25,13 +24,16 @@ def callback(msg):
 
         pubs[t[0]].publish(f)
 
-def loadConfig():
+
+def loadConfig(path):
     global cfg
-    with open(config_path, 'r') as stream:
-        cfg = yaml.load(stream)
+    with open(path, 'r') as stream:
+        cfg = yaml.safe_load(stream)
+
 
 def main():
-    loadConfig()
+    config_file = rospy.get_param('~config')
+    loadConfig(config_file)
     for t in cfg['thruster_mapping']:
         sim_topic = cfg['sim_topic_prefix'] + t[0] + cfg['sim_topic_suffix']
         pub = rospy.Publisher(sim_topic, FloatStamped, queue_size=10)
@@ -40,6 +42,7 @@ def main():
     sub = rospy.Subscriber(cfg['real_topic'], ThrustStamped, callback)
 
     rospy.spin()
+
 
 if __name__ == "__main__":
     rospy.init_node("remap_thrust")
