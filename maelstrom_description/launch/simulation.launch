@@ -17,9 +17,9 @@
         <param name="config" value="$(find riptide_simulation)/cfg/remap_thrust_cfg.yaml"/>
     </node>
 
-    <node name="remap_pwm" pkg="riptide_simulation" type="remap_pwm.py" output="screen">
+    <!--<node name="remap_pwm" pkg="riptide_simulation" type="remap_pwm.py" output="screen">
         <param name="config" value="$(find riptide_simulation)/cfg/remap_pwm_cfg.yaml"/>
-    </node>
+    </node>-->
 
     <node name="dvl_formatting" pkg="riptide_simulation" type="dvl_formatting.py" output="screen">
         <param name="sim_topic" value="/maelstrom/dvl"/>

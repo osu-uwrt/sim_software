@@ -35,7 +35,7 @@
     <joint name="${robot_namespace}/thruster_${thruster_id}_joint" type="continuous">
       <xacro:insert_block name="origin" />
       <axis xyz="1 0 0" />
-      <parent link="${robot_namespace}/inert" />
+      <parent link="${robot_namespace}/inertia" />
       <child link="${robot_namespace}/thruster_${thruster_id}" />
     </joint>
 

@@ -1,0 +1,34 @@
+base_link:
+  link:
+    name: base_link
+    mesh_properties:
+      visual: package://maelstrom_description/model/meshes/maelstromColored.dae
+      collision: package://maelstrom_description/model/meshes/collision.stl
+    mass: 40.85
+    com:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+    inertia:
+      ixx: 1.32
+      ixy: 0.0
+      ixz: 0.0
+      iyy: 2.84
+      iyz: 0.0
+      izz: 3.65
+    hydro:
+      cob: # Relative to com
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      volume: 0.0428
+      damping:
+        linear: -11.7391 -20 -31.8678 -25 -44.9085 -5
+        quadratic: 0 0 0 0 0 0
+      added_mass: >
+        0 0 0 0 0 0
+        0 0 0 0 0 0
+        0 0 0 0 0 0 
+        0 0 0 0 0 0
+        0 0 0 0 0 0
+        0 0 0 0 0 0

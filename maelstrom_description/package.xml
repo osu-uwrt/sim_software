@@ -12,6 +12,9 @@
   <url type="repository">http://github.com/uwrt-osu/sim_software</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>xacro</depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
 
   <export>
   </export>

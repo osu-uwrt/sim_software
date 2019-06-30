@@ -36,7 +36,7 @@
 
     <joint name="inert_base" type="fixed">
       <parent link="${namespace}/base_link"/>
-      <child link="${namespace}/inert"/>
+      <child link="${namespace}/inertia"/>
     </joint>
 
     <gazebo reference="${namespace}/base_link">

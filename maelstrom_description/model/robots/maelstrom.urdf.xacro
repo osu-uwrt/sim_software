@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <robot name="maelstrom" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  
   <xacro:arg name="debug" default="0"/>
   <xacro:arg name="namespace" default="maelstrom"/>
+  
   <!-- Include the ROV macro file -->
-  <xacro:include filename="$(find maelstrom_description)/urdf/properties.xacro" />
-  <xacro:include filename="$(find maelstrom_description)/urdf/base.xacro"/>
-  <xacro:include filename="$(find maelstrom_description)/urdf/gazebo.xacro"/>
+  <xacro:include filename="$(find maelstrom_description)/model/xacro/base.xacro" />
+  <xacro:include filename="$(find maelstrom_description)/model/xacro/thrusters.xacro"/>
+  <xacro:include filename="$(find maelstrom_description)/model/xacro/sensors.xacro"/>
+  <xacro:include filename="$(find maelstrom_description)/model/xacro/gazebo.xacro"/>
+  
 
   <!-- Create the maelstrom -->
   <xacro:maelstrom_base namespace="$(arg namespace)">

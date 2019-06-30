@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_thrusters">
+
+  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_joints.xacro"/>
+
+  <xacro:property name="t200_file" value="$(find common_robot_description)/config/thruster_t200.yaml"/>
+  <xacro:property name="t200_data" value="${load_yaml(t200_file)}"/>
+
+  <xacro:macro name="thruster_t200_from_yaml" params="data">
+
+    <!--
+    Dummy link as place holder for the thruster frame,
+    since thrusters can often be inside the collision geometry
+    of the vehicle and may cause internal collisions if set otherwise
+    -->
+    <xacro:standard_link_from_yaml name="${data[tag_link][tag_name]}" data="${t200_data[tag_link]}"/>
+    <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
+    <!--<link name="${data[tag_link][tag_name]}">
+
+      <visual>
+        <geometry>
+          <mesh filename="${t200_data[tag_link][tag_mesh]}" scale="1 1 1" />
+        </geometry>
+      </visual>
+      <inertial>
+        <mass value="${t200_data[tag_link][tag_mass]}" />
+        <origin xyz="${t200_data[tag_link][tag_com][tag_x]} ${t200_data[tag_link][tag_com][tag_y]} ${t200_data[tag_link][tag_com][tag_z]}" 
+                rpy="0 0 0"/>
+        <inertia ixx="${t200_data[tag_link][tag_inertia][tag_ixx]}" 
+                ixy="${t200_data[tag_link][tag_inertia][tag_ixy]}" 
+                ixz="${t200_data[tag_link][tag_inertia][tag_ixz]}"
+                iyy="${t200_data[tag_link][tag_inertia][tag_iyy]}" 
+                iyz="${t200_data[tag_link][tag_inertia][tag_iyz]}"
+                izz="${t200_data[tag_link][tag_inertia][tag_izz]}" />
+      </inertial>
+    </link>-->
+
+    <!-- Joint between thruster link and vehicle base link -->
+    <!--<joint name="${data[tag_joint][tag_name]}" type="continuous">
+      <origin xyz="${data[tag_joint][tag_origin][tag_xyz]}" 
+              rpy="${data[tag_joint][tag_origin][tag_rpy]}"/>
+      <axis xyz="${data[tag_joint][tag_axis]}" />
+      <parent link="${data[tag_joint][tag_parent]}" />
+      <child link="${data[tag_link][tag_name]}" />
+    </joint>-->
+
+    <gazebo>
+      <plugin name="thruster_model_${data[tag_thruster][tag_name]}" filename="libuuv_thruster_ros_plugin.so">
+
+        <linkName>${data[tag_link][tag_name]}</linkName>
+        <jointName>${data[tag_joint][tag_name]}</jointName>
+        <thrusterID>${data[tag_thruster][tag_id]}</thrusterID>
+
+        <!-- Minimum and maximum thrust force output allowed -->
+        <thrustMax>${t200_data[tag_limits][tag_thrust][tag_max]}</thrustMax>
+        <thrustMin>${t200_data[tag_limits][tag_thrust][tag_min]}</thrustMin>
+
+        <dynamics>
+          <type>${t200_data[tag_gazebo][tag_dynamics]}</type>
+        </dynamics>
+
+        <!-- Basic curve
+        Input: x
+        Output: thrust
+        Function: thrust = rotorConstant * x * abs(x)
+        -->
+        <!-- TODO: Find good thruster model -->
+        <conversion>
+          <type>${t200_data[tag_gazebo][tag_conversion][tag_type]}</type>
+          <rotorConstant>${t200_data[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>
+        </conversion>
+
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="${data[tag_link][tag_name]}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

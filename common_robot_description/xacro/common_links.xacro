@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_links">
+  
+  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  
+  <xacro::macro name="inertia_from_yaml" params="data">
+    <inertia ixx="${data[tag_ixx]}" ixy="${data[tag_ixy]}" ixz="${data[tag_ixz]}"
+             iyy="${data[tag_iyy]}" iyz="${data[tag_iyz]}" izz="${data[tag_izz]}"/>
+  </xacro:macro>
+
+  <xacro::macro name="standard_link_from_yaml" params="name:=None data">
+    <link name="${data[tag_name] if name is None else name}">
+      
+      <xacro:if value="${tag_mesh in data}">
+        <xacro:if value="${tag_visual in data[tag_mesh]}">
+          <visual>
+            <geometry>
+              <mesh filename="${data[tag_mesh][tag_visual]}" scale="1 1 1"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          </visual>
+        </xacro:if>
+        <xacro:if value="${tag_collision in data[tag_link][tag_mesh]}">
+          <visual>
+            <geometry>
+              <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
+            </geometry>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+          </visual>
+        </xacro:if>
+      </xacro:if>
+      
+      <inertial>
+        <mass value="${data[tag_mass]}"/>
+        <origin xyz="${data[tag_com][tag_x]} ${data[tag_com][tag_y]} ${data[tag_com][tag_z]}" rpy="0 0 0"/>
+        <inertia ixx="${data[tag_inertia][tag_ixx]}" 
+                ixy="${data[tag_inertia][tag_ixy]}" 
+                ixz="${data[tag_inertia][tag_ixz]}"
+                iyy="${data[tag_inertia][tag_iyy]}" 
+                iyz="${data[tag_inertia][tag_iyz]}"
+                izz="${data[tag_inertia][tag_izz]}" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="uuv_hydro_link_from_yaml" params="name data">
+    <link name="${name}">
+      <volume>${data[tag_volume]}</volume>
+
+      <!-- Link's bounding box, it is used to recalculate the immersed
+      volume when close to the surface.
+      This is a workaround the invalid bounding box given by Gazebo-->
+      <xacro:if value="${tag_box in data}">
+        <box>
+          <width>${data[tag_box][tag_width]}</width>
+          <length>${data[tag_box][tag_length]}</length>
+          <height>${data[tag_box][tag_height]}</height>
+        </box>
+      </xacro:if>
+      
+      <center_of_buoyancy>${data[tag_cob]}</center_of_buoyancy>
+      <hydrodynamic_model>
+        <type>fossen</type>
+        <added_mass>${data[tag_added_mass]}</added_mass>
+        <linear_damping>${data[tag_damping][tag_linear]}</linear_damping>
+        <quadratic_damping>${data[tag_damping][tag_quadratic]}</quadratic_damping>
+      </hydrodynamic_model>
+
+    </link>
+  </xacro:macro>
+
+</robot>

@@ -35,7 +35,7 @@ def main():
     config_file = rospy.get_param('~config')
     loadConfig(config_file)
     for t in cfg['thruster_mapping']:
-        sim_topic = cfg['sim_topic_prefix'] + t[0] + cfg['sim_topic_suffix']
+        sim_topic = cfg['sim_topic_prefix'] + str(t[0]) + cfg['sim_topic_suffix']
         pub = rospy.Publisher(sim_topic, FloatStamped, queue_size=10)
         pubs[t[0]] = pub
 
