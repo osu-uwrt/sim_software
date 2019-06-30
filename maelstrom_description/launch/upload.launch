@@ -6,7 +6,7 @@
   <!-- Vehicle's initial pose -->
   <arg name="x"     default="0"/>
   <arg name="y"     default="0"/>
-  <arg name="z"     default="-2"/>
+  <arg name="z"     default="-1"/>
   <arg name="roll"  default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw"   default="0"/>
@@ -25,7 +25,7 @@
 
   /robots/<mode>.xacro
   -->
-  <arg name="mode" default="default"/>
+  <arg name="config" default="maelstrom"/>
 
   <!-- Vehicle's namespace -->
   <arg name="namespace" default="maelstrom"/>
@@ -35,7 +35,7 @@
 
   <group ns="$(arg namespace)">
     <param name="robot_description"
-           command="$(find xacro)/xacro --inorder '$(find maelstrom_description)/robots/$(arg mode).xacro' debug:=$(arg debug) namespace:=$(arg namespace)" />
+           command="$(find xacro)/xacro --inorder '$(find maelstrom_description)/model/robots/$(arg config).urdf.xacro' debug:=$(arg debug) namespace:=$(arg namespace)" />
     
     <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
     <group if="$(arg use_geodetic)">

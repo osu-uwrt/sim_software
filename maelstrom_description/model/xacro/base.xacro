@@ -1,57 +1,18 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!-- Loading some constants -->
-  <xacro:include filename="$(find uuv_descriptions)/urdf/common.urdf.xacro"/>
-  <!-- Loading file with sensor macros -->
-  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/sensor_snippets.xacro"/>
-  <!-- Loading the UUV simulator ROS plugin macros -->
-  <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/>  
-  <!-- Loading vehicle's specific macros -->
-  <xacro:include filename="$(find maelstrom_description)/urdf/snippets.xacro"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="base">
 
-  <!-- Vehicle macro -->
-  <xacro:macro name="maelstrom_base" params="namespace *gazebo">
+  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
 
-      <!-- Rigid body description of the base link -->
-      <link name="${namespace}/base_link">
+  <!-- Load Maelstrom Base Data -->
+  <xacro:property name="base_file" value="$(find maelstrom_description)/model/config/base.yaml"/>
+  <xacro:property name="base_data" value="${load_yaml(base_file)}"/>
+  <xacro:property name="base" value="${base_data['base_link']}"/>
 
-        <visual>
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-          <geometry>
-            <mesh filename="${visual_mesh_file}" scale="1 1 1" />
-          </geometry>
-        </visual>
+  <xacro:base_link_from_yaml data="${base[tag_link]}"/>
 
-        <collision>
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-          <geometry>
-            <mesh filename="${collision_mesh_file}" scale="1 1 1" />
-          </geometry>
-        </collision>
-      </link>
-
-      <link name="${namespace}/inert">
-        <xacro:insert_block name="maelstrom_inertia" />
-      </link>
-
-    <joint name="inert_base" type="fixed">
-      <parent link="${namespace}/base_link"/>
-      <child link="${namespace}/inertia"/>
-    </joint>
-
-    <gazebo reference="${namespace}/base_link">
-      <selfCollide>false</selfCollide>
-    </gazebo>
-
-    <!-- Set up hydrodynamic plugin given as input parameter -->
-    <xacro:insert_block name="gazebo"/>
-
-    <!-- Include the thruster modules -->
-    <xacro:include filename="$(find maelstrom_description)/urdf/actuators.xacro"/>
-
-    <!-- Include the sensor modules -->
-    <xacro:include filename="$(find maelstrom_description)/urdf/sensors.xacro"/>
-
+  <xacro:macro name="maelstrom_base_uuv_links">
+    <xacro:hydro_link_from_yaml name="${base[tag_link][tag_name]}" data="${base[tag_link][tag_hydro]}"/>
   </xacro:macro>
 
 </robot>

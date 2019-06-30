@@ -3,35 +3,27 @@
   
   <xacro:arg name="debug" default="0"/>
   <xacro:arg name="namespace" default="maelstrom"/>
+
+  <xacro:property name="namespace" value="$(arg namespace)"/>
   
-  <!-- Include the ROV macro file -->
-  <xacro:include filename="$(find maelstrom_description)/model/xacro/base.xacro" />
+  <!-- Include common xacros -->
+  <xacro:include filename="$(find uuv_descriptions)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_joints.xacro"/>
+
+  <!-- Create Maelstrom -->
+  <xacro:include filename="$(find maelstrom_description)/model/xacro/base.xacro"/>
   <xacro:include filename="$(find maelstrom_description)/model/xacro/thrusters.xacro"/>
   <xacro:include filename="$(find maelstrom_description)/model/xacro/sensors.xacro"/>
-  <xacro:include filename="$(find maelstrom_description)/model/xacro/gazebo.xacro"/>
-  
 
-  <!-- Create the maelstrom -->
-  <xacro:maelstrom_base namespace="$(arg namespace)">
-    <!-- The underwater object plugin is given as an input block parameter to
-     allow the addition of external models of manipulator units -->
-    <gazebo>
-      <plugin name="uuv_plugin" filename="libuuv_underwater_object_ros_plugin.so">
-        <fluid_density>1000.0</fluid_density>
-        <flow_velocity_topic>hydrodynamics/current_velocity</flow_velocity_topic>
-        <debug>$(arg debug)</debug>
-        <!-- Adding the hydrodynamic and hydrostatic parameters for the vehicle-->
-        <xacro:maelstrom_hydro_model namespace="$(arg namespace)"/>
-        <!--
-          In case other modules are added to the vehicle (such as a manipulator)
-          that also have link running with the underwater object plugin, they
-          should also be added in this block. For this, this new module should
-          have a file similar to gazebo.xacro above with the description of the
-          parameter necessary for the underwater object plugin to be initialized.
-        -->
-      </plugin>
-    </gazebo>
-  </xacro:maelstrom_base>
+  <!-- Combine hydro links -->
+  <!-- Can add more within uuv_links as the model grows -->
+  <xacro:uuv_hydro_links>
+    <uuv_links>
+      <xacro:maelstrom_base_uuv_links/>
+    </uuv_links>
+  </xacro:uuv_hydro_links>
 
   <!-- Joint state publisher plugin -->
   <xacro:default_joint_state_publisher namespace="$(arg namespace)" update_rate="10"/>

@@ -22,4 +22,4 @@ t200:
     dynamics: ZeroOrder
     thrust_conversion:
       type: Basic
-      constant: 0.005
+      constant: -0.005 # The negative sign is for visual purposes so the propeller spins correctly

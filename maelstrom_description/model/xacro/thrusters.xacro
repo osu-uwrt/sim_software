@@ -1,25 +1,22 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <!-- Adding the thruster units with the macro created in snippets.xacro -->
-    <!--
-    Important:
-        - The thruster IDs must be given as integers and must be unique to each thruster unit
-        - The thruster pose in the <origin> block is relative to the body's center of mass. Be
-          aware that Gazebo does not use the SNAME convention per default.
-    -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="thrusters">
+
+    <!-- Include needed xacros -->
+    <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/>
     <xacro:include filename="$(find common_robot_description)/xacro/common_thrusters.xacro"/>
-    <xacro:include filename="$(find maelstrom_description)/model/xacro/thrusters.xacro"/>
     
+    <!-- Load data from yaml -->
     <xacro:property name="thruster_file" value="$(find maelstrom_description)/model/config/thrusters.yaml"/>
     <xacro:property name="thruster_data" value="${load_yaml(thruster_file)}"/>
 
-    <xacro:thruster_t200_from_yaml name="thruster_hpf" value="${thruster_data['heave_port_fwd])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_hpa" value="${thruster_data['heave_port_aft])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_hsf" value="${thruster_data['heave_stbd_fwd])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_hsa" value="${thruster_data['heave_stbd_aft])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_vpf" value="${thruster_data['vector_port_fwd])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_vpa" value="${thruster_data['vector_port_aft])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_vsf" value="${thruster_data['vector_stbd_fwd])}"/>
-    <xacro:thruster_t200_from_yaml name="thruster_vsa" value="${thruster_data['vector_stbd_aft])}"/>
+    <!-- Create Thrusters -->
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['heave_port_fwd']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['heave_port_aft']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['heave_stbd_fwd']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['heave_stbd_aft']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['vector_port_fwd']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['vector_port_aft']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['vector_stbd_fwd']}"/>
+    <xacro:uuv_thruster_t200_from_yaml data="${thruster_data['vector_stbd_aft']}"/>
 
 </robot>

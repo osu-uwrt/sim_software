@@ -4,6 +4,10 @@ base_link:
     mesh_properties:
       visual: package://maelstrom_description/model/meshes/maelstromColored.dae
       collision: package://maelstrom_description/model/meshes/collision.stl
+    dummy_link:
+      name: base_inertia
+    dummy_joint:
+      name: base_joint
     mass: 40.85
     com:
       x: 0.0
@@ -17,7 +21,11 @@ base_link:
       iyz: 0.0
       izz: 3.65
     hydro:
-      cob: # Relative to com
+      box: # Bounding Box
+        length: 0.89
+        width: 0.5
+        height: 0.33
+      cob: # Relative to base_link origin
         x: 0.0
         y: 0.0
         z: 0.0

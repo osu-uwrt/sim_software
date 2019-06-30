@@ -1,5 +1,6 @@
 heave_port_fwd:
   thruster:
+    name: heave_port_fwd
     id: 0
   link:
     name: thruster_heave_port_fwd
@@ -7,7 +8,7 @@ heave_port_fwd:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_heave_port_fwd_joint
-    parent: maelstrom/inertia
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -16,12 +17,13 @@ heave_port_fwd:
 
 heave_port_aft:
   thruster:
+    name: heave_port_aft
     id: 1
   link:
     name: thruster_heave_port_aft
   joint:
     name: thruster_heave_port_aft_joint
-    parent: maelstrom/inertia
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -30,14 +32,15 @@ heave_port_aft:
 
 heave_stbd_fwd:
   thruster:
+    name: heave_stbd_fwd
     id: 2
   link:
     name: thruster_heave_stbd_fwd
     mesh_properties:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
-    name: thruster_heave_port_fwd_joint
-    parent: maelstrom/inertia
+    name: thruster_heave_stbd_fwd_joint
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -46,14 +49,15 @@ heave_stbd_fwd:
 
 heave_stbd_aft:
   thruster:
+    name: heave_stbd_aft
     id: 3
   link:
     name: thruster_heave_stbd_aft
     mesh_properties:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
-    name: thruster_heave_port_aft_joint
-    parent: maelstrom/inertia
+    name: thruster_heave_stbd_aft_joint
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -62,6 +66,7 @@ heave_stbd_aft:
 
 vector_port_fwd:
   thruster:
+    name: vector_port_fwd
     id: 4
   link:
     name: thruster_vector_port_fwd
@@ -69,7 +74,7 @@ vector_port_fwd:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_port_fwd_joint
-    parent: maelstrom/inertia
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -78,6 +83,7 @@ vector_port_fwd:
 
 vector_port_aft:
   thruster:
+    name: vector_port_aft
     id: 5
   link:
     name: thruster_vector_port_aft
@@ -85,7 +91,7 @@ vector_port_aft:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_port_aft_joint
-    parent: maelstrom/inertia
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -94,14 +100,15 @@ vector_port_aft:
 
 vector_stbd_fwd:
   thruster:
+    name: vector_stbd_fwd
     id: 6
   link:
     name: thruster_vector_stbd_fwd
     mesh_properties:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
-    name: thruster_vector_port_fwd_joint
-    parent: maelstrom/inertia
+    name: thruster_vector_stbd_fwd_joint
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
@@ -110,14 +117,15 @@ vector_stbd_fwd:
 
 vector_stbd_aft:
   thruster:
+    name: vector_stbd_aft
     id: 7
   link:
     name: thruster_vector_stbd_aft
     mesh_properties:
       visual: package://common_robot_description/meshes/propeller.dae
   joint:
-    name: thruster_vector_port_aft_joint
-    parent: maelstrom/inertia
+    name: thruster_vector_stbd_aft_joint
+    parent: base_inertia
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
