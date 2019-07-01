@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_links">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_link_macros">
   
   <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/> 
 
   <!-- Link Tags -->
   <xacro:property name="tag_collision" value="collision"/>
@@ -144,7 +145,7 @@
 
   <xacro:macro name="uuv_hydro_links" params="flow_topic:='hydrodynamics/current_velocity' fluid_density:=1000 **uuv_links">
     <gazebo>
-      <plugin name="uuv_plugin" filename="libuuv_underwater_object_ros_plugin.so">
+      <plugin filename="libuuv_underwater_object_ros_plugin.so" name="uuv_plugin">
         <fluid_density>${fluid_density}</fluid_density>
         <flow_velocity_topic>${flow_topic}</flow_velocity_topic>
         <xacro:insert_block name="uuv_links"/>

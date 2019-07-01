@@ -19,11 +19,19 @@
 
   <!-- Combine hydro links -->
   <!-- Can add more within uuv_links as the model grows -->
-  <xacro:uuv_hydro_links>
+  <!--<xacro:uuv_hydro_links>
     <uuv_links>
       <xacro:maelstrom_base_uuv_links/>
     </uuv_links>
-  </xacro:uuv_hydro_links>
+  </xacro:uuv_hydro_links>-->
+
+  <gazebo>
+    <plugin name="uuv_underwater_object_ros_plugin" filename="libuuv_underwater_object_ros_plugin.so">
+      <fluid_density>1028</fluid_density>
+      <flow_velocity_topic>hydrodynamic/current_velocity</flow_velocity_topic>
+      <xacro:maelstrom_base_uuv_links/>
+    </plugin>
+  </gazebo>
 
   <!-- Joint state publisher plugin -->
   <xacro:default_joint_state_publisher namespace="$(arg namespace)" update_rate="10"/>

@@ -8,11 +8,17 @@ find_package(catkin REQUIRED COMPONENTS
    common_robot_description
    xacro
    uuv_gazebo_ros_plugins
+   uuv_gazebo_ros_plugins_msgs
    uuv_world_ros_plugins
 )
 
 catkin_package(
-   CATKIN_DEPENDS xacro
+   CATKIN_DEPENDS 
+      common_robot_description
+      xacro
+      uuv_gazebo_ros_plugins
+      uuv_gazebo_ros_plugins_msgs
+      uuv_world_ros_plugins
 )
 
 # Xacro ctest_read_custom_files()

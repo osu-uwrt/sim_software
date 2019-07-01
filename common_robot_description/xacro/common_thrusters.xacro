@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_thrusters">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_thruster_macros">
 
   <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
   <xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
   <xacro:include filename="$(find common_robot_description)/xacro/common_joints.xacro"/>
+  <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/> 
 
   <!-- Thruster Tags -->
   <xacro:property name="tag_thrust" value="thrust"/>
@@ -25,34 +26,6 @@
     -->
     <xacro:standard_link_from_yaml name="${data[tag_link][tag_name]}" data="${t200[tag_link]}"/>
     <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
-    <!--<link name="${data[tag_link][tag_name]}">
-
-      <visual>
-        <geometry>
-          <mesh filename="${t200_data[tag_link][tag_mesh]}" scale="1 1 1" />
-        </geometry>
-      </visual>
-      <inertial>
-        <mass value="${t200_data[tag_link][tag_mass]}" />
-        <origin xyz="${t200_data[tag_link][tag_com][tag_x]} ${t200_data[tag_link][tag_com][tag_y]} ${t200_data[tag_link][tag_com][tag_z]}" 
-                rpy="0 0 0"/>
-        <inertia ixx="${t200_data[tag_link][tag_inertia][tag_ixx]}" 
-                ixy="${t200_data[tag_link][tag_inertia][tag_ixy]}" 
-                ixz="${t200_data[tag_link][tag_inertia][tag_ixz]}"
-                iyy="${t200_data[tag_link][tag_inertia][tag_iyy]}" 
-                iyz="${t200_data[tag_link][tag_inertia][tag_iyz]}"
-                izz="${t200_data[tag_link][tag_inertia][tag_izz]}" />
-      </inertial>
-    </link>-->
-
-    <!-- Joint between thruster link and vehicle base link -->
-    <!--<joint name="${data[tag_joint][tag_name]}" type="continuous">
-      <origin xyz="${data[tag_joint][tag_origin][tag_xyz]}" 
-              rpy="${data[tag_joint][tag_origin][tag_rpy]}"/>
-      <axis xyz="${data[tag_joint][tag_axis]}" />
-      <parent link="${data[tag_joint][tag_parent]}" />
-      <child link="${data[tag_link][tag_name]}" />
-    </joint>-->
 
     <gazebo>
       <plugin name="thruster_model_${data[tag_thruster][tag_name]}" filename="libuuv_thruster_ros_plugin.so">
