@@ -8,27 +8,22 @@ base_link:
       name: base_inertia
     dummy_joint:
       name: base_joint
-    mass: 40.85
-    com:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    inertia:
-      ixx: 1.32
-      ixy: 0.0
-      ixz: 0.0
-      iyy: 2.84
-      iyz: 0.0
-      izz: 3.65
+    inertial:
+      mass: 40.85
+      com: 0 0 0
+      inertia:
+        ixx: 1.32
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 2.84
+        iyz: 0.0
+        izz: 3.65
     hydro:
       box: # Bounding Box
         length: 0.89
         width: 0.5
         height: 0.33
-      cob: # Relative to base_link origin
-        x: 0.0
-        y: 0.0
-        z: 0.0
+      cob: 0 0 0 # Relative to base_link origin
       volume: 0.0428
       damping:
         linear: -11.7391 -20 -31.8678 -25 -44.9085 -5

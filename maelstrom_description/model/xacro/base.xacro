@@ -11,7 +11,7 @@
 
   <xacro:base_link_from_yaml data="${base[tag_link]}"/>
 
-  <xacro:macro name="maelstrom_base_uuv_links">
+  <xacro:macro name="maelstrom_base_uuv_hydro_links">
     <xacro:hydro_link_from_yaml name="${base[tag_link][tag_name]}" data="${base[tag_link][tag_hydro]}"/>
   </xacro:macro>
 

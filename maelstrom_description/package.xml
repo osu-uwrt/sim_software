@@ -14,13 +14,6 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>xacro</depend>
   <depend>common_robot_description</depend>
-  <depend>gazebo7</depend>
-  <depend>uuv_descriptions</depend>
-  <depend>uuv_gazebo_ros_plugins</depend>
-  <depend>uuv_gazebo_ros_plugins_msgs</depend>
-  <depend>uuv_world_ros_plugins</depend>
-  <exec_depend>joint_state_publisher</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
 
   <export>
   </export>

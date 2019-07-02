@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_joint_macros">
   
-  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+   <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
 
-  <xacro:property name="tag_axis" value="axis"/>
-  <xacro:property name="tag_damping" value="damping"/>
-  <xacro:property name="tag_dynamics" value="dynamics"/>
-  <xacro:property name="tag_parent" value="parent"/>
+   <xacro:property name="tag_axis" value="axis"/>
+   <xacro:property name="tag_damping" value="damping"/>
+   <xacro:property name="tag_dynamics" value="dynamics"/>
+   <xacro:property name="tag_parent" value="parent"/>
 
-  <xacro:macro name="standard_joint_from_yaml" params="name:=None data child">
-   <joint name="${data[tag_name] if name is None else name}" type="${data[tag_type]}">
-      <origin xyz="${data[tag_origin][tag_xyz]}" 
-              rpy="${data[tag_origin][tag_rpy]}"/>
-      <axis xyz="${data[tag_axis]}" />
-      <parent link="${data[tag_parent]}" />
-      <child link="${child}" />
-    </joint>
-  </xacro:macro>
+   <xacro:macro name="standard_joint_from_yaml" params="name:=None data child">
+      <joint name="${data[tag_name] if name is None else name}" type="${data[tag_type]}">
+         <origin xyz="${data[tag_origin][tag_xyz]}" 
+                  rpy="${data[tag_origin][tag_rpy]}"/>
+         <axis xyz="${data[tag_axis]}" />
+         <parent link="${data[tag_parent]}" />
+         <child link="${child}" />
+      </joint>
+   </xacro:macro>
 
 </robot>

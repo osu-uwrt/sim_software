@@ -1,0 +1,86 @@
+camera:
+  forward_R:
+    topic_suffix: forward_R
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    mass: 0.01
+    inertia:
+      ixx: 0.001
+      ixy: 0.0
+      ixz: 0.0
+      iyy: 0.001
+      iyz: 0.0
+      izz: 0.001
+    origin:
+      xyz: 0.3818 0.05038 0.11999
+      rpy: 0 0 0
+  
+  forward_L:
+    topic_suffix: forward_L
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    mass: 0.01
+    inertia:
+      ixx: 0.001
+      ixy: 0.0
+      ixz: 0.0
+      iyy: 0.001
+      iyz: 0.0
+      izz: 0.001
+    origin:
+      xyz: 0.3818 -0.05038 0.11999
+      rpy: 0 0 0
+
+  downward:
+    topic_suffix: downward
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    mass: 0.01
+    inertia:
+      ixx: 0.001
+      ixy: 0.0
+      ixz: 0.0
+      iyy: 0.001
+      iyz: 0.0
+      izz: 0.001
+    origin:
+      xyz: 0.0711 0.0004 0
+      rpy: 0 1.57079 0
+
+depth:
+  depth:
+    parent_link: base_link
+    origin:
+      xyz: 0 -0.0004 0.0711
+      rpy: 0 0 0
+
+imu:
+  imu:
+    parent_link: base_link
+    inertial_reference_frame: world
+    origin:
+      xyz: 0 0 0
+      rpy: 0 0 0
+
+dvl:
+  dvl:
+    parent_link: base_link
+    inertial_reference_frame: world
+    origin:
+      xyz: -0.081297 -0.081297 0.0
+      rpy: 0 1.57079 0

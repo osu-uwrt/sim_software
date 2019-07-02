@@ -34,7 +34,6 @@
         <jointName>${data[tag_joint][tag_name]}</jointName>
         <thrusterID>${data[tag_thruster][tag_id]}</thrusterID>
 
-        <!-- Minimum and maximum thrust force output allowed -->
         <thrustMax>${t200[tag_limits][tag_thrust][tag_max]}</thrustMax>
         <thrustMin>${t200[tag_limits][tag_thrust][tag_min]}</thrustMin>
 
@@ -47,7 +46,6 @@
         Output: thrust
         Function: thrust = rotorConstant * x * abs(x)
         -->
-        <!-- TODO: Find good thruster model -->
         <conversion>
           <type>${t200[tag_gazebo][tag_conversion][tag_type]}</type>
           <rotorConstant>${t200[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>

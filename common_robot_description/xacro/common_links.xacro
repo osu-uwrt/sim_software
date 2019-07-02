@@ -1,156 +1,150 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_link_macros">
   
-  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
-  <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/> 
+   <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+   <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/> 
 
-  <!-- Link Tags -->
-  <xacro:property name="tag_collision" value="collision"/>
-  <xacro:property name="tag_com" value="com"/>
-  <xacro:property name="tag_dummy_joint" value="dummy_joint"/>
-  <xacro:property name="tag_dummy_link" value="dummy_link"/>
-  <xacro:property name="tag_inertia" value="inertia"/>
-  <xacro:property name="tag_ixx" value="ixx"/>
-  <xacro:property name="tag_ixy" value="ixy"/>
-  <xacro:property name="tag_ixz" value="ixz"/>
-  <xacro:property name="tag_iyy" value="iyy"/>
-  <xacro:property name="tag_iyz" value="iyz"/>
-  <xacro:property name="tag_izz" value="izz"/>
-  <xacro:property name="tag_mass" value="mass"/>
-  <xacro:property name="tag_mesh" value="mesh_properties"/>
-  <xacro:property name="tag_visual" value="visual"/>
+   <!-- Link Tags -->
+   <xacro:property name="tag_collision" value="collision"/>
+   <xacro:property name="tag_com" value="com"/>
+   <xacro:property name="tag_dummy_joint" value="dummy_joint"/>
+   <xacro:property name="tag_dummy_link" value="dummy_link"/>
+   <xacro:property name="tag_inertial" value="inertial"/>
+   <xacro:property name="tag_inertia" value="inertia"/>
+   <xacro:property name="tag_ixx" value="ixx"/>
+   <xacro:property name="tag_ixy" value="ixy"/>
+   <xacro:property name="tag_ixz" value="ixz"/>
+   <xacro:property name="tag_iyy" value="iyy"/>
+   <xacro:property name="tag_iyz" value="iyz"/>
+   <xacro:property name="tag_izz" value="izz"/>
+   <xacro:property name="tag_mass" value="mass"/>
+   <xacro:property name="tag_mesh" value="mesh_properties"/>
+   <xacro:property name="tag_visual" value="visual"/>
 
-  <!-- Hydro Link Tags -->
-  <xacro:property name="tag_added_mass" value="added_mass"/>
-  <xacro:property name="tag_box" value="box"/>
-  <xacro:property name="tag_constant" value="constant"/>
-  <xacro:property name="tag_cob" value="cob"/>
-  <xacro:property name="tag_damping" value="damping"/>
-  <xacro:property name="tag_height" value="height"/>
-  <xacro:property name="tag_hydro" value="hydro"/>
-  <xacro:property name="tag_length" value="length"/>
-  <xacro:property name="tag_linear" value="linear"/>
-  <xacro:property name="tag_quadratic" value="quadratic"/>
-  <xacro:property name="tag_volume" value="volume"/>
-  <xacro:property name="tag_width" value="width"/>
-  
-  <xacro:macro name="inertia_from_yaml" params="data">
-    <inertia ixx="${data[tag_ixx]}" ixy="${data[tag_ixy]}" ixz="${data[tag_ixz]}"
-             iyy="${data[tag_iyy]}" iyz="${data[tag_iyz]}" izz="${data[tag_izz]}"/>
-  </xacro:macro>
+   <!-- Hydro Link Tags -->
+   <xacro:property name="tag_added_mass" value="added_mass"/>
+   <xacro:property name="tag_box" value="box"/>
+   <xacro:property name="tag_constant" value="constant"/>
+   <xacro:property name="tag_cob" value="cob"/>
+   <xacro:property name="tag_damping" value="damping"/>
+   <xacro:property name="tag_height" value="height"/>
+   <xacro:property name="tag_hydro" value="hydro"/>
+   <xacro:property name="tag_length" value="length"/>
+   <xacro:property name="tag_linear" value="linear"/>
+   <xacro:property name="tag_quadratic" value="quadratic"/>
+   <xacro:property name="tag_volume" value="volume"/>
+   <xacro:property name="tag_width" value="width"/>
 
-  <xacro:macro name="base_link_from_yaml" params="data">
-    <link name="${data[tag_name]}">
+   <xacro:macro name="inertia_from_yaml" params="data">
+      <inertia ixx="${data[tag_ixx]}" ixy="${data[tag_ixy]}" ixz="${data[tag_ixz]}"
+               iyy="${data[tag_iyy]}" iyz="${data[tag_iyz]}" izz="${data[tag_izz]}"/>
+   </xacro:macro>
+
+   <xacro:macro name="origin_from_yaml" params="data">
+      <origin xyz="${data[tag_xyz]}" rpy="${data[tag_rpy]}"/>
+   </xacro:macro>
+
+   <xacro:macro name="inertial_from_yaml" params="data">
+      <mass value="${data[tag_mass]}"/>
+      <xacro:inertia_from_yaml data="${data[tag_inertia]}"/>
+      <origin xyz="${data[tag_com]}" rpy="0 0 0"/>
+   </xacro:macro>
+
+   <xacro:macro name="base_link_from_yaml" params="data">
+      <link name="${data[tag_name]}">
       
-      <xacro:if value="${tag_mesh in data}">
-        <xacro:if value="${tag_visual in data[tag_mesh]}">
-          <visual>
-            <geometry>
-              <mesh filename="${data[tag_mesh][tag_visual]}" scale="1 1 1"/>
-            </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-          </visual>
-        </xacro:if>
-        <xacro:if value="${tag_collision in data[tag_mesh]}">
-          <visual>
-            <geometry>
-              <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
-            </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-          </visual>
-        </xacro:if>
-      </xacro:if>
-    </link>
+         <xacro:if value="${tag_mesh in data}">
+            <xacro:if value="${tag_visual in data[tag_mesh]}">
+               <visual>
+                  <geometry>
+                     <mesh filename="${data[tag_mesh][tag_visual]}" scale="1 1 1"/>
+                  </geometry>
+                  <origin xyz="0 0 0" rpy="0 0 0"/>
+               </visual>
+            </xacro:if>
+
+            <xacro:if value="${tag_collision in data[tag_mesh]}">
+               <visual>
+                  <geometry>
+                     <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
+                  </geometry>
+                  <origin xyz="0 0 0" rpy="0 0 0"/>
+               </visual>
+            </xacro:if>
+         </xacro:if>
+      </link>
       
-    <link name="${data[tag_dummy_link][tag_name]}">
-      <inertial>
-        <mass value="${data[tag_mass]}"/>
-        <origin xyz="${data[tag_com][tag_x]} ${data[tag_com][tag_y]} ${data[tag_com][tag_z]}" rpy="0 0 0"/>
-        <inertia ixx="${data[tag_inertia][tag_ixx]}" 
-                ixy="${data[tag_inertia][tag_ixy]}" 
-                ixz="${data[tag_inertia][tag_ixz]}"
-                iyy="${data[tag_inertia][tag_iyy]}" 
-                iyz="${data[tag_inertia][tag_iyz]}"
-                izz="${data[tag_inertia][tag_izz]}" />
-      </inertial>
-    </link>
+      <link name="${data[tag_dummy_link][tag_name]}">
+         <xacro:inertial_from_yaml data="${data[tag_inertial]}"/>
+      </link>
 
-    <joint name="${data[tag_dummy_joint][tag_name]}" type="fixed">
-      <parent link="${data[tag_name]}"/>
-      <child link="${data[tag_dummy_link][tag_name]}"/>
-    </joint>
+      <joint name="${data[tag_dummy_joint][tag_name]}" type="fixed">
+         <parent link="${data[tag_name]}"/>
+         <child link="${data[tag_dummy_link][tag_name]}"/>
+      </joint>
 
-    <gazebo reference="${data[tag_name]}">
-      <selfCollide>false</selfCollide>
-    </gazebo>
-  </xacro:macro>
-  
-  <xacro:macro name="standard_link_from_yaml" params="name:=None data">
-    <link name="${data[tag_name] if name is None else name}">
+      <gazebo reference="${data[tag_name]}">
+         <selfCollide>false</selfCollide>
+      </gazebo>
+   </xacro:macro>
+
+   <xacro:macro name="standard_link_from_yaml" params="name:=None data">
+      <link name="${data[tag_name] if name is None else name}">
       
-      <xacro:if value="${tag_mesh in data}">
-        <xacro:if value="${tag_visual in data[tag_mesh]}">
-          <visual>
-            <geometry>
-              <mesh filename="${data[tag_mesh][tag_visual]}" scale="1 1 1"/>
-            </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-          </visual>
-        </xacro:if>
-        <xacro:if value="${tag_collision in data[tag_mesh]}">
-          <visual>
-            <geometry>
-              <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
-            </geometry>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-          </visual>
-        </xacro:if>
-      </xacro:if>
-      
-      <inertial>
-        <mass value="${data[tag_mass]}"/>
-        <origin xyz="${data[tag_com][tag_x]} ${data[tag_com][tag_y]} ${data[tag_com][tag_z]}" rpy="0 0 0"/>
-        <inertia ixx="${data[tag_inertia][tag_ixx]}" 
-                ixy="${data[tag_inertia][tag_ixy]}" 
-                ixz="${data[tag_inertia][tag_ixz]}"
-                iyy="${data[tag_inertia][tag_iyy]}" 
-                iyz="${data[tag_inertia][tag_iyz]}"
-                izz="${data[tag_inertia][tag_izz]}" />
-      </inertial>
-    </link>
-  </xacro:macro>
+         <xacro:if value="${tag_mesh in data}">
+            <xacro:if value="${tag_visual in data[tag_mesh]}">
+               <visual>
+                  <geometry>
+                     <mesh filename="${data[tag_mesh][tag_visual]}" scale="1 1 1"/>
+                  </geometry>
+                  <origin xyz="0 0 0" rpy="0 0 0"/>
+               </visual>
+            </xacro:if>
+            <xacro:if value="${tag_collision in data[tag_mesh]}">
+               <visual>
+                  <geometry>
+                     <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
+                  </geometry>
+                  <origin xyz="0 0 0" rpy="0 0 0"/>
+               </visual>
+            </xacro:if>
+         </xacro:if>
+         
+         <xacro:inertial_from_yaml data="${data[tag_inertial]}"/>
+      </link>
+   </xacro:macro>
 
-  <xacro:macro name="hydro_link_from_yaml" params="name data">
-    <link name="${name}">
-      <volume>${data[tag_volume]}</volume>
-      <!-- Link's bounding box, it is used to recalculate the immersed
-      volume when close to the surface.
-      This is a workaround the invalid bounding box given by Gazebo-->
-      <xacro:if value="${tag_box in data}">
-        <box>
-          <width>${data[tag_box][tag_width]}</width>
-          <length>${data[tag_box][tag_length]}</length>
-          <height>${data[tag_box][tag_height]}</height>
-        </box>
-      </xacro:if>
-      <center_of_buoyancy>${data[tag_cob]}</center_of_buoyancy> <!-- In the body frame -->
-      <hydrodynamic_model>
-        <type>fossen</type>
-        <added_mass>${data[tag_added_mass]}</added_mass>
-        <linear_damping>${data[tag_damping][tag_linear]}</linear_damping>
-        <quadratic_damping>${data[tag_damping][tag_quadratic]}</quadratic_damping>
-      </hydrodynamic_model>
-    </link>
-  </xacro:macro>
+   <xacro:macro name="hydro_link_from_yaml" params="name data">
+      <link name="${name}">
+         <volume>${data[tag_volume]}</volume>
+         <!-- Link's bounding box, it is used to recalculate the immersed
+         volume when close to the surface.
+         This is a workaround the invalid bounding box given by Gazebo-->
+         <xacro:if value="${tag_box in data}">
+            <box>
+               <width>${data[tag_box][tag_width]}</width>
+               <length>${data[tag_box][tag_length]}</length>
+               <height>${data[tag_box][tag_height]}</height>
+            </box>
+         </xacro:if>
+         <center_of_buoyancy>${data[tag_cob][tag_x]} ${data[tag_cob][tag_y]} ${data[tag_cob][tag_z]}</center_of_buoyancy> <!-- In the body frame -->
+         <hydrodynamic_model>
+            <type>fossen</type>
+            <added_mass>${data[tag_added_mass]}</added_mass>
+            <linear_damping>${data[tag_damping][tag_linear]}</linear_damping>
+            <quadratic_damping>${data[tag_damping][tag_quadratic]}</quadratic_damping>
+         </hydrodynamic_model>
+      </link>
+   </xacro:macro>
 
-  <xacro:macro name="uuv_hydro_links" params="flow_topic:='hydrodynamics/current_velocity' fluid_density:=1000 **uuv_links">
-    <gazebo>
-      <plugin filename="libuuv_underwater_object_ros_plugin.so" name="uuv_plugin">
-        <fluid_density>${fluid_density}</fluid_density>
-        <flow_velocity_topic>${flow_topic}</flow_velocity_topic>
-        <xacro:insert_block name="uuv_links"/>
-      </plugin>
-    </gazebo>
-  </xacro:macro>
+   <xacro:macro name="uuv_hydro_links" params="flow_topic:='hydrodynamics/current_velocity' fluid_density:=1000 **uuv_links">
+      <gazebo>
+         <plugin filename="libuuv_underwater_object_ros_plugin.so" name="uuv_underwater_object_ros_plugin">
+            <fluid_density>${fluid_density}</fluid_density>
+            <flow_velocity_topic>${flow_topic}</flow_velocity_topic>
+            <xacro:insert_block name="uuv_links"/>
+         </plugin>
+      </gazebo>
+   </xacro:macro>
 
 </robot>

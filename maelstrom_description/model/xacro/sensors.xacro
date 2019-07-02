@@ -1,90 +1,19 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sensors">
 
-	<xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/sensor_snippets.xacro"/>
+	<xacro:include filename="$(find common_robot_description)/xacro/common_sensors.xacro"/>
 
-	<xacro:property name="forward_camera_R_pos"><origin xyz="0.3818 0.05038 0.11999" rpy="0 0 0" /></xacro:property>  
-    <xacro:property name="forward_camera_L_pos"><origin xyz="0.3818 -0.05038 0.11999" rpy="0 0 0" /></xacro:property>
-    <xacro:property name="downward_camera_pos"><origin xyz="0.0711 0.0004 0" rpy="0 ${pi/2} 0" /></xacro:property> 
+	<!-- Load data from yaml -->
+   <xacro:property name="sensors_file" value="$(find maelstrom_description)/model/config/sensors.yaml"/>
+   <xacro:property name="sensors_data" value="${load_yaml(sensors_file)}"/>
 
-  <!--
-    Some examples of sensors that can be added to the vehicle frame.
-    Set the origin of the sensor frames correctly for your application
-    Look into the sensor macros in the package uuv_sensor_ros_plugins/urdf for
-    more examples or add you own custom sensor units.
-  -->
+   <xacro:camera_from_yaml data="${sensors_file['camera']['forward_R']}"/>
+   <xacro:camera_from_yaml data="${sensors_file['camera']['forward_L']}"/>
+   <xacro:camera_from_yaml data="${sensors_file['camera']['downward']}"/>
 
-	<!-- right forward camerea-->
-	<xacro:regular_camera_plugin_macro
-				namespace="sensors"
-				suffix="_forward_R"
-				parent_link="base_link"
-				topic="camera"
-				mass="0.001"
-				update_rate="30"
-				hfov="1.5125"
-				width="768"
-				height="492"
-				stddev="0.02"
-				scale="1.0">
-				<inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
-				<xacro:insert_block name="forward_camera_R_pos" />
-	</xacro:regular_camera_plugin_macro> 
-
-	<!-- left forward camera-->
-	<xacro:regular_camera_plugin_macro
-				namespace="sensors"
-				suffix="_forward_L"
-				parent_link="base_link"
-				topic="camera"
-				mass="0.001"
-				update_rate="30"
-				hfov="1.5125"
-				width="768"
-				height="492"
-				stddev="0.02"
-				scale="1.0">
-				<inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
-				<xacro:insert_block name="forward_camera_L_pos" />
-	</xacro:regular_camera_plugin_macro>
-
-	<!-- downward camera-->
-	<xacro:regular_camera_plugin_macro
-				namespace="sensors"
-				suffix="_downward"
-				parent_link="base_link"
-				topic="camera"
-				mass="0.001"
-				update_rate="30"
-				hfov="1.5125"
-				width="768"
-				height="492"
-				stddev="0.02"
-				scale="1.0">
-				<inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
-				<xacro:insert_block name="downward_camera_pos" />
-	</xacro:regular_camera_plugin_macro>
-
-	<!-- IMU -->
-	<xacro:default_imu_macro
-				namespace="${namespace}"
-				parent_link="base_link"
-				inertial_reference_frame="world">
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-	</xacro:default_imu_macro> 
-
-	<!--DVL-->
-	<xacro:default_dvl_macro
-				namespace="${namespace}"
-				parent_link="base_link"
-				inertial_reference_frame="world_ned">
-				<origin xyz="-0.081297 -0.081297 0.0" rpy="0 ${0.5*pi} 0"/>
-	</xacro:default_dvl_macro>
-
-	<!--Depth Sensor-->
-	<xacro:default_pressure_macro namespace="${namespace}" parent_link="base_link">
-				<origin xyz="0 -0.0004 0.0711" rpy="0 0 0"/>
-	</xacro:default_pressure_macro>
+   <xacro:depth_from_yaml data="${sensors_file['depth']['depth']}"/>
+   <xacro:imu_from_yaml data="${sensors_file['imu']['imu']}"/>
+   <xacro:dvl_from_yaml data="${sensors_file['dvl']['dvl']}"/>
 
 </robot>
  
