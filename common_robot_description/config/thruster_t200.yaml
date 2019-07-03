@@ -6,18 +6,16 @@ t200:
   link:
     mesh_properties:
       visual: package://common_robot_description/meshes/propeller.dae
-    mass: 0.005
-    com:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-    inertia:
-      ixx: 0.000000017
-      ixy: 0.0
-      ixz: 0.0
-      iyy: 0.000000017
-      iyz: 0.0
-      izz: 0.000000017
+    inertial:
+      mass: 0.005
+      com: 0 0 0
+      inertia:
+        ixx: 0.000000017
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.000000017
+        iyz: 0.0
+        izz: 0.000000017
   gazebo:
     dynamics: ZeroOrder
     thrust_conversion:

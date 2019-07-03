@@ -45,9 +45,11 @@
    </xacro:macro>
 
    <xacro:macro name="inertial_from_yaml" params="data">
-      <mass value="${data[tag_mass]}"/>
-      <xacro:inertia_from_yaml data="${data[tag_inertia]}"/>
-      <origin xyz="${data[tag_com]}" rpy="0 0 0"/>
+      <inertial>
+         <mass value="${data[tag_mass]}"/>
+         <xacro:inertia_from_yaml data="${data[tag_inertia]}"/>
+         <origin xyz="${data[tag_com]}" rpy="0 0 0"/>
+      </inertial>
    </xacro:macro>
 
    <xacro:macro name="base_link_from_yaml" params="data">
@@ -127,7 +129,7 @@
                <height>${data[tag_box][tag_height]}</height>
             </box>
          </xacro:if>
-         <center_of_buoyancy>${data[tag_cob][tag_x]} ${data[tag_cob][tag_y]} ${data[tag_cob][tag_z]}</center_of_buoyancy> <!-- In the body frame -->
+         <center_of_buoyancy>${data[tag_cob]}</center_of_buoyancy> <!-- Relative to CoM -->
          <hydrodynamic_model>
             <type>fossen</type>
             <added_mass>${data[tag_added_mass]}</added_mass>

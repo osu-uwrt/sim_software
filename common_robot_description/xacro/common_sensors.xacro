@@ -18,48 +18,39 @@
    <xacro:property name="tag_topic" value="topic"/>
    <xacro:property name="tag_width" value="width"/>
 
-   <xacro:macro name="camera_from_yaml" params="namespace:=sensors topic:=camera_ data">
-      <xacro:regular_camera_plugin_macro
-         	namespace="${namespace}"
-            suffix="${data[tag_suffix]}"
-            parent_link="${data[tag_parent]}"
-            topic="${topic}"
-            mass="${data[tag_mass]}"
-            update_rate="${data[tag_rate]}"
-            hfov="${data[tag_hfov]}"
-            width="${data[tag_width]}"
-            height="${data[tag_height]}"
-            stddev="${data[tag_stddev]}"
-            scale="${data[tag_scale]}">
-            <xacro:inertia_from_yaml data="${data[tag_inertia]}" />
-            <xacro:origin_from_yam; name="${data[tag_origin]}" />
+   <xacro:macro name="camera_from_yaml" params="namespace:=sensors topic:=camera data">
+      <xacro:regular_camera_plugin_macro namespace="${namespace}"
+                                          suffix="${data[tag_suffix]}"
+                                          parent_link="${data[tag_parent]}"
+                                          topic="${topic}"
+                                          mass="${data[tag_mass]}"
+                                          update_rate="${data[tag_rate]}"
+                                          hfov="${data[tag_hfov]}"
+                                          width="${data[tag_width]}"
+                                          height="${data[tag_height]}"
+                                          stddev="${data[tag_stddev]}"
+                                          scale="${data[tag_scale]}">
+         <xacro:inertia_from_yaml data="${data[tag_inertia]}" />
+         <xacro:origin_from_yaml data="${data[tag_origin]}" />
       </xacro:regular_camera_plugin_macro> 
    </xacro:macro>
 
    <xacro:macro name="pressure_from_yaml" params="namespace:=sensors data">
-      <xacro:default_pressure_macro
-               namespace="${namespace}"
-               parent_link="${data[tag_parent]}">
-               <xacro:origin_from_yaml data="$data[tag_origin]}"/>
+      <xacro:default_pressure_macro namespace="${namespace}" parent_link="${data[tag_parent]}">
+         <xacro:origin_from_yaml data="${data[tag_origin]}"/>
       </xacro:default_pressure_macro> 
    </xacro:macro>
 
    <xacro:macro name="imu_from_yaml" params="namespace:=sensors data">
-      <xacro:default_imu_macro
-               namespace="${namespace}"
-               parent_link="${data[tag_parent]}"
-               inertial_reference_frame="${data[tag_ref_frame]}">
-               <xacro:origin_from_yaml data="$data[tag_origin]}"/>
+      <xacro:default_imu_macro namespace="${namespace}" parent_link="${data[tag_parent]}" inertial_reference_frame="${data[tag_ref_frame]}">
+         <xacro:origin_from_yaml data="${data[tag_origin]}"/>
       </xacro:default_imu_macro> 
    </xacro:macro>
 
    <xacro:macro name="dvl_from_yaml" params="namespace:=sensors data">
-      <xacro:default_dvl_macro
-               namespace="${namespace}"
-               parent_link="${data[tag_parent]}"
-               inertial_reference_frame="${data[tag_ref_frame]}">
-               <xacro:origin_from_yaml data="$data[tag_origin]}"/>
-      </xacro:default_imu_macro> 
+      <xacro:default_dvl_macro namespace="${namespace}" parent_link="${data[tag_parent]}" inertial_reference_frame="${data[tag_ref_frame]}">
+         <xacro:origin_from_yaml data="${data[tag_origin]}"/>
+      </xacro:default_dvl_macro> 
    </xacro:macro>
 
 </robot>

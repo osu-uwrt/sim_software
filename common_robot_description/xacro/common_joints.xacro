@@ -12,9 +12,9 @@
       <joint name="${data[tag_name] if name is None else name}" type="${data[tag_type]}">
          <origin xyz="${data[tag_origin][tag_xyz]}" 
                   rpy="${data[tag_origin][tag_rpy]}"/>
-         <axis xyz="${data[tag_axis]}" />
-         <parent link="${data[tag_parent]}" />
-         <child link="${child}" />
+         <axis xyz="${data[tag_axis]}"/>
+         <parent link="${data[tag_parent]}"/>
+         <child link="${child}"/>
       </joint>
    </xacro:macro>
 

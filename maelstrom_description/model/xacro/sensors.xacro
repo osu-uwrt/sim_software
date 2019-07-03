@@ -7,13 +7,13 @@
    <xacro:property name="sensors_file" value="$(find maelstrom_description)/model/config/sensors.yaml"/>
    <xacro:property name="sensors_data" value="${load_yaml(sensors_file)}"/>
 
-   <xacro:camera_from_yaml data="${sensors_file['camera']['forward_R']}"/>
-   <xacro:camera_from_yaml data="${sensors_file['camera']['forward_L']}"/>
-   <xacro:camera_from_yaml data="${sensors_file['camera']['downward']}"/>
+   <xacro:camera_from_yaml data="${sensors_data['camera']['forward_R']}"/>
+   <xacro:camera_from_yaml data="${sensors_data['camera']['forward_L']}"/>
+   <xacro:camera_from_yaml data="${sensors_data['camera']['downward']}"/>
 
-   <xacro:depth_from_yaml data="${sensors_file['depth']['depth']}"/>
-   <xacro:imu_from_yaml data="${sensors_file['imu']['imu']}"/>
-   <xacro:dvl_from_yaml data="${sensors_file['dvl']['dvl']}"/>
+   <xacro:pressure_from_yaml data="${sensors_data['depth']['depth']}"/>
+   <xacro:imu_from_yaml data="${sensors_data['imu']['imu']}"/>
+   <xacro:dvl_from_yaml data="${sensors_data['dvl']['dvl']}"/>
 
 </robot>
  

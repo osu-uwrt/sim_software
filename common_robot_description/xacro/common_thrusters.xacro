@@ -28,7 +28,7 @@
     <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
 
     <gazebo>
-      <plugin name="thruster_model_${data[tag_thruster][tag_name]}" filename="libuuv_thruster_ros_plugin.so">
+      <plugin name="${data[tag_link][tag_name]}_model" filename="libuuv_thruster_ros_plugin.so">
 
         <linkName>${data[tag_link][tag_name]}</linkName>
         <jointName>${data[tag_joint][tag_name]}</jointName>
