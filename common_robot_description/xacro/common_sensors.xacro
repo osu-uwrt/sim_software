@@ -7,9 +7,11 @@
    <!-- Sensor Tags -->
    <xacro:property name="tag_height" value="height"/>
    <xacro:property name="tag_hfov" value="hfov"/>
-   <xacro:property name="tag_ref_frame" value="inertial_reference_frame"/>
+   <xacro:property name="tag_ref_frame" value="reference_frame"/>
    <xacro:property name="tag_namespace" value="namesapce"/>
    <xacro:property name="tag_mass" value="mass"/>
+   <xacro:property name="tag_noise_amplitude" value="noise_amplitude"/>
+   <xacro:property name="tag_noise_sigma" value="noise_sigma"/>
    <xacro:property name="tag_parent" value="parent_link"/>
    <xacro:property name="tag_rate" value="update_rate"/>
    <xacro:property name="tag_scale" value="scale"/>
@@ -23,34 +25,56 @@
                                           suffix="${data[tag_suffix]}"
                                           parent_link="${data[tag_parent]}"
                                           topic="${topic}"
-                                          mass="${data[tag_mass]}"
+                                          mass="0.01"
                                           update_rate="${data[tag_rate]}"
                                           hfov="${data[tag_hfov]}"
                                           width="${data[tag_width]}"
                                           height="${data[tag_height]}"
                                           stddev="${data[tag_stddev]}"
                                           scale="${data[tag_scale]}">
-         <xacro:inertia_from_yaml data="${data[tag_inertia]}" />
+         <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
          <xacro:origin_from_yaml data="${data[tag_origin]}" />
       </xacro:regular_camera_plugin_macro> 
    </xacro:macro>
 
-   <xacro:macro name="pressure_from_yaml" params="namespace:=sensors data">
-      <xacro:default_pressure_macro namespace="${namespace}" parent_link="${data[tag_parent]}">
+   <xacro:macro name="pressure_from_yaml" params="namespace:=sensors topic:=pressure data">
+      <xacro:pressure_plugin_macro  namespace="${namespace}"
+                                    suffix="${data[tag_suffix]}"
+                                    parent_link="${data[tag_parent]}"
+                                    topic="${topic}"
+                                    mass="0.015"
+                                    update_rate="${data[tag_rate]}"
+                                    range="30000"
+                                    noise_sigma="${data[tag_noise_sigma]}"
+                                    noise_amplitude="${data[tag_noise_amplitude]}"
+                                    estimateDepth="false"
+                                    standardPressure="101.325"
+                                    kPaPerM="9.80638">
+         <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
          <xacro:origin_from_yaml data="${data[tag_origin]}"/>
-      </xacro:default_pressure_macro> 
+      </xacro:pressure_plugin_macro> 
    </xacro:macro>
 
-   <xacro:macro name="imu_from_yaml" params="namespace:=sensors data">
-      <xacro:default_imu_macro namespace="${namespace}" parent_link="${data[tag_parent]}" inertial_reference_frame="${data[tag_ref_frame]}">
+   <xacro:macro name="imu_from_yaml" params="namespace:=sensors topic:=imu data">
+      <xacro:default_imu_macro namespace="${namespace}" 
+                               parent_link="${data[tag_parent]}" 
+                               inertial_reference_frame="${data[tag_ref_frame]}">
          <xacro:origin_from_yaml data="${data[tag_origin]}"/>
       </xacro:default_imu_macro> 
    </xacro:macro>
 
-   <xacro:macro name="dvl_from_yaml" params="namespace:=sensors data">
-      <xacro:default_dvl_macro namespace="${namespace}" parent_link="${data[tag_parent]}" inertial_reference_frame="${data[tag_ref_frame]}">
+   <xacro:macro name="dvl_from_yaml" params="namespace:=sensors topic:=dvl data">
+      <xacro:dvl_plugin_macro namespace="${namespace}"
+                              suffix="${data[tag_suffix]}"
+                              parent_link="${data[tag_parent]}"
+                              reference_frame="${data[tag_ref_frame]}"
+                              update_rate="${data[tag_rate]}"
+                              topic="${topic}"
+                              noise_sigma="${data[tag_noise_sigma]}"
+                              noise_amplitude="${data[tag_noise_amplitude]}"
+                              scale="1">
          <xacro:origin_from_yaml data="${data[tag_origin]}"/>
-      </xacro:default_dvl_macro> 
+      </xacro:dvl_plugin_macro> 
    </xacro:macro>
 
 </robot>

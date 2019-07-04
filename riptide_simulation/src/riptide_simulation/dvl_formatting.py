@@ -7,11 +7,17 @@ import rospkg
 import yaml
 import tf
 import math
-from uuv_sensor_ros_plugins_msgs.msg import DVL as SimDvl
-from nortek_dvl.msg import Dvl as RealDvl
+from uuv_sensor_ros_plugins_msgs.msg import DVL as UUVDvl
+from nortek_dvl.msg import Dvl as NortekDvl
 from geometry_msgs.msg import Vector3
 from std_msgs.msg import Header
 
+class DVLFormatter(object):
+
+    def __init__(self):
+        self.main()
+
+    def main(self):
 
 def callback(msg):
     real_topic = RealDvl()

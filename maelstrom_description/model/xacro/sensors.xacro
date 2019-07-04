@@ -11,7 +11,7 @@
    <xacro:camera_from_yaml data="${sensors_data['camera']['forward_L']}"/>
    <xacro:camera_from_yaml data="${sensors_data['camera']['downward']}"/>
 
-   <xacro:pressure_from_yaml data="${sensors_data['depth']['depth']}"/>
+   <xacro:pressure_from_yaml data="${sensors_data['pressure']['pressure']}"/>
    <xacro:imu_from_yaml data="${sensors_data['imu']['imu']}"/>
    <xacro:dvl_from_yaml data="${sensors_data['dvl']['dvl']}"/>
 
