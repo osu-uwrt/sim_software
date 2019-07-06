@@ -1,0 +1,26 @@
+<launch>
+    <arg name="model" default="maelstrom"/>
+    <arg name="sensor_namespace" default="sensors"/>
+
+    <include file="$(find uuv_gazebo_worlds)/launch/lake.launch"/>
+    <include file="$(find maelstrom_description)/launch/upload_maelstrom.launch"/>
+
+    <include file="$(find riptide_gazebo)/launch/depth_sensor_node.launch">
+        <arg name="sim_topic" value="/$(arg sensor_namespace)/pressure"/>
+        <arg name="real_topic" value="/state/depth"/>
+    </include>
+
+    <include file="$(find riptide_gazebo)/launch/lord_imu_node.launch">
+        <arg name="sim_topic" value="/$(arg sensor_namespace)/imu"/>
+        <arg name="real_topic" value="/imu/filter"/>
+    </include>
+
+    <include file="$(find riptide_gazebo)/launch/nortek_dvl_node.launch">
+        <arg name="sim_topic" value="/$(arg sensor_namespace)/dvl"/>
+        <arg name="real_topic" value="/dvl/dvl"/>
+    </include>
+
+    <!--<node name="remap_thrust" pkg="riptide_simulation" type="remap_thrust.py" output="screen">
+        <param name="config" value="$(find riptide_simulation)/cfg/remap_thrust_cfg.yaml"/>
+    </node>-->
+</launch>

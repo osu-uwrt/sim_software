@@ -1,6 +1,6 @@
-<?xml version=".0"?>
+<?xml version="1.0"?>
 <package format="2">
-  <name>riptide_simulation</name>
+  <name>riptide_gazebo</name>
   <version>0.0.1</version>
   <description>Common simulation package for The OSU Underwater Robotics Team's Riptide AUV software platform.</description>
 
@@ -12,13 +12,21 @@
   <url type="repository">http://github.com/uwrt-osu/sim_software</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>auv_core</depend>
+  <depend>eigen_conversions</depend>
+  <depend>tf</depend>
+  
   <depend>uuv_sensor_ros_plugins_msgs</depend>
   <depend>nortek_dvl</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
+  <depend>imu_3dm_gx4</depend>
   <depend>std_msgs</depend>
   <depend>riptide_msgs</depend>
-  
+  <depend>rospy</depend>
+  <depend>roscpp</depend>
+
+
   <export>
   </export>
 </package>

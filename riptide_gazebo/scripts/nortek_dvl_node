@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+import rospy
+from riptide_gazebo.nortek_dvl_sim import NortekDvl
+
+def main():
+   rospy.init_node('nortek_dvl_node')
+   dvl = NortekDvl()
+   rospy.spin()
+
+if __name__ == "__main__":
+   main()

@@ -1,0 +1,10 @@
+<launch>
+   <arg name="sim_topic" default="/sensors/imu"/>
+   <arg name="real_topic" default="/imu/filter"/>
+
+   <node name="lord_imu" pkg="riptide_gazebo" type="lord_imu" output="screen">
+      <param name="sim_topic" value="$(arg sim_topic)"/>
+      <param name="real_topic" value="$(arg real_topic)"/>
+   </node>
+
+</launch>
