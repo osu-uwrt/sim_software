@@ -32,7 +32,7 @@
 
         <linkName>${data[tag_link][tag_name]}</linkName>
         <jointName>${data[tag_joint][tag_name]}</jointName>
-        <thrusterID>${data[tag_thruster][tag_id]}</thrusterID>
+        <thrusterID>${data[tag_id]}</thrusterID>
 
         <thrustMax>${t200[tag_limits][tag_thrust][tag_max]}</thrustMax>
         <thrustMin>${t200[tag_limits][tag_thrust][tag_min]}</thrustMin>
@@ -49,6 +49,48 @@
         <conversion>
           <type>${t200[tag_gazebo][tag_conversion][tag_type]}</type>
           <rotorConstant>${t200[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>
+        </conversion>
+
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="${data[tag_link][tag_name]}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="uuv_thruster_from_yaml" params="data">
+
+    <!--
+    Dummy link as place holder for the thruster frame,
+    since thrusters can often be inside the collision geometry
+    of the vehicle and may cause internal collisions if set otherwise
+    -->
+    <xacro:standard_link_from_yaml data="${data[tag_link][tag_name]}"/>
+    <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
+
+    <gazebo>
+      <plugin name="${data[tag_link][tag_name]}_model" filename="libuuv_thruster_ros_plugin.so">
+
+        <linkName>${data[tag_link][tag_name]}</linkName>
+        <jointName>${data[tag_joint][tag_name]}</jointName>
+        <thrusterID>${data[tag_id]}</thrusterID>
+
+        <thrustMax>${data[tag_limits][tag_thrust][tag_max]}</thrustMax>
+        <thrustMin>${data[tag_limits][tag_thrust][tag_min]}</thrustMin>
+
+        <dynamics>
+          <type>${data[tag_gazebo][tag_dynamics]}</type>
+        </dynamics>
+
+        <!-- Basic curve
+        Input: x
+        Output: thrust
+        Function: thrust = rotorConstant * x * abs(x)
+        -->
+        <conversion>
+          <type>${data[tag_gazebo][tag_conversion][tag_type]}</type>
+          <rotorConstant>${data[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>
         </conversion>
 
       </plugin>

@@ -37,8 +37,6 @@ target_link_libraries(inertial_sensors ${catkin_LIBRARIES})
 add_dependencies(inertial_sensors ${catkin_EXPORTED_TARGETS})
 
 catkin_install_python(PROGRAMS
-   scripts/depth_sensor_node
-   scripts/nortek_dvl_node
-   # scripts/lord_imu_node
+   scripts/thrust_converter_node
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -1,11 +1,7 @@
 heave_port_fwd:
-  thruster:
-    name: heave_port_fwd
-    id: 0
+  id: 0
   link:
     name: thruster_heave_port_fwd
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_heave_port_fwd_joint
     parent: base_inertia
@@ -13,12 +9,10 @@ heave_port_fwd:
     axis: 1 0 0
     origin: # North West Up axis convention
       xyz: 0.37273 0.18946 -0.01509
-      rpy: 0.0 1.57079 0.0 # 0 0 90 [deg]
+      rpy: 0.0 1.57079 0.0 # 0 90 0 [deg]
 
 heave_port_aft:
-  thruster:
-    name: heave_port_aft
-    id: 1
+  id: 1
   link:
     name: thruster_heave_port_aft
   joint:
@@ -28,16 +22,12 @@ heave_port_aft:
     axis: 1 0 0
     origin: # North West Up axis convention
       xyz: -0.37273 0.18946 -0.01509 
-      rpy: 0.0 1.57079 0.0 # 0 0 90 [deg]
+      rpy: 0.0 1.57079 0.0 # 0 90 0 [deg]
 
 heave_stbd_fwd:
-  thruster:
-    name: heave_stbd_fwd
-    id: 2
+  id: 2
   link:
     name: thruster_heave_stbd_fwd
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_heave_stbd_fwd_joint
     parent: base_inertia
@@ -45,16 +35,12 @@ heave_stbd_fwd:
     axis: 1 0 0
     origin: # North West Up axis convention
       xyz: 0.37273 -0.18946 -0.01509
-      rpy: 0.0 1.57079 0.0 # 0 0 90 [deg]
+      rpy: 0.0 1.57079 0.0 # 0 90 0 [deg]
 
 heave_stbd_aft:
-  thruster:
-    name: heave_stbd_aft
-    id: 3
+  id: 3
   link:
     name: thruster_heave_stbd_aft
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_heave_stbd_aft_joint
     parent: base_inertia
@@ -62,16 +48,12 @@ heave_stbd_aft:
     axis: 1 0 0
     origin: # North West Up axis convention
       xyz: -0.37273 -0.18946 -0.01509
-      rpy: 0.0 1.57079 0.0 # 0 0 90 [deg]
+      rpy: 0.0 1.57079 0.0 # 0 90 0 [deg]
 
 vector_port_fwd:
-  thruster:
-    name: vector_port_fwd
-    id: 4
+  id: 4
   link:
     name: thruster_vector_port_fwd
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_port_fwd_joint
     parent: base_inertia
@@ -82,13 +64,9 @@ vector_port_fwd:
       rpy: 0.0 0.0 2.35619 # 0 0 135 [deg]
 
 vector_port_aft:
-  thruster:
-    name: vector_port_aft
-    id: 5
+  id: 5
   link:
     name: thruster_vector_port_aft
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_port_aft_joint
     parent: base_inertia
@@ -99,13 +77,9 @@ vector_port_aft:
       rpy: 0.0 0.0 0.78540 # 0 0 45 [deg]
 
 vector_stbd_fwd:
-  thruster:
-    name: vector_stbd_fwd
-    id: 6
+  id: 6
   link:
     name: thruster_vector_stbd_fwd
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_stbd_fwd_joint
     parent: base_inertia
@@ -116,13 +90,9 @@ vector_stbd_fwd:
       rpy: 0.0 0.0 -2.35619 # 0 0 -135 [deg]
 
 vector_stbd_aft:
-  thruster:
-    name: vector_stbd_aft
-    id: 7
+  id: 7
   link:
     name: thruster_vector_stbd_aft
-    mesh_properties:
-      visual: package://common_robot_description/meshes/propeller.dae
   joint:
     name: thruster_vector_stbd_aft_joint
     parent: base_inertia

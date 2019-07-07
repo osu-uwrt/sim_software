@@ -140,10 +140,6 @@ void InertialSensors::uuvImuCB(const sensor_msgs::Imu::ConstPtr &msg)
 
   linearAccel_ = linearAccelIn_ - quatNED_.conjugate() * gravityNED_;
   tf::vectorEigenToMsg(linearAccel_, imuMsg_.linear_accel);
-  std::cout << "rpy NED:" << std::endl << rpy_ << std::endl;
-  std::cout << "gravity in body frame NED:" << std::endl << quatNED_.conjugate() * gravityNED_ << std::endl;
-  std::cout << "accel in:" << std::endl << linearAccelIn_ << std::endl;
-  std::cout << "final accel:" << std::endl << linearAccel_ << std::endl;
 }
 
 /**

@@ -1,0 +1,17 @@
+<launch>
+   <arg name="model" default="maelstrom"/>
+   <arg name="thrust_command_topic" default="/command/thrust"/>
+   <arg name="thruster_prefix" default="/thruster/"/>
+   <arg name="thruster_suffix" default="/input"/>
+   <arg name="config" default="$(find maelstrom_description)/model/config/thrusters.yaml"/>
+   <arg name="propeller_config" default="$(find common_robot_description)/config/thruster_t200.yaml"/>
+
+   <node name="thrust_converter" pkg="riptide_gazebo" type="thrust_converter_node" output="screen">
+      <param name="thrust_command_topic" value="$(arg thrust_command_topic)"/>
+      <param name="thruster_prefix" value="$(arg thruster_prefix)"/>
+      <param name="thruster_suffix" value="$(arg thruster_suffix)"/>
+      <param name="config" value="$(arg config)"/>
+      <param name="propeller_config" value="$(arg propeller_config)"/>
+   </node>
+
+</launch>
