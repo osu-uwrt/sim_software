@@ -53,7 +53,7 @@ imu:
   imu:
     topic_suffix: ""
     parent_link: base_link
-    reference_frame: world_ned # Do NOT use world_ned
+    reference_frame: world # Do NOT use world_ned
     origin:
       xyz: 0 0 0
       rpy: 0 0 0

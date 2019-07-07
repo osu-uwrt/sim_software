@@ -1,14 +1,14 @@
 <launch>
   <!-- Debug flag -->
   <arg name="debug" default="0"/>
-  <rosparam param="/use_sim_time">true</rosparam>
+  <!--<rosparam param="/use_sim_time">true</rosparam>-->
 
   <!-- Vehicle's initial pose -->
   <arg name="x"     default="0"/>
   <arg name="y"     default="0"/>
   <arg name="z"     default="-1"/>
-  <arg name="roll"  default="0"/>
-  <arg name="pitch" default="0.7854"/>
+  <arg name="pitch"  default="1.5708"/>
+  <arg name="roll" default="0"/>
   <arg name="yaw"   default="0"/>
 
   <arg name="use_geodetic" default="false"/>

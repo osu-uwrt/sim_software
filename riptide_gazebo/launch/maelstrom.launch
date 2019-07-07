@@ -5,19 +5,28 @@
     <include file="$(find uuv_gazebo_worlds)/launch/lake.launch"/>
     <include file="$(find maelstrom_description)/launch/upload_maelstrom.launch"/>
 
-    <include file="$(find riptide_gazebo)/launch/depth_sensor_node.launch">
+    <!--<include file="$(find riptide_gazebo)/launch/depth_sensor_node.launch">
         <arg name="sim_topic" value="/$(arg sensor_namespace)/pressure"/>
         <arg name="real_topic" value="/state/depth"/>
-    </include>
+    </include>-->
 
     <include file="$(find riptide_gazebo)/launch/lord_imu_node.launch">
         <arg name="sim_topic" value="/$(arg sensor_namespace)/imu"/>
         <arg name="real_topic" value="/imu/filter"/>
     </include>
 
-    <include file="$(find riptide_gazebo)/launch/nortek_dvl_node.launch">
+    <!--<include file="$(find riptide_gazebo)/launch/nortek_dvl_node.launch">
         <arg name="sim_topic" value="/$(arg sensor_namespace)/dvl"/>
         <arg name="real_topic" value="/dvl/dvl"/>
+    </include>-->
+
+    <include file="$(find riptide_gazebo)/launch/inertial_sensors.launch">
+        <arg name="model" value="$(arg model)"/>
+        <arg name="model_states_topic" value="/gazebo/model_states"/>
+        <arg name="six_dof_topic" value="/auv_gnc/trans_ekf/six_dof"/>
+        <arg name="imu_topic" value="/state/imu"/>
+        <arg name="dvl_topic" value="/state/dvl"/>
+        <arg name="depth_topic" value="/state/depth"/>
     </include>
 
     <!--<node name="remap_thrust" pkg="riptide_simulation" type="remap_thrust.py" output="screen">

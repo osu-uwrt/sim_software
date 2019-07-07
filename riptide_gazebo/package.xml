@@ -18,6 +18,7 @@
   
   <depend>uuv_sensor_ros_plugins_msgs</depend>
   <depend>nortek_dvl</depend>
+  <depend>auv_msgs</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>imu_3dm_gx4</depend>

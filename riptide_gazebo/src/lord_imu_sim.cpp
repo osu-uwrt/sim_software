@@ -43,8 +43,8 @@ void LordImu::uuvImuCB(const sensor_msgs::Imu::ConstPtr &msg)
 {
    // Get body-frame orientation from an NED-measuring IMU
    tf::quaternionMsgToEigen(msg->orientation, quatENU_);
-   Eigen::Quaterniond quat1 = auv_core::math_lib::toQuaternion(M_PI/2.0, 0, -M_PI);
-   quatENU_ = quatENU_ * quat1;
+   Eigen::Quaterniond quat1 = auv_core::math_lib::toQuaternion(M_PI/2.0, 0, M_PI);
+   //quatENU_ = quatENU_ * quat1;
    quatNED_ = LordImu::getNEDQuaterionFromENU(quatENU_);
    tf::quaternionEigenToMsg(quatNED_, imuMsg_.quaternion);
    
@@ -56,10 +56,18 @@ void LordImu::uuvImuCB(const sensor_msgs::Imu::ConstPtr &msg)
 
    // Linear Acceleration
    tf::vectorMsgToEigen(msg->linear_acceleration, linearAccelIn_);
+   Eigen::Quaterniond quatYaw = auv_core::math_lib::toQuaternion(M_PI/2.0, 0, 0);
+   //linearAccelIn_ = quatYaw * linearAccelIn_;
+   // linearAccelIn_(0) = msg->linear_acceleration.y;
+   // linearAccelIn_(1) = msg->linear_acceleration.x;
+   // linearAccelIn_(2) = msg->linear_acceleration.z;
    linearAccel_ = linearAccelIn_ - quatNED_.conjugate() * gravityNED_;
    tf::vectorEigenToMsg(linearAccel_, imuMsg_.linear_acceleration);
    std::cout << "gravity in body frame:" << std::endl << quatNED_.conjugate() * gravityNED_ << std::endl;
    std::cout << "accel in:" << std::endl << linearAccelIn_ << std::endl;
+   std::cout << "final accel:" << std::endl << linearAccel_ << std::endl;
+
+   
 
    // Angular Velocity
    tf::vectorMsgToEigen(msg->angular_velocity, angularVelIn_);
@@ -110,8 +118,8 @@ Eigen::Quaterniond LordImu::getNEDQuaterionFromENU(Eigen::Quaterniond quatENU)
 
    Eigen::Vector4d angleAxis2 = Eigen::Vector4d::Zero();
    angleAxis2(0) = angleAxis1(0); // Angle
-   angleAxis2(1) = -angleAxis1(2); // X component remains the same
-   angleAxis2(2) = angleAxis1(1); // Negate y compoennt
+   angleAxis2(1) = angleAxis1(1); // X component remains the same
+   angleAxis2(2) = -angleAxis1(2); // Negate y compoennt
    angleAxis2(3) = -angleAxis1(3); // Negate z component
 
    return auv_core::math_lib::angleAxis2Quaternion(angleAxis2); // Convert to quaternion
