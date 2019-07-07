@@ -32,10 +32,6 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIRS})
 
-add_executable(lord_imu src/lord_imu_sim_node.cpp src/lord_imu_sim.cpp)
-target_link_libraries(lord_imu ${catkin_LIBRARIES})
-add_dependencies(lord_imu ${catkin_EXPORTED_TARGETS})
-
 add_executable(inertial_sensors src/inertial_sensors_node.cpp src/inertial_sensors.cpp)
 target_link_libraries(inertial_sensors ${catkin_LIBRARIES})
 add_dependencies(inertial_sensors ${catkin_EXPORTED_TARGETS})

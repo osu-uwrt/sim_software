@@ -53,7 +53,7 @@ imu:
   imu:
     topic_suffix: ""
     parent_link: base_link
-    reference_frame: world # Do NOT use world_ned
+    reference_frame: world # Do NOT use world_ned - the sensor output is not correct
     origin:
       xyz: 0 0 0
       rpy: 0 0 0
