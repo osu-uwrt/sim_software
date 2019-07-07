@@ -16,10 +16,11 @@
     </include>
 
     <include file="$(find riptide_gazebo)/launch/thrust_converter.launch">
-        <arg name="thrust_command_topic" value="/command/thrust"/>
-        <arg name="thruster_prefix" value="/$(arg model)/thruster/"/>
-        <arg name="thruster_suffix" value="/input"/>
-        <arg name="config" value="$(find maelstrom_description)/model/config/thrusters.yaml"/>
-        <arg name="propeller_config" value="$(find common_robot_description)/config/thruster_t200.yaml"/>
+        <arg name="input_topic" value="/command/thrust"/>
+        <arg name="topic_prefix" value="/$(arg model)/thrusters/"/>
+        <arg name="topic_suffix" value="/input"/>
+        <arg name="thruster_config" value="$(find maelstrom_description)/model/config/thrusters.yaml"/>
+        <arg name="common_config" value="$(find common_robot_description)/config/common_thrusters.yaml"/>
+        <arg name="thruster_model" value="T200"/>
     </include>
 </launch>

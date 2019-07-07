@@ -13,9 +13,9 @@
   <xacro:property name="tag_dynamics" value="dynamics"/>
 
   <!-- Load Blue Robotics T200 Data -->
-  <xacro:property name="t200_file" value="$(find common_robot_description)/config/thruster_t200.yaml"/>
-  <xacro:property name="t200_data" value="${load_yaml(t200_file)}"/>
-  <xacro:property name="t200" value="${t200_data['t200']}"/>
+  <xacro:property name="common_thrusters_file" value="$(find common_robot_description)/config/common_thrusters.yaml"/>
+  <xacro:property name="common_thrusters_data" value="${load_yaml(common_thrusters_file)}"/>
+  <xacro:property name="T200" value="${common_thrusters_data['T200']}"/>
 
   <xacro:macro name="uuv_thruster_t200_from_yaml" params="data">
 
@@ -24,7 +24,7 @@
     since thrusters can often be inside the collision geometry
     of the vehicle and may cause internal collisions if set otherwise
     -->
-    <xacro:standard_link_from_yaml name="${data[tag_link][tag_name]}" data="${t200[tag_link]}"/>
+    <xacro:standard_link_from_yaml name="${data[tag_link][tag_name]}" data="${T200[tag_link]}"/>
     <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
 
     <gazebo>
@@ -34,11 +34,11 @@
         <jointName>${data[tag_joint][tag_name]}</jointName>
         <thrusterID>${data[tag_id]}</thrusterID>
 
-        <thrustMax>${t200[tag_limits][tag_thrust][tag_max]}</thrustMax>
-        <thrustMin>${t200[tag_limits][tag_thrust][tag_min]}</thrustMin>
+        <thrustMax>${T200[tag_limits][tag_thrust][tag_max]}</thrustMax>
+        <thrustMin>${T200[tag_limits][tag_thrust][tag_min]}</thrustMin>
 
         <dynamics>
-          <type>${t200[tag_gazebo][tag_dynamics]}</type>
+          <type>${T200[tag_gazebo][tag_dynamics]}</type>
         </dynamics>
 
         <!-- Basic curve
@@ -47,8 +47,8 @@
         Function: thrust = rotorConstant * x * abs(x)
         -->
         <conversion>
-          <type>${t200[tag_gazebo][tag_conversion][tag_type]}</type>
-          <rotorConstant>${t200[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>
+          <type>${T200[tag_gazebo][tag_conversion][tag_type]}</type>
+          <rotorConstant>${T200[tag_gazebo][tag_conversion][tag_constant]}</rotorConstant>
         </conversion>
 
       </plugin>
