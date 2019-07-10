@@ -23,11 +23,11 @@ base_link:
         length: 0.89
         width: 0.5
         height: 0.33
-      cob: 0.02 0 0.03 # Relative to base_joint
+      cob: 0.02 0 0.03 # 0.02 0 0.03 # Relative to base_joint
       volume: 0.0420
       damping:
-        linear: -11.7391 -20 -31.8678 -5 -25 -44.9085
-        quadratic: -11.7391 -20 -31.8678 -5 -25 -44.9085
+        linear: -17.0 -44.0 -44.0 -5 -10 -10
+        quadratic: -171.0 -444.0 -440.0 -10 -20.0 -20.0
       added_mass: >
         0 0 0 0 0 0
         0 0 0 0 0 0
