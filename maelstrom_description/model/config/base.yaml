@@ -9,7 +9,7 @@ base_link:
     dummy_joint:
       name: base_joint
     inertial:
-      mass: 40.85
+      mass: 38.5 #40.85
       com: 0 0 0
       inertia:
         ixx: 1.32
@@ -23,11 +23,11 @@ base_link:
         length: 0.89
         width: 0.5
         height: 0.33
-      cob: 0.02 0 0.03 # 0.02 0 0.03 # Relative to base_joint
+      cob: 0.024 0.005 0.027 #0.02 0 0.03 # 0.02 0 0.03 # Relative to base_joint?
       volume: 0.0420
       damping:
-        linear: -17.0 -44.0 -44.0 -5 -10 -10
-        quadratic: -171.0 -444.0 -440.0 -10 -20.0 -20.0
+        linear: -17.0 -50.0 -50.0 -4 -9 -9 #-17.0 -44.0 -44.0 -5 -10 -10
+        quadratic: -180.0 -460.0 -460.0 -12 -24.0 -24.0 #-171.0 -444.0 -440.0 -10 -20.0 -20.0
       added_mass: >
         0 0 0 0 0 0
         0 0 0 0 0 0
