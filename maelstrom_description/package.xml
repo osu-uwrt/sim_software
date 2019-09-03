@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>maelstrom_description</name>
   <version>0.0.1</version>
   <description>Contains URDF for the OSU Underwater Robotics Team Maelstrom vehicle.</description>
@@ -12,6 +12,8 @@
   <url type="repository">http://github.com/uwrt-osu/sim_software</url>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>xacro</depend>
+  <depend>common_robot_description</depend>
 
   <export>
   </export>

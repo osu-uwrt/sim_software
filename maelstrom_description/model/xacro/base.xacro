@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="base">
+
+  <xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+  <xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
+
+  <!-- Load Maelstrom Base Data -->
+  <xacro:property name="base_file" value="$(find maelstrom_description)/model/config/base.yaml"/>
+  <xacro:property name="base_data" value="${load_yaml(base_file)}"/>
+  <xacro:property name="base" value="${base_data['base_link']}"/>
+
+  <xacro:base_link_from_yaml data="${base[tag_link]}"/>
+
+  <xacro:macro name="maelstrom_base_uuv_hydro_links">
+    <xacro:hydro_link_from_yaml name="${base[tag_link][tag_name]}" data="${base[tag_link][tag_hydro]}"/>
+  </xacro:macro>
+
+</robot>

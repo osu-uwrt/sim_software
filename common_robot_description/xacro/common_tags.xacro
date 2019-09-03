@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="common_tags">
+  
+  <!-- Shared Tags -->
+  <xacro:property name="tag_gazebo" value="gazebo"/>
+  <xacro:property name="tag_id" value="id"/>
+  <xacro:property name="tag_joint" value="joint"/>
+  <xacro:property name="tag_limits" value="limits"/>
+  <xacro:property name="tag_link" value="link"/>
+  <xacro:property name="tag_max" value="max"/>
+  <xacro:property name="tag_min" value="min"/>
+  <xacro:property name="tag_name" value="name"/>
+  <xacro:property name="tag_origin" value="origin"/>
+  <xacro:property name="tag_plugin" value="plugin"/>
+  <xacro:property name="tag_rpy" value="rpy"/>
+  <xacro:property name="tag_type" value="type"/>
+  <xacro:property name="tag_x" value="x"/>
+  <xacro:property name="tag_xyz" value="xyz"/>
+  <xacro:property name="tag_y" value="y"/>
+  <xacro:property name="tag_z" value="z"/>
+  
+</robot>

@@ -1,0 +1,18 @@
+# remap_thrust_cfg.yml
+# This file defines the mapping used in map_thrust.py
+# to convert the output of the real Maelstrom control stack
+# to the input to the UUV simulator thruster plugin.
+
+real_topic: /command/thrust
+sim_topic_prefix: /maelstrom/thrusters/
+sim_topic_suffix: /input
+thruster_mapping:
+# - [sim ID, real field in thrust msg]
+  - [0, vector_port_fwd]
+  - [1, vector_stbd_fwd]
+  - [2, vector_port_aft]
+  - [3, vector_stbd_aft]
+  - [4, heave_port_fwd]
+  - [5, heave_stbd_fwd]
+  - [6, heave_port_aft]
+  - [7, heave_stbd_aft]

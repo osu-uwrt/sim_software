@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot name="maelstrom" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  
+	<xacro:arg name="debug" default="0"/>
+	<xacro:arg name="namespace" default="maelstrom"/>
+
+	<xacro:property name="namespace" value="$(arg namespace)"/>
+
+	<!-- Include common xacros -->
+	<xacro:include filename="$(find uuv_descriptions)/urdf/common.urdf.xacro"/>
+	<xacro:include filename="$(find common_robot_description)/xacro/common_tags.xacro"/>
+	<xacro:include filename="$(find common_robot_description)/xacro/common_links.xacro"/>
+	<xacro:include filename="$(find common_robot_description)/xacro/common_joints.xacro"/>
+
+	<!-- Create Maelstrom -->
+	<xacro:include filename="$(find maelstrom_description)/model/xacro/base.xacro"/>
+	<xacro:include filename="$(find maelstrom_description)/model/xacro/thrusters.xacro"/>
+	<xacro:include filename="$(find maelstrom_description)/model/xacro/sensors.xacro"/>
+
+	<!-- Combine hydro links -->
+	<!-- Can add more within uuv_links as the model grows -->
+	<xacro:uuv_hydro_links>
+	   <uuv_links>
+		   <xacro:maelstrom_base_uuv_hydro_links/>
+	   </uuv_links>
+	</xacro:uuv_hydro_links>
+
+	<!-- Joint state publisher plugin -->
+	<xacro:default_joint_state_publisher namespace="$(arg namespace)" update_rate="10"/>
+
+</robot>

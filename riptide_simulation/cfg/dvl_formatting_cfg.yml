@@ -1,6 +1,0 @@
-# dvl_formatting_cfg.yml
-# This file defines the mapping used in dvl_formatting.py
-# to convert the simulation dvl output to fomatted dvl input for riptide
-
-sim_topic: /maelstrom/dvl
-real_topic: /dvl

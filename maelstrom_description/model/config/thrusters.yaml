@@ -1,0 +1,103 @@
+heave_port_fwd:
+  id: 0
+  link:
+    name: thruster_heave_port_fwd
+  joint:
+    name: thruster_heave_port_fwd_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: 0.37273 0.18946 -0.01509
+      rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
+
+heave_port_aft:
+  id: 1
+  link:
+    name: thruster_heave_port_aft
+  joint:
+    name: thruster_heave_port_aft_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: -0.37273 0.18946 -0.01509 
+      rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
+
+heave_stbd_fwd:
+  id: 2
+  link:
+    name: thruster_heave_stbd_fwd
+  joint:
+    name: thruster_heave_stbd_fwd_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: 0.37273 -0.18946 -0.01509
+      rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
+
+heave_stbd_aft:
+  id: 3
+  link:
+    name: thruster_heave_stbd_aft
+  joint:
+    name: thruster_heave_stbd_aft_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: -0.37273 -0.18946 -0.01509
+      rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
+
+vector_port_fwd:
+  id: 4
+  link:
+    name: thruster_vector_port_fwd
+  joint:
+    name: thruster_vector_port_fwd_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: 0.398 0.29921 0.10615
+      rpy: 0.0 0.0 2.35619 # 0 0 135 [deg]
+
+vector_port_aft:
+  id: 5
+  link:
+    name: thruster_vector_port_aft
+  joint:
+    name: thruster_vector_port_aft_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: -0.398 0.29921 0.10615
+      rpy: 0.0 0.0 0.78540 # 0 0 45 [deg]
+
+vector_stbd_fwd:
+  id: 6
+  link:
+    name: thruster_vector_stbd_fwd
+  joint:
+    name: thruster_vector_stbd_fwd_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: 0.398 -0.29921 0.10615
+      rpy: 0.0 0.0 -2.35619 # 0 0 -135 [deg]
+
+vector_stbd_aft:
+  id: 7
+  link:
+    name: thruster_vector_stbd_aft
+  joint:
+    name: thruster_vector_stbd_aft_joint
+    parent: base_inertia
+    type: continuous
+    axis: 1 0 0
+    origin: # North West Up axis convention
+      xyz: -0.398 -0.29921 0.10615
+      rpy: 0.0 0.0 -0.78540 # 0 0 -45 [deg]
