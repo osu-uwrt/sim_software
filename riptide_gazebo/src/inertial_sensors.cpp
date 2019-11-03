@@ -142,7 +142,7 @@ void InertialSensors::uuvImuCB(const sensor_msgs::Imu::ConstPtr &msg)
 Eigen::Quaterniond InertialSensors::getNEDQuaterionFromENU(Eigen::Quaterniond quatENU)
 {
    // Quaternion rotated 90 deg in yaw
-   Eigen::Quaterniond quat1 = auv_core::rot3d::rpy2Quat(M_PI / 2.0, 0, 0);
+   Eigen::Quaterniond quat1 = auv_core::rot3d::rpy2Quat(0, 0, M_PI / 2.0);
 
    // Quaternion difference from quat1 to quatENU
    Eigen::Quaterniond qDiff = quat1.conjugate() * quatENU;
