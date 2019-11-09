@@ -1,0 +1,71 @@
+camera:
+  forward_R:
+    topic_suffix: forward_R
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    origin:
+      xyz: 0.3818 0.05038 0.11999
+      rpy: 0 0 0
+  
+  forward_L:
+    topic_suffix: forward_L
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    origin:
+      xyz: 0.3818 -0.05038 0.11999
+      rpy: 0 0 0
+
+  downward:
+    topic_suffix: downward
+    parent_link: base_link
+    update_rate: 30
+    hfov: 1.5125
+    width: 768
+    height: 492
+    stddev: 0.02
+    scale: 1.0
+    origin:
+      xyz: 0.0711 0.0004 0
+      rpy: 0 1.57079 0
+
+pressure:
+  pressure:
+    topic_suffix: downward
+    parent_link: base_link
+    update_rate: 20
+    noise_sigma: 0
+    noise_amplitude: 0.03 # [kPa]
+    origin:
+      xyz: 0 -0.0004 0.0711
+      rpy: 0 0 0
+
+imu:
+  imu:
+    topic_suffix: ""
+    parent_link: base_link
+    reference_frame: world # Do NOT use world_ned - the sensor output is not correct
+    origin:
+      xyz: 0 0 0
+      rpy: 0 0 0
+
+dvl:
+  dvl:
+    topic_suffix: ""
+    parent_link: base_link
+    reference_frame: world # Use world_ned
+    update_rate: 8
+    noise_sigma: 0
+    noise_amplitude: 0.01 # Gets applied to velocity output
+    origin:
+      xyz: -0.081297 -0.081297 -.2
+      rpy: 0 1.57079 0

@@ -22,10 +22,9 @@
     <!--
     Dummy link as place holder for the thruster frame,
     since thrusters can often be inside the collision geometry
-    of the vehicle and may cause internal collisions if set otherwise
-    -->
+    of the vehicle and may cause internal collisions if set otherwise-->
     <xacro:standard_link_from_yaml name="${data[tag_link][tag_name]}" data="${T200[tag_link]}"/>
-    <xacro:standard_joint_from_yaml data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
+    <xacro:standard_joint_from_yaml name="${data[tag_joint][tag_name]}" data="${data[tag_joint]}" child="${data[tag_link][tag_name]}"/>
 
     <gazebo>
       <plugin name="${data[tag_link][tag_name]}_model" filename="libuuv_thruster_ros_plugin.so">
@@ -52,7 +51,7 @@
         </conversion>
 
       </plugin>
-    </gazebo>
+    </gazebo> 
 
     <gazebo reference="${data[tag_link][tag_name]}">
       <selfCollide>false</selfCollide>
