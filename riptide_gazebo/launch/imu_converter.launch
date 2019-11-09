@@ -1,0 +1,3 @@
+<launch>
+   <node name="imu_converter" pkg="riptide_gazebo" type="imu_converter.py" output="screen" />
+</launch>

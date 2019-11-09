@@ -3,9 +3,6 @@ project(riptide_gazebo)
 add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
-   auv_core
-   auv_msgs
-   eigen_conversions
    nortek_dvl
    sensor_msgs
    riptide_msgs
@@ -14,12 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
    tf
 )
 
-find_package(Eigen3 REQUIRED)
 
 catkin_python_setup()
 
 catkin_package(
-   INCLUDE_DIRS include ${EIGEN3_INCLUDE_DIRS}
    CATKIN_DEPENDS
       uuv_sensor_ros_plugins_msgs
       nortek_dvl
@@ -30,13 +25,4 @@ catkin_package(
       rospy
 )
 
-include_directories(include ${catkin_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIRS})
-
-add_executable(inertial_sensors src/inertial_sensors_node.cpp src/inertial_sensors.cpp)
-target_link_libraries(inertial_sensors ${catkin_LIBRARIES})
-add_dependencies(inertial_sensors ${catkin_EXPORTED_TARGETS})
-
-catkin_install_python(PROGRAMS
-   scripts/thrust_converter_node
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+include_directories(${catkin_INCLUDE_DIRS})

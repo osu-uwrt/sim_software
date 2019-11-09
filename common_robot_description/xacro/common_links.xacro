@@ -66,12 +66,12 @@
             </xacro:if>
 
             <xacro:if value="${tag_collision in data[tag_mesh]}">
-               <visual>
+               <collision>
                   <geometry>
                      <mesh filename="${data[tag_mesh][tag_collision]}" scale="1 1 1"/>
                   </geometry>
                   <origin xyz="0 0 0" rpy="0 0 0"/>
-               </visual>
+               </collision>
             </xacro:if>
          </xacro:if>
       </link>

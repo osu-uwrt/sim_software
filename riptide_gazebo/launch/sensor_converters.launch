@@ -1,0 +1,15 @@
+<launch>
+    <node name="republish_stereo_left" type="republish" pkg="image_transport" output="screen" args="raw in:=/sensors/cameraforward_L/camera_image out:=/stereo/left/image_rect_color" />
+    <node name="republish_stereo_right" type="republish" pkg="image_transport" output="screen" args="raw in:=/sensors/cameraforward_R/camera_image out:=/stereo/right/image_rect_color" />
+    <node name="republish_downward" type="republish" pkg="image_transport" output="screen" args="raw in:=/sensors/cameradownward/camera_image out:=/downward/image_rect_color" />
+    <include file="$(find riptide_gazebo)/launch/imu_converter.launch" />
+    <include file="$(find riptide_gazebo)/launch/depth_converter.launch" />
+    <include file="$(find riptide_gazebo)/launch/thrust_converter.launch">
+        <arg name="input_topic" value="/command/thrust" />
+        <arg name="topic_prefix" value="/maelstrom/thrusters/" />
+        <arg name="topic_suffix" value="/input" />
+        <arg name="thruster_config" value="$(find maelstrom_description)/config/thrusters.yaml" />
+        <arg name="common_config" value="$(find common_robot_description)/config/common_thrusters.yaml" />
+        <arg name="thruster_model" value="T200" />
+    </include>
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sensors">
+
+	<xacro:include filename="$(find common_robot_description)/xacro/common_sensors.xacro"/>
+
+	<!-- Load data from yaml -->
+   <xacro:property name="sensors_file" value="$(find maelstrom_description)/config/sensors.yaml"/>
+   <xacro:property name="sensors_data" value="${load_yaml(sensors_file)}"/>
+
+   <xacro:camera_from_yaml data="${sensors_data['camera']['forward_R']}"/>
+   <xacro:camera_from_yaml data="${sensors_data['camera']['forward_L']}"/>
+   <xacro:camera_from_yaml data="${sensors_data['camera']['downward']}"/>
+
+   <!-- Only an IMU is needed among the inertial sensors, but all are included to represent the actual vehicle -->
+   <xacro:imu_from_yaml data="${sensors_data['imu']['imu']}"/>
+   <xacro:pressure_from_yaml data="${sensors_data['pressure']['pressure']}"/>
+   <!-- <xacro:dvl_from_yaml data="${sensors_data['dvl']['dvl']}"/> -->
+
+</robot>
+ 

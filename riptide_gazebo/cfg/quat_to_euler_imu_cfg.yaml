@@ -1,7 +1,0 @@
-# quat_to_euler_imu_cfg.yml
-# This file defines the mapping used in quat_to_euler_imu.py
-# to convert the quaternion output of the sim imu sensor
-# to the euler values
-
-sim_topic: /maelstrom/imu
-real_topic: /imu/filter 
