@@ -41,9 +41,9 @@
         <must_be_base_link>1</must_be_base_link>
         <collision name='collision'>
           <geometry>
-            <box>
-              <size>1 0.5 0.005</size>
-            </box>
+            <mesh>
+              <uri>model://cutie/meshes/cutie.dae</uri>
+            </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
           <surface>
@@ -62,34 +62,27 @@
         <visual name='visual'>
           <cast_shadows>0</cast_shadows>
           <geometry>
-            <box>
-              <size>1 0.5 0.005</size>
-            </box>
+            <mesh>
+              <uri>model://cutie/meshes/cutie.dae</uri>
+            </mesh>
           </geometry>
-          <material>
-            <script>
-              <uri>model://cutie/materials/scripts</uri>
-              <uri>model://cutie/materials/textures</uri>
-              <name>RepeatedTexture</name>
-            </script>
-          </material>
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose frame=''>2.46508 0.029188 0 0 -0 0</pose>
+      <pose frame=''>1.98319 0.049474 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>154 432000000</sim_time>
-      <real_time>44 920031982</real_time>
-      <wall_time>1573254869 178107188</wall_time>
-      <iterations>44741</iterations>
+      <sim_time>87 371000000</sim_time>
+      <real_time>110 938889307</real_time>
+      <wall_time>1573449996 536426642</wall_time>
+      <iterations>87371</iterations>
       <model name='cutie'>
-        <pose frame=''>2.46461 0.029188 -0.936552 0 -1.57029 0</pose>
+        <pose frame=''>1.98319 0.049474 -0.697508 0 0 -1.57484</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>2.46461 0.029188 -0.936552 0 -1.57029 0</pose>
+          <pose frame=''>1.98319 0.049474 -0.697508 0 0 -1.57484</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -101,7 +94,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>1.12234 -8.33356 2.29671 0 0.271643 1.76019</pose>
+        <pose frame=''>4.52151 -4.19216 1.72193 0 0.275643 2.35619</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
