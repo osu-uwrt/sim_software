@@ -25,9 +25,10 @@
   <depend>riptide_msgs</depend>
   <depend>rospy</depend>
   <depend>roscpp</depend>
-
+  <depend>gazebo_ros</depend>
+  <exec_depend>gazebo</exec_depend>
 
   <export>
-      <gazebo_ros gazebo_model_path="${prefix}/models"/>
+    <gazebo_ros gazebo_media_path="${prefix}" gazebo_model_path="${prefix}/models"/>
   </export>
 </package>
