@@ -6,7 +6,7 @@
    <xacro:include filename="$(find common_robot_description)/xacro/common_thrusters.xacro"/>
    
    <!-- Load data from yaml -->
-   <xacro:property name="thruster_file" value="$(find maelstrom_description)/config/thrusters.yaml"/>
+   <xacro:property name="thruster_file" value="$(find puddles_description)/config/thrusters.yaml"/>
    <xacro:property name="thruster_data" value="${load_yaml(thruster_file)}"/>
 
    <!-- Create Thrusters -->

@@ -1,9 +1,9 @@
 <launch>
-   <arg name="model" default="maelstrom"/>
+   <arg name="model" default="puddles"/>
    <arg name="input_topic" default="/command/thrust"/>
    <arg name="topic_prefix" default="/thrusters/"/>
    <arg name="topic_suffix" default="/input"/>
-   <arg name="thruster_config" default="$(find maelstrom_description)/config/thrusters.yaml"/>
+   <arg name="thruster_config" default="$(find puddles_description)/config/thrusters.yaml"/>
    <arg name="common_config" default="$(find common_robot_description)/config/common_thrusters.yaml"/>
    <arg name="thruster_model" default="T200"/>
 

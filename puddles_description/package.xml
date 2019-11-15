@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>maelstrom_description</name>
+  <name>puddles_description</name>
   <version>0.0.1</version>
-  <description>Contains URDF for the OSU Underwater Robotics Team Maelstrom vehicle.</description>
+  <description>Contains URDF for the OSU Underwater Robotics Team puddles vehicle.</description>
 
   <maintainer email="justice.251@osu.edu">Benji Justice</maintainer>
 

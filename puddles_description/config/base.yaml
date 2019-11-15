@@ -2,8 +2,8 @@ base_link:
   link:
     name: base_link
     mesh_properties:
-      visual: package://maelstrom_description/meshes/maelstromColored.dae
-      collision: package://maelstrom_description/meshes/maelstromColored.dae
+      visual: package://puddles_description/meshes/puddlesColored.dae
+      collision: package://puddles_description/meshes/puddlesColored.dae
     dummy_link:
       name: base_inertia
     dummy_joint:

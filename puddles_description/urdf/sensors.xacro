@@ -4,7 +4,7 @@
 	<xacro:include filename="$(find common_robot_description)/xacro/common_sensors.xacro"/>
 
 	<!-- Load data from yaml -->
-   <xacro:property name="sensors_file" value="$(find maelstrom_description)/config/sensors.yaml"/>
+   <xacro:property name="sensors_file" value="$(find puddles_description)/config/sensors.yaml"/>
    <xacro:property name="sensors_data" value="${load_yaml(sensors_file)}"/>
 
    <xacro:camera_from_yaml data="${sensors_data['camera']['forward_R']}"/>
