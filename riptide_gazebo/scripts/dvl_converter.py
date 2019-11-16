@@ -4,7 +4,7 @@ import rospy
 import sensor_msgs.msg
 import riptide_msgs.msg
 from geometry_msgs.msg import Vector3, Quaternion
-from riptide_msgs.msg import Dvl
+from nortek_dvl.msg import Dvl
 from gazebo_msgs.msg import ModelStates
 import math
 from tf.transformations import quaternion_conjugate, quaternion_multiply
@@ -31,7 +31,7 @@ class dvlConverter():
             quaternion_conjugate(quat)
         )[:3]
 
-        # Publish
+        # Publish as NED
         outMsg = Dvl()
         outMsg.velocity.x = velocity[0]
         outMsg.velocity.y = -velocity[1]

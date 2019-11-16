@@ -3,6 +3,7 @@
   <arg name="y_pos" default="0.0" />
   <arg name="z_pos" default="1" />
 
+  <include file="$(find riptide_bringup)/launch/local_simulation.launch" />
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find riptide_gazebo)/worlds/cutie.world"/>
     <arg name="paused" value="false"/>

@@ -3,6 +3,7 @@
   <arg name="y_pos" default="0.0" />
   <arg name="z_pos" default="0.0" />
 
+  <include file="$(find riptide_bringup)/launch/local_simulation.launch" />
   <include file="$(find uuv_gazebo_worlds)/launch/lake.launch" />
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find puddles_description)/urdf/puddles.urdf.xacro" />
