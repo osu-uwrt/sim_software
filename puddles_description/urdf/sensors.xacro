@@ -10,10 +10,9 @@
    <xacro:stereo_from_yaml data="${sensors_data['camera']['stereo']}"/>
    <xacro:camera_from_yaml data="${sensors_data['camera']['downward']}"/>
 
-   <!-- Only an IMU is needed among the inertial sensors, but all are included to represent the actual vehicle -->
+   <!-- The dvl must be faked because the sensor is not working -->
    <xacro:imu_from_yaml data="${sensors_data['imu']['imu']}"/>
    <xacro:pressure_from_yaml data="${sensors_data['pressure']['pressure']}"/>
-   <!-- <xacro:dvl_from_yaml data="${sensors_data['dvl']['dvl']}"/> -->
 
 </robot>
  

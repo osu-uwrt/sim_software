@@ -3,8 +3,8 @@ camera:
     parent_link: base_link
     update_rate: 30
     hfov: 1.5125
-    width: 768
-    height: 492
+    width: 644
+    height: 482
     stddev: 0.02
     origin:
       xyz: 0.3818 0.05038 0.11999
@@ -16,8 +16,8 @@ camera:
     parent_link: base_link
     update_rate: 30
     hfov: 1.5125
-    width: 768
-    height: 492
+    width: 644
+    height: 482
     stddev: 0.02
     scale: 1.0
     origin:
