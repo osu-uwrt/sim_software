@@ -1,29 +1,15 @@
 camera:
-  forward_R:
-    topic_suffix: forward_R
+  stereo:
     parent_link: base_link
     update_rate: 30
     hfov: 1.5125
     width: 768
     height: 492
     stddev: 0.02
-    scale: 1.0
     origin:
       xyz: 0.3818 0.05038 0.11999
       rpy: 0 0 0
-  
-  forward_L:
-    topic_suffix: forward_L
-    parent_link: base_link
-    update_rate: 30
-    hfov: 1.5125
-    width: 768
-    height: 492
-    stddev: 0.02
-    scale: 1.0
-    origin:
-      xyz: 0.3818 -0.05038 0.11999
-      rpy: 0 0 0
+
 
   downward:
     topic_suffix: downward
