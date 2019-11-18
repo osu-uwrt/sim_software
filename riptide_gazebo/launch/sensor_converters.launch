@@ -13,4 +13,12 @@
         <arg name="common_config" value="$(find common_robot_description)/config/common_thrusters.yaml" />
         <arg name="thruster_model" value="T200" />
     </include>
+    
+    <node name="stereo_image_proc" type="stereo_image_proc" pkg="stereo_image_proc" output="screen" ns="stereo">
+        <remap to="/sensors/cameraforward_L/camera_info" from="/stereo/left/camera_info" />
+        <remap to="/sensors/cameraforward_L/camera_image" from="/stereo/left/image_raw" />
+        <remap to="/sensors/cameraforward_R/camera_info" from="/stereo/right/camera_info" />
+        <remap to="/sensors/cameraforward_R/camera_image" from="/stereo/right/image_raw" />
+        <param name="approximate_sync" value="true" />
+    </node>
 </launch>
