@@ -246,10 +246,20 @@
       <pose frame=''>1.94744 0.032804 0 0 -0 0</pose>
     </model>
     <state world_name='lake'>
-      <sim_time>53 852000000</sim_time>
-      <real_time>54 19229518</real_time>
-      <wall_time>1574107483 112934587</wall_time>
-      <iterations>26926</iterations>
+      <sim_time>260 104000000</sim_time>
+      <real_time>224 501256851</real_time>
+      <wall_time>1574207848 24681644</wall_time>
+      <iterations>103126</iterations>
+      <model name='buoy'>
+        <pose frame=''>2.03149 2.15982 -0.826071 0 -0 1.48658</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>2.03149 2.15982 -0.826071 0 -0 1.48658</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
       <model name='cutie'>
         <pose frame=''>1.94744 0.032804 -0.663487 0 0 -1.53723</pose>
         <scale>1 1 1</scale>
@@ -294,5 +304,44 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <model name='buoy'>
+      <static>1</static>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <must_be_base_link>1</must_be_base_link>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://buoy/meshes/buoy.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>model://buoy/meshes/buoy.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>2.03149 2.15982 0 0 -0 0</pose>
+    </model>
   </world>
 </sdf>
