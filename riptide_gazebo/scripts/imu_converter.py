@@ -21,6 +21,10 @@ class imuConverter():
         dst.x = src.x * scale
         dst.y = src.y * scale
         dst.z = src.z * scale
+        try:
+            dst.w = src.w * scale
+        except:
+            pass
 
     def quaternion2NED(self, q):
         NEDQ = Quaternion()
