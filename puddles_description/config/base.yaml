@@ -2,15 +2,15 @@ base_link:
   link:
     name: base_link
     mesh_properties:
-      visual: package://puddles_description/meshes/puddlesColored.dae
-      collision: package://puddles_description/meshes/puddlesColored.dae
+      visual: package://puddles_description/meshes/puddles.dae
+      collision: package://puddles_description/meshes/puddles.dae
     dummy_link:
       name: base_inertia
     dummy_joint:
       name: base_joint
     inertial:
-      mass: 38.5 #40.85
-      com: 0 0 0
+      mass: 39.825 #40.85
+      com: 0.397 -0.205 0.17
       inertia:
         ixx: 1.32
         ixy: 0.0
@@ -24,7 +24,7 @@ base_link:
         width: 0.5
         height: 0.33
       cob: 0.027 -0.008 0.036 #0.02 0 0.03 # 0.02 0 0.03 # Relative to base_joint?
-      volume: 0.039808
+      volume: 0.041
       damping:
         linear: -17.0 -50.0 -50.0 -4 -9 -9 #-17.0 -44.0 -44.0 -5 -10 -10
         quadratic: -180.0 -460.0 -460.0 -12 -24.0 -24.0 #-171.0 -444.0 -440.0 -10 -20.0 -20.0

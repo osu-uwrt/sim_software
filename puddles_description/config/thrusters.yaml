@@ -8,7 +8,7 @@ heave_port_fwd:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: 0.37273 0.18946 -0.01509
+      xyz: 0.7747 0 0.161925
       rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
 
 heave_port_aft:
@@ -21,7 +21,7 @@ heave_port_aft:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: -0.37273 0.18946 -0.01509 
+      xyz: 0.08255 0 0.161925 
       rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
 
 heave_stbd_fwd:
@@ -34,7 +34,7 @@ heave_stbd_fwd:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: 0.37273 -0.18946 -0.01509
+      xyz: 0.7747 -0.3683 0.161925
       rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
 
 heave_stbd_aft:
@@ -47,7 +47,7 @@ heave_stbd_aft:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: -0.37273 -0.18946 -0.01509
+      xyz: 0.08255 -0.3683 0.161925
       rpy: 0.0 -1.57079 0.0 # 0 -90 0 [deg]
 
 vector_port_fwd:
@@ -60,7 +60,7 @@ vector_port_fwd:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: 0.398 0.29921 0.10615
+      xyz: 0.8255 0.12065 0.257175
       rpy: 0.0 0.0 2.35619 # 0 0 135 [deg]
 
 vector_port_aft:
@@ -73,7 +73,7 @@ vector_port_aft:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: -0.398 0.29921 0.10615
+      xyz: 0.03175 0.12065 0.257175
       rpy: 0.0 0.0 0.78540 # 0 0 45 [deg]
 
 vector_stbd_fwd:
@@ -86,7 +86,7 @@ vector_stbd_fwd:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: 0.398 -0.29921 0.10615
+      xyz: 0.8255 -0.48895 0.257175
       rpy: 0.0 0.0 -2.35619 # 0 0 -135 [deg]
 
 vector_stbd_aft:
@@ -99,5 +99,5 @@ vector_stbd_aft:
     type: continuous
     axis: 1 0 0
     origin: # North West Up axis convention
-      xyz: -0.398 -0.29921 0.10615
+      xyz: 0.03175 -0.48895 0.257175
       rpy: 0.0 0.0 -0.78540 # 0 0 -45 [deg]

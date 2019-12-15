@@ -7,7 +7,7 @@ camera:
     height: 482
     stddev: 0.02
     origin:
-      xyz: 0.3818 0.05038 0.11999
+      xyz: 0.781 -0.1326 0.2466
       rpy: 0 0 0
 
 
@@ -21,7 +21,7 @@ camera:
     stddev: 0.02
     scale: 1.0
     origin:
-      xyz: 0.0711 0.0004 0
+      xyz: 0.470 -0.181 0.127
       rpy: 0 1.57079 0
 
 pressure:
@@ -32,7 +32,7 @@ pressure:
     noise_sigma: 0
     noise_amplitude: 0.03 # [kPa]
     origin:
-      xyz: 0 -0.0004 0.0711
+      xyz: .533 -0.219 0.118
       rpy: 0 0 0
 
 imu:
@@ -41,7 +41,7 @@ imu:
     parent_link: base_link
     reference_frame: world # Do NOT use world_ned - the sensor output is not correct
     origin:
-      xyz: 0 0 0
+      xyz: 0.71 -0.19 -0.33
       rpy: 0 0 0
 
 dvl:
