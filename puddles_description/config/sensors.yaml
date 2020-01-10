@@ -41,7 +41,7 @@ imu:
     parent_link: base_link
     reference_frame: world # Do NOT use world_ned - the sensor output is not correct
     origin:
-      xyz: 0.71 -0.19 -0.33
+      xyz: 0.71 -0.19 0.33
       rpy: 0 0 0
 
 dvl:

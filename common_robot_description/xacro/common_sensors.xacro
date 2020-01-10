@@ -52,12 +52,18 @@
          <xacro:no_collision />
       </link>
 
-      <joint name="${namespace}/stereo_joint" type="revolute">
+      <joint name="${namespace}/stereo_left_joint" type="fixed">
          <xacro:origin_from_yaml data="${data[tag_origin]}" />
          <parent link="${data[tag_parent]}" />
          <child link="${namespace}/stereo_left_link" />
-         <limit upper="0" lower="0" effort="0" velocity="0" />
-         <axis xyz="1 0 0" />
+      </joint>
+
+      <link name="${namespace}/stereo_left_optical" />
+
+      <joint name="${namespace}/stereo_left_optical_joint" type="fixed">
+         <parent link="${namespace}/stereo_left_link" />
+         <child link="${namespace}/stereo_left_optical" />
+         <origin rpy="-1.570796 0 -1.570796"></origin>
       </joint>
 
       <gazebo reference="${namespace}/stereo_left_link">
@@ -94,7 +100,7 @@
                <cameraName>${namespace}/left</cameraName>
                <imageTopicName>image_raw</imageTopicName>
                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-               <frameName>${namespace}/stereo_left_link</frameName>
+               <frameName>${namespace}/stereo_left_optical</frameName>
                <distortionK1>${k1l}</distortionK1>
                <distortionK2>${k2l}</distortionK2>
                <distortionK3>${k3l}</distortionK3>
@@ -114,12 +120,18 @@
          <xacro:no_collision />
       </link>
 
-      <joint name="${namespace}/stereo_right_joint" type="revolute">
+      <joint name="${namespace}/stereo_right_joint" type="fixed">
          <origin xyz="0.0 -0.1 0" rpy="0 0 0" />
          <parent link="${namespace}/stereo_left_link" />
          <child link="${namespace}/stereo_right_link" />
-         <limit upper="0" lower="0" effort="0" velocity="0" />
-         <axis xyz="1 0 0" />
+      </joint>
+
+      <link name="${namespace}/stereo_right_optical" />
+
+      <joint name="${namespace}/stereo_right_optical_joint" type="fixed">
+         <parent link="${namespace}/stereo_right_link" />
+         <child link="${namespace}/stereo_right_optical" />
+         <origin rpy="-1.570796 0 -1.570796"></origin>
       </joint>
 
       <gazebo reference="${namespace}/stereo_right_link">
@@ -156,7 +168,7 @@
                <cameraName>${namespace}/right</cameraName>
                <imageTopicName>image_raw</imageTopicName>
                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-               <frameName>${namespace}/stereo_right_link</frameName>
+               <frameName>${namespace}/stereo_right_optical</frameName>
                <hackBaseline>0.1</hackBaseline>
                <distortionK1>${k1l}</distortionK1>
                <distortionK2>${k2l}</distortionK2>
