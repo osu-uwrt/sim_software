@@ -12,7 +12,6 @@
   <url type="repository">http://github.com/uwrt-osu/sim_software</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <depend>auv_core</depend>
   <depend>eigen_conversions</depend>
   <depend>tf</depend>
   

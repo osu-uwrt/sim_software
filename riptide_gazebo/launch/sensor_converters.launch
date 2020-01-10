@@ -18,4 +18,9 @@
         <param name="approximate_sync" value="true" />
         <param name="queue_size" value="10" />
     </node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+        <remap from="/joint_states" to="/puddles/joint_states" />
+    </node>
 </launch>
