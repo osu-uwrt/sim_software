@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- All coordinates in file must follow ROS conventions: x forward, z up -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <xacro:include filename="$(find uuv_descriptions)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/sensor_snippets.xacro"/>
+  <xacro:include filename="$(find riptide_descriptions)/urdf/snippets.xacro" />
+  <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/>
+  
+  <!-- Parameters -->
+  <xacro:property name="visual_mesh_file" value="file://$(find riptide_descriptions)/meshes/Puddles.dae"/>
+
+  <!-- Mass -->
+  <xacro:property name="mass" value="39.825"/>
+  <xacro:property name="base_link_pos" value="-0.397 0.205 -0.17"/>
+  <xacro:property name="com_pos" value="0.397 -0.205 0.17"/>
+
+  <xacro:macro name="puddles_base"
+    params="namespace *gazebo inertial_reference_frame">
+
+    <!-- Due to uuv_sim, base_link must be near center of vehicle -->
+    <link name="${namespace}/base_link"/>
+
+    <!-- Origin to define all coordinates relative to -->
+    <link name="${namespace}/origin">
+      <inertial>
+        <mass value="0.00001"/>
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0" 
+                 iyy="0.00001" iyz="0.0" 
+                 izz="0.00001"/>
+      </inertial>
+
+      <visual>
+        <geometry>
+          <mesh filename="${visual_mesh_file}" scale="1 1 1"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="${visual_mesh_file}" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${namespace}/origin_joint" type="fixed">
+      <parent link="${namespace}/base_link"/>
+      <child link="${namespace}/origin"/>
+      <origin xyz="${base_link_pos}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="${namespace}/base_inertia">
+      <inertial>
+        <mass value="${mass}"/>
+        <inertia ixx="1.32" ixy="0.0" ixz="0.0" 
+                 iyy="2.84" iyz="0.0" 
+                 izz="3.65"/>
+      </inertial>
+    </link>
+    <joint name="${namespace}/inertia_joint" type="fixed">
+      <parent link="${namespace}/origin"/>
+      <child link="${namespace}/base_inertia"/>
+      <origin xyz="${com_pos}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Set up hydrodynamic plugin given as input parameter -->
+    <xacro:insert_block name="gazebo"/>
+
+    <xacro:include filename="$(find riptide_descriptions)/urdf/puddles_sensors.xacro" />
+    <!-- <xacro:include filename="$(find riptide_descriptions)/urdf/puddles_actuators.xacro" /> -->
+
+  </xacro:macro>
+
+</robot>
