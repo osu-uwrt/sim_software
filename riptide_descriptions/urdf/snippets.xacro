@@ -1,20 +1,4 @@
 <?xml version="1.0"?>
-<!-- Copyright (c) 2016 The UUV Simulator Authors.
-     All rights reserved.
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
   <!-- Thruster joint and link snippet --> 
@@ -37,7 +21,7 @@
     </inertial>
   </xacro:macro>
 
-  <xacro:macro name="camera_macro" params="namespace name parent_link update_rate hfov width height stddev baseline *origin">
+  <xacro:macro name="camera_macro" params="namespace name parent_link update_rate hfov width height stddev baseline:=0 *origin">
     <link name="${namespace}/${name}_link">
         <xacro:dummy_inertia />
         <xacro:no_collision />
@@ -88,10 +72,10 @@
           <plugin name="${name}_controller" filename="libgazebo_ros_camera.so">
               <alwaysOn>true</alwaysOn>
               <updateRate>${update_rate}</updateRate>
-              <cameraName>${namespace}/${name}</cameraName>
+              <cameraName>${name}</cameraName>
               <imageTopicName>image_raw</imageTopicName>
               <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-              <frameName>${namespace}/${name}_optical</frameName>
+              <frameName>${name}_optical</frameName>
               <hackBaseline>${baseline}</hackBaseline>
               <!-- <distortionK1>${k1l}</distortionK1>
               <distortionK2>${k2l}</distortionK2>
@@ -105,32 +89,232 @@
     </gazebo>
   </xacro:macro>
 
+  <xacro:macro name="stereo_macro" params="namespace parent_link name update_rate hfov width height stddev baseline *origin">
+    <xacro:camera_macro
+      namespace="${namespace}"
+      name="${name}/left"
+      parent_link="${parent_link}"
+      update_rate="${update_rate}"
+      hfov="${hfov}"
+      width="${width}"
+      height="${height}"
+      stddev="${stddev}"
+      baseline="${baseline}">
+      <xacro:insert_block name="origin" />
+    </xacro:camera_macro>
 
-  <xacro:macro name="stereo_macro" params="namespace parent_link update_rate hfov width height stddev baseline *origin">
-      <xacro:camera_macro
-        namespace="${namespace}/stereo"
-        name="left"
-        parent_link="${parent_link}"
-        update_rate="${update_rate}"
-        hfov="${hfov}"
-        width="${width}"
-        height="${height}"
-        stddev="${stddev}"
-        baseline="${baseline}">
-        <xacro:insert_block name="origin" />
-      </xacro:camera_macro>
+    <xacro:camera_macro
+      namespace="${namespace}"
+      name="${name}/right"
+      parent_link="${namespace}/${name}/left_link"
+      update_rate="${update_rate}"
+      hfov="${hfov}"
+      width="${width}"
+      height="${height}"
+      stddev="${stddev}"
+      baseline="${baseline}">
+      <origin xyz="0 ${-baseline} 0"/>
+    </xacro:camera_macro>
+  </xacro:macro>
 
-      <xacro:camera_macro
-        namespace="${namespace}/stereo"
-        name="right"
-        parent_link="${namespace}/stereo/left_link"
-        update_rate="${update_rate}"
-        hfov="${hfov}"
-        width="${width}"
-        height="${height}"
-        stddev="${stddev}"
-        baseline="${baseline}">
-        <origin xyz="0 ${-baseline} 0"/>
-      </xacro:camera_macro>
-   </xacro:macro>
+  <xacro:macro name="dvl_single_sonar" params="namespace suffix index pitch yaw update_rate">
+    <link name="${namespace}/dvl${suffix}_sonar${index}_link">
+      <xacro:dummy_inertia/>
+      <xacro:no_collision/>
+    </link>
+
+    <joint name="${namespace}/dvl${suffix}_sonar${index}_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 ${pitch} ${yaw}"/>
+      <parent link="${namespace}/dvl${suffix}_link" />
+      <child link="${namespace}/dvl${suffix}_sonar${index}_link" />
+    </joint>
+
+    <gazebo reference="${namespace}/dvl${suffix}_sonar${index}_link">
+      <sensor type="ray" name="dvl${suffix}_sonar${index}">
+        <pose>0 0 0 0 0 0</pose>
+        <update_rate>1</update_rate>
+        <visualize>false</visualize>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.03</min_angle>
+              <max_angle>0.03</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.03</min_angle>
+              <max_angle>0.03</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.55</min>
+            <max>81</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+
+        <plugin filename="libgazebo_ros_range.so" name="dvl${suffix}_sonar${index}">
+          <gaussianNoise>0.005</gaussianNoise>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>${update_rate}</updateRate>
+          <topicName>${topic}_sonar${index}</topicName>
+          <frameName>${namespace}/dvl${suffix}_sonar${index}_link</frameName>
+          <fov>0.06</fov>
+          <radiation>ultrasound</radiation>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="dvl_plugin_macro"
+    params="namespace suffix parent_link topic scale *origin update_rate
+    reference_frame noise_sigma noise_amplitude">
+    <link name="${namespace}/dvl${suffix}_link">
+      <xacro:dummy_inertia/>
+      <xacro:no_collision/>
+    </link>
+
+    <joint name="${namespace}/dvl${suffix}_joint" type="revolute">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${namespace}/dvl${suffix}_link" />
+      <limit upper="0" lower="0" effort="0" velocity="0" />
+      <axis xyz="1 0 0"/>
+    </joint>
+
+    <xacro:dvl_single_sonar
+      namespace="${namespace}" suffix="${suffix}"
+      index="0" pitch="-0.52" yaw="0.0" update_rate="${update_rate}">
+    </xacro:dvl_single_sonar>
+
+    <xacro:dvl_single_sonar
+      namespace="${namespace}" suffix="${suffix}"
+      index="1" pitch="0" yaw="0.52" update_rate="${update_rate}">
+    </xacro:dvl_single_sonar>
+
+    <xacro:dvl_single_sonar
+      namespace="${namespace}" suffix="${suffix}"
+      index="2" pitch="0.52" yaw="0.0" update_rate="${update_rate}">
+    </xacro:dvl_single_sonar>
+
+    <xacro:dvl_single_sonar
+      namespace="${namespace}" suffix="${suffix}"
+      index="3" pitch="0.0" yaw="-0.52" update_rate="${update_rate}">
+    </xacro:dvl_single_sonar>
+
+    <gazebo>
+      <plugin filename="libuuv_gazebo_ros_dvl_plugin.so" name="libuuv_gazebo_dvl${suffix}_plugin">
+        <robot_namespace>${namespace}</robot_namespace> <!-- (string, required): ros namespace in which the messages are published -->
+        <link_name>${namespace}/dvl${suffix}_link</link_name> <!-- (string, required): name of the body which holds the IMU sensor -->
+        <sensor_topic>${topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names -->
+        <update_rate>${update_rate}</update_rate> <!-- Update period [s] -->
+        <noise_sigma>${noise_sigma}</noise_sigma> <!-- std dev of position estimates in x, y, z [m/s] -->
+        <noise_amplitude>${noise_amplitude}</noise_amplitude>
+        <enable_gazebo_messages>false</enable_gazebo_messages>
+        <enable_local_ned_frame>false</enable_local_ned_frame>
+        <static_reference_frame>${reference_frame}</static_reference_frame>
+        <!-- Declaring the beams -->
+        <beam_link_name_0>${namespace}/dvl${suffix}_sonar0_link</beam_link_name_0>
+        <beam_link_name_1>${namespace}/dvl${suffix}_sonar1_link</beam_link_name_1>
+        <beam_link_name_2>${namespace}/dvl${suffix}_sonar2_link</beam_link_name_2>
+        <beam_link_name_3>${namespace}/dvl${suffix}_sonar3_link</beam_link_name_3>
+        <!-- Declaring the beam output topics -->
+        <beam_topic_0>${topic}_sonar0</beam_topic_0>
+        <beam_topic_1>${topic}_sonar1</beam_topic_1>
+        <beam_topic_2>${topic}_sonar2</beam_topic_2>
+        <beam_topic_3>${topic}_sonar3</beam_topic_3>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="pressure_plugin_macro"
+    params="namespace suffix parent_link topic update_rate
+      range noise_sigma noise_amplitude estimateDepth standardPressure kPaPerM
+      *origin">
+
+    <link name="${namespace}/pressure${suffix}_link">
+      <xacro:dummy_inertia/>
+      <xacro:no_collision/>
+    </link>
+
+    <joint name="${namespace}/pressure${suffix}_joint" type="revolute">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${namespace}/pressure${suffix}_link" />
+      <limit upper="0" lower="0" effort="0" velocity="0" />
+      <axis xyz="1 0 0"/>
+    </joint>
+
+    <gazebo>
+      <plugin filename="libuuv_gazebo_ros_subsea_pressure_plugin.so" name="libuuv_gazebo_subseapressure${suffix}_plugin">
+        <robot_namespace>${namespace}</robot_namespace> <!-- (string, required): ros namespace in which the messages are published -->
+        <link_name>${namespace}/pressure${suffix}_link</link_name> <!-- (string, required): name of the body which holds the IMU sensor -->
+        <sensor_topic>${topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
+        <update_rate>${update_rate}</update_rate> <!-- Update period of accelerometer and gyroscope [s] -->
+
+        <saturation>${range}</saturation> <!-- measurement range [kPa] -->
+        <noise_sigma>${noise_sigma}</noise_sigma> <!-- measurement stddev [kPa] -->
+        <noise_amplitude>${noise_amplitude}</noise_amplitude>
+        <estimate_depth_on>${estimateDepth}</estimate_depth_on> <!-- infer depth? -->
+        <standard_pressure>${standardPressure}</standard_pressure> <!-- pressure at sea level (depth 0 m) [kPa] -->
+        <kPa_per_meter>${kPaPerM}</kPa_per_meter> <!-- increase in pressure [kPa] per [m] in increased depth -->
+        <enable_gazebo_messages>false</enable_gazebo_messages>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="imu_plugin_macro"
+    params="namespace imu_suffix parent_link imu_topic
+      gyroscope_noise_density gyroscope_random_walk
+      gyroscope_bias_correlation_time gyroscope_turn_on_bias_sigma
+      accelerometer_noise_density accelerometer_random_walk
+      accelerometer_bias_correlation_time accelerometer_turn_on_bias_sigma
+      orientation_noise
+      update_rate reference_frame
+      enable_local_ned_frame
+      *origin">
+    <!-- IMU link -->
+    <link name="${namespace}/imu${imu_suffix}_link">
+      <xacro:dummy_inertia/>
+    </link>
+
+    <!-- IMU joint -->
+    <joint name="${namespace}/imu${imu_suffix}_joint" type="revolute">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${namespace}/imu${imu_suffix}_link" />
+      <limit upper="0" lower="0" effort="0" velocity="0" />
+      <axis xyz="1 0 0"/>
+    </joint>
+
+    <gazebo>
+      <plugin filename="libuuv_gazebo_ros_imu_plugin.so" name="libuuv_gazebo_imu${imu_suffix}_plugin">
+      <!-- A good description of the IMU parameters can be found in the kalibr documentation:
+           https://github.com/ethz-asl/kalibr/wiki/IMU-Noise-Model-and-Intrinsics -->
+        <robot_namespace>${namespace}</robot_namespace> <!-- (string, required): ros namespace in which the messages are published -->
+        <link_name>${namespace}/imu${imu_suffix}_link</link_name> <!-- (string, required): name of the body which holds the IMU sensor -->
+        <sensor_topic>${imu_topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
+
+        <gyroscope_noise_density>${gyroscope_noise_density}</gyroscope_noise_density> <!-- Gyroscope noise density (two-sided spectrum) [rad/s/sqrt(Hz)] -->
+        <gyroscope_random_walk>${gyroscope_random_walk}</gyroscope_random_walk> <!-- Gyroscope bias random walk [rad/s/s/sqrt(Hz)] -->
+        <gyroscope_bias_correlation_time>${gyroscope_bias_correlation_time}</gyroscope_bias_correlation_time> <!-- Gyroscope bias correlation time constant [s] -->
+        <gyroscope_turn_on_bias_sigma>${gyroscope_turn_on_bias_sigma}</gyroscope_turn_on_bias_sigma> <!-- Gyroscope turn on bias standard deviation [rad/s] -->
+
+        <accelerometer_noise_density>${accelerometer_noise_density}</accelerometer_noise_density> <!-- Accelerometer noise density (two-sided spectrum) [m/s^2/sqrt(Hz)] -->
+        <accelerometer_random_walk>${accelerometer_random_walk}</accelerometer_random_walk> <!-- Accelerometer bias random walk. [m/s^2/s/sqrt(Hz)] -->
+        <accelerometer_bias_correlation_time>${accelerometer_bias_correlation_time}</accelerometer_bias_correlation_time> <!-- Accelerometer bias correlation time constant [s] -->
+        <accelerometer_turn_on_bias_sigma>${accelerometer_turn_on_bias_sigma}</accelerometer_turn_on_bias_sigma> <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
+        <orientation_noise>${orientation_noise}</orientation_noise>
+
+        <update_rate>${update_rate}</update_rate> <!-- Update period of accelerometer and gyroscope [s] -->
+        <enable_gazebo_messages>false</enable_gazebo_messages>
+        <enable_local_ned_frame>${enable_local_ned_frame}</enable_local_ned_frame>
+        <static_reference_frame>${reference_frame}</static_reference_frame>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+  
 </robot>

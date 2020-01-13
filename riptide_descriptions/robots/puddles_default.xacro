@@ -4,12 +4,16 @@
   <xacro:arg name="namespace" default="puddles"/>
   <xacro:arg name="inertial_reference_frame" default="world"/>
   <!-- Include the ROV macro file -->
-  <xacro:include filename="$(find riptide_descriptions)/urdf/puddles_base.xacro"/>
+  <xacro:include filename="$(find riptide_descriptions)/urdf/robot_base.xacro"/>
   <xacro:include filename="$(find riptide_descriptions)/urdf/puddles.gazebo.xacro"/>
 
+  <xacro:property name="yaml_file" value="$(find riptide_descriptions)/config/puddles.yaml" />
+  <xacro:property name="config" value="${load_yaml(yaml_file)}"/>
+
   <!-- Create puddles -->
-  <xacro:puddles_base
+  <xacro:robot_base
     namespace="$(arg namespace)"
+    config="${config}"
     inertial_reference_frame="$(arg inertial_reference_frame)">
     <!--
       The underwater object plugin is given as an input block parameter to
@@ -24,7 +28,7 @@
         <xacro:puddles_hydro_model namespace="$(arg namespace)"/>
       </plugin>
     </gazebo>
-  </xacro:puddles_base>
+  </xacro:robot_base>
 
   <!-- Joint state publisher plugin -->
   <xacro:default_joint_state_publisher namespace="$(arg namespace)" update_rate="50"/>

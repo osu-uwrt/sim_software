@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <!-- Everything here is ENU frame -->
+
+  <!-- DVL  -->
+  <xacro:if value="${'dvl' in config}">
+    <xacro:property name="dvl" value="${config['dvl']}"/>
+    <xacro:dvl_plugin_macro
+      namespace="${namespace}" 
+      suffix="" 
+      parent_link="${namespace}/origin"
+      topic="${dvl['topic']}" 
+      scale="1"
+      update_rate="${dvl['rate']}"
+      reference_frame="${inertial_reference_frame}"
+      noise_sigma="${dvl['sigma']}" 
+      noise_amplitude="1">
+      <origin xyz="${dvl['pose'][0]} ${dvl['pose'][1]} ${dvl['pose'][2]}" 
+              rpy="${dvl['pose'][3]} ${dvl['pose'][4]} ${dvl['pose'][5]}"/>
+    </xacro:dvl_plugin_macro>
+  </xacro:if>
+
+  <!-- Pressure  -->
+  <xacro:if value="${'depth' in config}">
+    <xacro:property name="depth" value="${config['depth']}"/>
+    <xacro:pressure_plugin_macro
+      namespace="${namespace}"
+      suffix=""
+      parent_link="${namespace}/origin"
+      topic="${depth['topic']}"
+      update_rate="${depth['rate']}"
+      range="30000"
+      noise_sigma="${depth['sigma']}"
+      noise_amplitude="1"
+      estimateDepth="false"
+      standardPressure="101.325"
+      kPaPerM="9.80638">
+      <origin xyz="${depth['pose'][0]} ${depth['pose'][1]} ${depth['pose'][2]}" 
+              rpy="${depth['pose'][3]} ${depth['pose'][4]} ${depth['pose'][5]}"/>
+    </xacro:pressure_plugin_macro>
+  </xacro:if>
+
+  <!-- IMU  -->
+  <xacro:if value="${'imu' in config}">
+    <xacro:property name="imu" value="${config['imu']}"/>
+    <xacro:imu_plugin_macro
+      namespace="${namespace}"
+      imu_suffix=""
+      parent_link="${namespace}/origin"
+      imu_topic="${imu['topic']}"
+      gyroscope_noise_density="0.0003394"
+      gyroscope_random_walk="0.000038785"
+      gyroscope_bias_correlation_time="1000.0"
+      gyroscope_turn_on_bias_sigma="0.0087"
+      accelerometer_noise_density="0.004"
+      accelerometer_random_walk="0.006"
+      accelerometer_bias_correlation_time="300.0"
+      accelerometer_turn_on_bias_sigma="0.1960"
+      orientation_noise="0.01"
+      enable_local_ned_frame="false"
+      reference_frame="${inertial_reference_frame}"
+      update_rate="${imu['rate']}">
+      <origin xyz="${imu['pose'][0]} ${imu['pose'][1]} ${imu['pose'][2]}" 
+              rpy="${imu['pose'][3]} ${imu['pose'][4]} ${imu['pose'][5]}"/>
+    </xacro:imu_plugin_macro>
+  </xacro:if>
+
+  <xacro:default_pose_3d_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}" />
+
+  <xacro:macro name="cameras_macro" params="namespace config">
+    <xacro:if value="${len(config)}">
+      <xacro:property name="camera" value="${config[0]}"/>
+      <xacro:if value="${camera['type'] == 'stereo'}">
+        <xacro:stereo_macro
+          namespace="${namespace}"
+          parent_link="${namespace}/origin" 
+          name="${camera['name']}"
+          update_rate="${camera['rate']}"
+          hfov="${camera['hfov']}"
+          width="${camera['width']}"
+          height="${camera['height']}"
+          stddev="${camera['stddev']}"
+          baseline="${camera['baseline']}">
+          <origin xyz="${camera['pose'][0]} ${camera['pose'][1]} ${camera['pose'][2]}" 
+                  rpy="${camera['pose'][3]} ${camera['pose'][4]} ${camera['pose'][5]}"/>
+        </xacro:stereo_macro>
+      </xacro:if>
+      <xacro:unless value="${camera['type'] == 'stereo'}">
+        <xacro:camera_macro
+          namespace="${namespace}"
+          name="${camera['name']}"
+          parent_link="${namespace}/origin" 
+          update_rate="${camera['rate']}"
+          hfov="${camera['hfov']}"
+          width="${camera['width']}"
+          height="${camera['height']}"
+          stddev="${camera['stddev']}">
+          <origin xyz="${camera['pose'][0]} ${camera['pose'][1]} ${camera['pose'][2]}" 
+                  rpy="${camera['pose'][3]} ${camera['pose'][4]} ${camera['pose'][5]}"/>
+        </xacro:camera_macro>
+      </xacro:unless>
+      <xacro:cameras_macro namespace="${namespace}" config="${config[1:]}"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:cameras_macro namespace="${namespace}" config="${config['cameras']}"/>
+</robot>
