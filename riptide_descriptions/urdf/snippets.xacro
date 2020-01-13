@@ -29,4 +29,108 @@
       <xacro:insert_block name="origin"/>
     </xacro:thruster_module_first_order_basic_fcn_macro>
   </xacro:macro>
+
+  <xacro:macro name="dummy_inertia">
+    <inertial>
+      <mass value=".001" />
+      <inertia ixx="0" ixy="0.0" ixz="0.0" iyy="0" iyz="0.0" izz="0" />
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="camera_macro" params="namespace name parent_link update_rate hfov width height stddev baseline *origin">
+    <link name="${namespace}/${name}_link">
+        <xacro:dummy_inertia />
+        <xacro:no_collision />
+    </link>
+
+    <joint name="${namespace}/${name}_joint" type="fixed">
+        <xacro:insert_block name="origin" />
+        <parent link="${parent_link}" />
+        <child link="${namespace}/${name}_link" />
+    </joint>
+
+    <link name="${namespace}/${name}_optical" />
+
+    <joint name="${namespace}/${name}_optical_joint" type="fixed">
+        <parent link="${namespace}/${name}_link" />
+        <child link="${namespace}/${name}_optical" />
+        <origin rpy="${-pi/2} 0 ${-pi/2}"></origin>
+    </joint>
+
+    <gazebo reference="${namespace}/${name}_link">
+        <sensor name="${name}" type="camera">
+          <camera>
+              <horizontal_fov>${hfov}</horizontal_fov>
+              <image>
+                <width>${width}</width>
+                <height>${height}</height>
+                <format>R8G8B8</format>
+              </image>
+              <clip>
+                <near>0.05</near>
+                <far>3000</far>
+              </clip>
+              <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>${stddev}</stddev>
+              </noise>
+              <!-- <distortion>
+                <k1>${k1l}</k1>
+                <k2>${k2l}</k2>
+                <k3>${k3l}</k3>
+                <p1>${p1l}</p1>
+                <p2>${p2l}</p2>
+                <center>0.5 0.5</center>
+              </distortion> -->
+          </camera>
+
+          <plugin name="${name}_controller" filename="libgazebo_ros_camera.so">
+              <alwaysOn>true</alwaysOn>
+              <updateRate>${update_rate}</updateRate>
+              <cameraName>${namespace}/${name}</cameraName>
+              <imageTopicName>image_raw</imageTopicName>
+              <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+              <frameName>${namespace}/${name}_optical</frameName>
+              <hackBaseline>${baseline}</hackBaseline>
+              <!-- <distortionK1>${k1l}</distortionK1>
+              <distortionK2>${k2l}</distortionK2>
+              <distortionK3>${k3l}</distortionK3>
+              <distortionT1>${p1l}</distortionT1>
+              <distortionT2>${p2l}</distortionT2> -->
+          </plugin>
+          <always_on>1</always_on>
+          <update_rate>${update_rate}</update_rate>
+        </sensor>
+    </gazebo>
+  </xacro:macro>
+
+
+  <xacro:macro name="stereo_macro" params="namespace parent_link update_rate hfov width height stddev baseline *origin">
+      <xacro:camera_macro
+        namespace="${namespace}/stereo"
+        name="left"
+        parent_link="${parent_link}"
+        update_rate="${update_rate}"
+        hfov="${hfov}"
+        width="${width}"
+        height="${height}"
+        stddev="${stddev}"
+        baseline="${baseline}">
+        <xacro:insert_block name="origin" />
+      </xacro:camera_macro>
+
+      <xacro:camera_macro
+        namespace="${namespace}/stereo"
+        name="right"
+        parent_link="${namespace}/stereo/left_link"
+        update_rate="${update_rate}"
+        hfov="${hfov}"
+        width="${width}"
+        height="${height}"
+        stddev="${stddev}"
+        baseline="${baseline}">
+        <origin xyz="0 ${-baseline} 0"/>
+      </xacro:camera_macro>
+   </xacro:macro>
 </robot>
