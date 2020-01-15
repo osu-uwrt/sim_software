@@ -22,6 +22,7 @@
   <depend>riptide_msgs</depend>
   <depend>rospy</depend>
   <depend>roscpp</depend>
+  <depend>gazebo_ros</depend>
   <exec_depend>gazebo</exec_depend>
   <exec_depend>uuv_simulator</exec_depend>
 
