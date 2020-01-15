@@ -3,13 +3,14 @@
   <xacro:arg name="debug" default="0"/>
   <xacro:arg name="namespace" default="puddles"/>
   <xacro:arg name="inertial_reference_frame" default="world"/>
-  <!-- Include the ROV macro file -->
+  <!-- Include the Robot macro file -->
   <xacro:include filename="$(find riptide_descriptions)/urdf/robot_base.xacro"/>
 
+  <!-- Read the config -->
   <xacro:property name="yaml_file" value="$(find riptide_descriptions)/config/puddles.yaml" />
   <xacro:property name="config" value="${load_yaml(yaml_file)}"/>
 
-  <!-- Create puddles -->
+  <!-- Create robot -->
   <xacro:robot_base
     namespace="$(arg namespace)"
     config="${config}"

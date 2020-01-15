@@ -1,19 +1,8 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
-  <!-- Thruster joint and link snippet --> 
-  <xacro:macro name="thruster_macro"
-    params="namespace thruster_id *origin">
-    <xacro:thruster_module_first_order_basic_fcn_macro
-      namespace="${namespace}"
-      thruster_id="${thruster_id}"
-      mesh_filename="file://$(find riptide_descriptions)/meshes/Propeller.dae"
-      dyn_time_constant="0.05"
-      rotor_constant="0.026546960744430276">
-      <xacro:insert_block name="origin"/>
-    </xacro:thruster_module_first_order_basic_fcn_macro>
-  </xacro:macro>
 
+  <!-- Makes a blank inertia (gazebo needs this sometimes) -->
   <xacro:macro name="dummy_inertia">
     <inertial>
       <mass value=".001" />
@@ -21,6 +10,7 @@
     </inertial>
   </xacro:macro>
 
+  <!-- TODO: Add camera distortion -->
   <xacro:macro name="camera_macro" params="namespace name parent_link update_rate hfov width height stddev baseline:=0 *origin">
     <link name="${namespace}/${name}_link">
         <xacro:dummy_inertia />
@@ -211,7 +201,7 @@
         <link_name>${namespace}/dvl${suffix}_link</link_name> 
         <sensor_topic>${topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names -->
         <update_rate>${update_rate}</update_rate> <!-- Update period [s] -->
-        <noise_sigma>${noise_sigma}</noise_sigma> <!-- std dev of position estimates in x, y, z [m/s] -->
+        <noise_sigma>${noise_sigma}</noise_sigma> <!-- std dev of velocity estimates in x, y, z [m/s] -->
         <noise_amplitude>${noise_amplitude}</noise_amplitude>
         <enable_gazebo_messages>false</enable_gazebo_messages>
         <enable_local_ned_frame>false</enable_local_ned_frame>
@@ -309,7 +299,7 @@
         <accelerometer_turn_on_bias_sigma>${accelerometer_turn_on_bias_sigma}</accelerometer_turn_on_bias_sigma> <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
         <orientation_noise>${orientation_noise}</orientation_noise>
 
-        <update_rate>${update_rate}</update_rate> <!-- Update period of accelerometer and gyroscope [s] -->
+        <update_rate>${update_rate}</update_rate> <!-- Update frequency of accelerometer and gyroscope [s] -->
         <enable_gazebo_messages>false</enable_gazebo_messages>
         <enable_local_ned_frame>${enable_local_ned_frame}</enable_local_ned_frame>
         <static_reference_frame>${reference_frame}</static_reference_frame>

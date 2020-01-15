@@ -9,15 +9,6 @@
   <arg name="pitch" default="0.0" doc="Pitch angle of the vehicle's initial orientation"/>
   <arg name="yaw" default="0.0" doc="Yaw angle of the vehicle's initial orientation"/>
 
-  <arg name="use_geodetic" default="false" doc="Spawn the vehicle using geodetic instead of Cartesian coordinates"/>
-  <arg name="latitude" default="0" doc="Latitude for the vehicle's initial position in degrees"/>
-  <arg name="longitude" default="0" doc="Longitude for the vehicle's initial position in degrees"/>
-  <arg name="depth" default="0" doc="Depth of the vehicle's initial position with respect to the water surface in meters"/>
-
-  <arg name="latitude_ref" default="0" doc="Latitude of the origin in degrees"/>
-  <arg name="longitude_ref" default="0" doc="Longitude of the origin in degrees"/>
-  <arg name="altitude_ref" default="0" doc="Altitude of the origin in meters"/>
-
   <arg name="mode" default="default" doc="Vehicle's build configuration mode"/>
   <arg name="namespace" default="puddles" doc="Namespace to spawn the vehicle"/>
   <arg name="use_ned_frame" default="false" doc="Set the inertial reference to NED (North-East-Down) convention instead of Gazebo's default ENU (East-North-Up)"/>
@@ -40,17 +31,10 @@
     </group>
 
     <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
-    <group if="$(arg use_geodetic)">
-      <node name="urdf_spawner" pkg="uuv_descriptions" type="spawn_model" respawn="false" output="screen"
-            args="-urdf -latitude $(arg latitude) -longitude $(arg longitude) -depth $(arg depth) -latitude_ref $(arg latitude_ref) -longitude_ref $(arg longitude_ref) -altitude_ref $(arg altitude_ref) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg namespace) -param /$(arg namespace)/robot_description"/>
-    </group>
-
-    <group unless="$(arg use_geodetic)">
-      <node name="urdf_spawner" pkg="uuv_descriptions" type="spawn_model" respawn="false" output="screen"
-            args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg namespace) -param /$(arg namespace)/robot_description"/>
-    </group>
+    <node name="urdf_spawner" pkg="uuv_descriptions" type="spawn_model" respawn="false" output="screen"
+          args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg namespace) -param /$(arg namespace)/robot_description"/>
     
-    <!-- A joint state publisher plugin already is started with the model, no need to use the default joint state publisher -->
+    <!-- A joint state publisher -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen" />
 
     <!-- Publish robot model for ROS -->

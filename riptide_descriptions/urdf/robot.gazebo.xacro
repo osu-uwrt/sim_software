@@ -3,9 +3,11 @@
     <xacro:property name="lin" value="${config['linear_damping']}"/>
     <xacro:property name="quad" value="${config['quadratic_damping']}"/>
 
+    <!-- All hydro parameters for any links that have them -->
     <xacro:macro name="puddles_hydro_model" params="namespace">
         <link name="${namespace}/base_link">
             <volume>${config['volume']}</volume>
+            <!-- COB is relative to center of base_link, thus the math -->
             <center_of_buoyancy>${config['cob'][0]-config['base_link'][0]} ${config['cob'][1]-config['base_link'][1]} ${config['cob'][2]-config['base_link'][2]}</center_of_buoyancy>
             <hydrodynamic_model>
                 <type>fossen</type>

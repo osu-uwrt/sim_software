@@ -38,6 +38,8 @@ class ThrustConverter(object):
         for i in range(len(self._thrusters)):
             cmd = FloatStamped()
             force = eval("msg.force."+self._thrusters[i])
+
+            # Compute angular velocity from force
             sign = 1 if force >= 0 else -1
             ang_vel = sign * math.sqrt(abs(force / self._coeff))
             cmd.header = msg.header

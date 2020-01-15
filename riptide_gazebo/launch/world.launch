@@ -1,0 +1,17 @@
+<launch>
+    <arg name="world" default="cutie" doc="Which world to spawn the robot in" />
+    <arg name="gui" default="true" doc="Whether to display gazebo gui" />
+    <arg name="paused" default="false" doc="Start gazebo paused" />
+
+    <param name="use_sim_time" value="true" />
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find riptide_gazebo)/worlds/$(arg world).world"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+        <arg name="verbose" value="true"/>
+    </include>
+</launch>

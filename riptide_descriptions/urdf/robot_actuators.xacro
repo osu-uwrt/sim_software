@@ -17,6 +17,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
+  <!-- Macro makes any number of thrusters from config -->
   <xacro:macro name="thrusters_macro" params="namespace config thrusters index">
     <xacro:if value="${len(thrusters)}">
       <xacro:property name="thruster" value="${thrusters[0]}"/>

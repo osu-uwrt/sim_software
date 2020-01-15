@@ -41,6 +41,7 @@
   </xacro:if>
 
   <!-- IMU  -->
+  <!-- TODO: Get imu model from config -->
   <xacro:if value="${'imu' in config}">
     <xacro:property name="imu" value="${config['imu']}"/>
     <xacro:imu_plugin_macro
@@ -65,11 +66,13 @@
     </xacro:imu_plugin_macro>
   </xacro:if>
 
+  <!-- Pose sensor as ground truth for state estimation -->
   <xacro:default_pose_3d_macro
     namespace="${namespace}"
     parent_link="${namespace}/base_link"
     inertial_reference_frame="${inertial_reference_frame}" />
 
+  <!-- Builds any number of cameras from yaml -->
   <xacro:macro name="cameras_macro" params="namespace cameras">
     <xacro:if value="${len(cameras)}">
       <xacro:property name="camera" value="${cameras[0]}"/>

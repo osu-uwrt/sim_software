@@ -49,7 +49,7 @@
       <origin xyz="${config['com'][0]} ${config['com'][1]} ${config['com'][2]}" rpy="0 0 0"/>
     </joint>
 
-    <!-- Set up hydrodynamic plugin given as input parameter -->
+    <!-- Set up hydrodynamic plugin -->
     <gazebo>
       <plugin name="uuv_plugin" filename="libuuv_underwater_object_ros_plugin.so">
         <fluid_density>1028.0</fluid_density>
