@@ -15,7 +15,4 @@
     config="${config}"
     inertial_reference_frame="$(arg inertial_reference_frame)"/>
 
-  <!-- Joint state publisher plugin -->
-  <xacro:default_joint_state_publisher namespace="$(arg namespace)" update_rate="200"/>
-
 </robot>

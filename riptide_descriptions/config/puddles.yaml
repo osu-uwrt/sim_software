@@ -21,7 +21,7 @@ dvl:
 depth:
   topic: depth/pressure
   rate: 20 # Hz
-  sigma: 20.0 # Stdev in kPa. Used by gazebo
+  sigma: 2 # Stdev in kPa. Used by gazebo
   pose: [0.533, -0.219, 0.118, 0, 0, 0]
 
 imu:

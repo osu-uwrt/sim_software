@@ -14,6 +14,7 @@ class depthConverter():
     def depthCb(self, msg):
         outMsg = PoseWithCovarianceStamped()
         outMsg.header = msg.header
+        outMsg.header.frame_id = "odom"
         outMsg.pose.pose.position.z = (101.325 - msg.fluid_pressure)/9.80638
         outMsg.pose.covariance[0] = -1
         outMsg.pose.covariance[7] = -1

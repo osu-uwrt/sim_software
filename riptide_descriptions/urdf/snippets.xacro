@@ -208,7 +208,7 @@
     <gazebo>
       <plugin filename="libuuv_gazebo_ros_dvl_plugin.so" name="libuuv_gazebo_dvl${suffix}_plugin">
         <robot_namespace>${namespace}</robot_namespace> <!-- (string, required): ros namespace in which the messages are published -->
-        <link_name>${namespace}/dvl${suffix}_link</link_name> <!-- (string, required): name of the body which holds the IMU sensor -->
+        <link_name>${namespace}/dvl${suffix}_link</link_name> 
         <sensor_topic>${topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names -->
         <update_rate>${update_rate}</update_rate> <!-- Update period [s] -->
         <noise_sigma>${noise_sigma}</noise_sigma> <!-- std dev of position estimates in x, y, z [m/s] -->
@@ -251,10 +251,10 @@
     <gazebo>
       <plugin filename="libuuv_gazebo_ros_subsea_pressure_plugin.so" name="libuuv_gazebo_subseapressure${suffix}_plugin">
         <robot_namespace>${namespace}</robot_namespace> <!-- (string, required): ros namespace in which the messages are published -->
-        <link_name>${namespace}/pressure${suffix}_link</link_name> <!-- (string, required): name of the body which holds the IMU sensor -->
-        <sensor_topic>${topic}</sensor_topic> <!-- (string): name of the sensor output topic and prefix of service names (defaults to imu) -->
-        <update_rate>${update_rate}</update_rate> <!-- Update period of accelerometer and gyroscope [s] -->
-
+        <link_name>${namespace}/pressure${suffix}_link</link_name>
+        <sensor_topic>${topic}</sensor_topic> 
+        <update_rate>${update_rate}</update_rate> 
+        
         <saturation>${range}</saturation> <!-- measurement range [kPa] -->
         <noise_sigma>${noise_sigma}</noise_sigma> <!-- measurement stddev [kPa] -->
         <noise_amplitude>${noise_amplitude}</noise_amplitude>
