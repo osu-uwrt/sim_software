@@ -36,9 +36,9 @@
     <link name="${namespace}/${name}_optical" />
 
     <joint name="${namespace}/${name}_optical_joint" type="fixed">
-        <parent link="${namespace}/${name}_link" />
-        <child link="${namespace}/${name}_optical" />
-        <origin rpy="${-pi/2} 0 ${-pi/2}"></origin>
+      <parent link="${namespace}/${name}_link" />
+      <child link="${namespace}/${name}_optical" />
+      <origin rpy="${-pi/2} 0 ${-pi/2}"></origin>
     </joint>
 
     <gazebo reference="${namespace}/${name}_link">
@@ -314,6 +314,49 @@
         <enable_local_ned_frame>${enable_local_ned_frame}</enable_local_ned_frame>
         <static_reference_frame>${reference_frame}</static_reference_frame>
       </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="thruster_macro"
+    params="namespace
+            thruster_id
+            *origin
+            mesh_filename
+            rotor_constant">
+    <joint name="${namespace}/thruster_${thruster_id}_joint" type="continuous">
+      <xacro:insert_block name="origin"/>
+      <axis xyz="1 0 0"/>
+      <parent link="${namespace}/origin"/>
+      <child link="${namespace}/thruster_${thruster_id}"/>
+    </joint>
+
+    <link name="${namespace}/thruster_${thruster_id}">
+      <visual>
+        <geometry>
+          <mesh filename="${mesh_filename}" scale="1 1 1"/>
+        </geometry>
+      </visual>
+      <xacro:dummy_inertia />
+      <xacro:no_collision />
+    </link>
+
+    <gazebo>
+      <plugin name="${namespace}_${thruster_id}_thruster_model" filename="libuuv_thruster_ros_plugin.so">
+        <linkName>${namespace}/thruster_${thruster_id}</linkName>
+        <jointName>${namespace}/thruster_${thruster_id}_joint</jointName>
+        <thrusterID>${thruster_id}</thrusterID>
+        <dynamics>
+          <type>ZeroOrder</type>
+        </dynamics>
+        <conversion>
+          <type>Basic</type>
+          <rotorConstant>${rotor_constant}</rotorConstant>
+        </conversion>
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="${namespace}/thruster_${thruster_id}">
+      <selfCollide>false</selfCollide>
     </gazebo>
   </xacro:macro>
   

@@ -29,7 +29,7 @@
       parent_link="${namespace}/origin"
       topic="${depth['topic']}"
       update_rate="${depth['rate']}"
-      range="30000"
+      range="300"
       noise_sigma="${depth['sigma']}"
       noise_amplitude="1"
       estimateDepth="false"
@@ -70,9 +70,9 @@
     parent_link="${namespace}/base_link"
     inertial_reference_frame="${inertial_reference_frame}" />
 
-  <xacro:macro name="cameras_macro" params="namespace config">
-    <xacro:if value="${len(config)}">
-      <xacro:property name="camera" value="${config[0]}"/>
+  <xacro:macro name="cameras_macro" params="namespace cameras">
+    <xacro:if value="${len(cameras)}">
+      <xacro:property name="camera" value="${cameras[0]}"/>
       <xacro:if value="${camera['type'] == 'stereo'}">
         <xacro:stereo_macro
           namespace="${namespace}"
@@ -102,9 +102,9 @@
                   rpy="${camera['pose'][3]} ${camera['pose'][4]} ${camera['pose'][5]}"/>
         </xacro:camera_macro>
       </xacro:unless>
-      <xacro:cameras_macro namespace="${namespace}" config="${config[1:]}"/>
+      <xacro:cameras_macro namespace="${namespace}" cameras="${cameras[1:]}"/>
     </xacro:if>
   </xacro:macro>
 
-  <xacro:cameras_macro namespace="${namespace}" config="${config['cameras']}"/>
+  <xacro:cameras_macro namespace="${namespace}" cameras="${config['cameras']}"/>
 </robot>

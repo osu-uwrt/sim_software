@@ -1,3 +1,0 @@
-<launch>
-   <node name="dvl_converter" pkg="riptide_gazebo" type="dvl_converter.py" output="screen" />
-</launch>

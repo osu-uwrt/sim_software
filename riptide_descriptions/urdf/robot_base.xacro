@@ -4,10 +4,11 @@
   <xacro:include filename="$(find uuv_descriptions)/urdf/common.urdf.xacro"/>
   <xacro:include filename="$(find uuv_sensor_ros_plugins)/urdf/sensor_snippets.xacro"/>
   <xacro:include filename="$(find riptide_descriptions)/urdf/snippets.xacro" />
+  <xacro:include filename="$(find riptide_descriptions)/urdf/robot.gazebo.xacro" />
   <xacro:include filename="$(find uuv_gazebo_ros_plugins)/urdf/snippets.xacro"/>
 
   <xacro:macro name="robot_base"
-    params="namespace config *gazebo inertial_reference_frame">
+    params="namespace config inertial_reference_frame">
 
     <!-- Due to uuv_sim, base_link must be near center of vehicle -->
     <link name="${namespace}/base_link"/>
@@ -49,10 +50,18 @@
     </joint>
 
     <!-- Set up hydrodynamic plugin given as input parameter -->
-    <xacro:insert_block name="gazebo"/>
+    <gazebo>
+      <plugin name="uuv_plugin" filename="libuuv_underwater_object_ros_plugin.so">
+        <fluid_density>1028.0</fluid_density>
+        <flow_velocity_topic>hydrodynamics/current_velocity</flow_velocity_topic>
+        <debug>$(arg debug)</debug>
+        <!-- Adding the hydrodynamic and hydrostatic parameters for the vehicle-->
+        <xacro:puddles_hydro_model namespace="$(arg namespace)"/>
+      </plugin>
+    </gazebo>
 
     <xacro:include filename="$(find riptide_descriptions)/urdf/robot_sensors.xacro" />
-    <!-- <xacro:include filename="$(find riptide_descriptions)/urdf/puddles_actuators.xacro" /> -->
+    <xacro:include filename="$(find riptide_descriptions)/urdf/robot_actuators.xacro" />
 
   </xacro:macro>
 

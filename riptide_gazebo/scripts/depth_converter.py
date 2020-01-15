@@ -2,20 +2,25 @@
 
 import rospy
 from sensor_msgs.msg import FluidPressure
-from riptide_msgs.msg import Depth
-from geometry_msgs.msg import Vector3, Quaternion
+from geometry_msgs.msg import PoseWithCovarianceStamped
+from std_msgs.msg import Header
 import math
-import tf
 
 class depthConverter():
     def __init__(self):
-        self.sub = rospy.Subscriber("/sensors/pressure", FluidPressure, self.depthCb)
-        self.pub = rospy.Publisher("/state/depth", Depth, queue_size=10)
+        self.sub = rospy.Subscriber("depth/pressure", FluidPressure, self.depthCb)
+        self.pub = rospy.Publisher("depth/pose", PoseWithCovarianceStamped, queue_size=10)
 
     def depthCb(self, msg):
-        outMsg = Depth()
-        outMsg.depth = (msg.fluid_pressure - 101.325)/9.80638
-        outMsg.pressure = msg.fluid_pressure
+        outMsg = PoseWithCovarianceStamped()
+        outMsg.header = msg.header
+        outMsg.pose.pose.position.z = (101.325 - msg.fluid_pressure)/9.80638
+        outMsg.pose.covariance[0] = -1
+        outMsg.pose.covariance[7] = -1
+        outMsg.pose.covariance[14] = msg.variance / (9.80638 ** 2)
+        outMsg.pose.covariance[21] = -1
+        outMsg.pose.covariance[28] = -1
+        outMsg.pose.covariance[35] = -1
         self.pub.publish(outMsg)
 
 if __name__ == '__main__':

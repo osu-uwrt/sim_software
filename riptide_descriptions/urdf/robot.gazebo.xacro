@@ -1,19 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="cob" value="0.027 -0.008 0.036"/>
-
-    <xacro:property name="volume" value="0.041"/>
+    <xacro:property name="lin" value="${config['linear_damping']}"/>
+    <xacro:property name="quad" value="${config['quadratic_damping']}"/>
 
     <xacro:macro name="puddles_hydro_model" params="namespace">
         <link name="${namespace}/base_link">
-            <neutrally_buoyant>0</neutrally_buoyant>
-            <volume>${volume}</volume>
-            <box>
-                <width>0.89</width>
-                <length>0.5</length>
-                <height>0.33</height>
-            </box>
-            <center_of_buoyancy>${cob}</center_of_buoyancy>
+            <volume>${config['volume']}</volume>
+            <center_of_buoyancy>${config['cob'][0]-config['base_link'][0]} ${config['cob'][1]-config['base_link'][1]} ${config['cob'][2]-config['base_link'][2]}</center_of_buoyancy>
             <hydrodynamic_model>
                 <type>fossen</type>
                 <added_mass>
@@ -25,10 +18,10 @@
                     0 0 0 0 0 0
                 </added_mass>
                 <linear_damping>
-                    -17.0 -50.0 -50.0 -4 -9 -9
+                    ${lin[0]} ${lin[1]} ${lin[2]} ${lin[3]} ${lin[4]} ${lin[5]}
                 </linear_damping>
                 <quadratic_damping>
-                    -180.0 -460.0 -460.0 -12 -24.0 -24.0
+                    ${quad[0]} ${quad[1]} ${quad[2]} ${quad[3]} ${quad[4]} ${quad[5]}
                 </quadratic_damping>
             </hydrodynamic_model>
         </link>
