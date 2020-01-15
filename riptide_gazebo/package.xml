@@ -16,15 +16,12 @@
   <depend>tf</depend>
   
   <depend>uuv_sensor_ros_plugins_msgs</depend>
-  <depend>nortek_dvl</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
-  <depend>imu_3dm_gx4</depend>
   <depend>std_msgs</depend>
   <depend>riptide_msgs</depend>
   <depend>rospy</depend>
   <depend>roscpp</depend>
-  <depend>gazebo_ros</depend>
   <exec_depend>gazebo</exec_depend>
   <exec_depend>uuv_simulator</exec_depend>
 
