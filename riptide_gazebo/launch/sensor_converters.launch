@@ -3,6 +3,7 @@
 
     <group ns="$(arg namespace)">
         <node pkg="riptide_gazebo" name="depth_converter" type="depth_converter.py" />
+        <node pkg="riptide_gazebo" name="dvl_converter" type="dvl_converter.py" />
         <node pkg="riptide_gazebo" name="thrust_converter" type="thrust_converter.py">
             <param name="vehicle_config" value="$(find riptide_descriptions)/config/$(arg namespace).yaml" />
         </node>
