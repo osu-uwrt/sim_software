@@ -13,7 +13,7 @@ class depthConverter():
     def __init__(self):
         self.sub = rospy.Subscriber("depth/pressure", FluidPressure, self.depthCb)
         self.pub = rospy.Publisher("depth/pose", PoseWithCovarianceStamped, queue_size=10)
-        self.namespace = rospy.get_param("~namespace", "puddles")
+        self.namespace = rospy.get_namespace()
         self.surfacePressure = 101.325
         self.kPaPerM = 9.80638
         self.tfBuffer = tf2_ros.Buffer()

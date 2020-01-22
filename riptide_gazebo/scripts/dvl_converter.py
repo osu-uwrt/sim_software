@@ -14,7 +14,7 @@ class dvlConverter():
         self.dvlSub = rospy.Subscriber("dvl_twist", TwistWithCovarianceStamped, self.dvlCb)
         self.odomSub = rospy.Subscriber("odometry/filtered", Odometry, self.odomCb)
         self.pub = rospy.Publisher("dvl/twist", TwistWithCovarianceStamped, queue_size=10)
-        self.namespace = rospy.get_param("~namespace", "puddles")
+        self.namespace = rospy.get_namespace()
         self.tfBuffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
 
