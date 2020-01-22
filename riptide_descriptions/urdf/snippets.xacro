@@ -122,7 +122,7 @@
     <gazebo reference="${namespace}/dvl${suffix}_sonar${index}_link">
       <sensor type="ray" name="dvl${suffix}_sonar${index}">
         <pose>0 0 0 0 0 0</pose>
-        <update_rate>1</update_rate>
+        <update_rate>${update_rate}</update_rate>
         <visualize>false</visualize>
         <ray>
           <scan>
@@ -177,22 +177,22 @@
 
     <xacro:dvl_single_sonar
       namespace="${namespace}" suffix="${suffix}"
-      index="0" pitch="-0.52" yaw="0.0" update_rate="${update_rate}">
+      index="0" pitch="1.309" yaw="-0.7854" update_rate="${update_rate}">
     </xacro:dvl_single_sonar>
 
     <xacro:dvl_single_sonar
       namespace="${namespace}" suffix="${suffix}"
-      index="1" pitch="0" yaw="0.52" update_rate="${update_rate}">
+      index="1" pitch="1.309" yaw="-2.35619" update_rate="${update_rate}">
     </xacro:dvl_single_sonar>
 
     <xacro:dvl_single_sonar
       namespace="${namespace}" suffix="${suffix}"
-      index="2" pitch="0.52" yaw="0.0" update_rate="${update_rate}">
+      index="2" pitch="1.309" yaw="2.35619" update_rate="${update_rate}">
     </xacro:dvl_single_sonar>
 
     <xacro:dvl_single_sonar
       namespace="${namespace}" suffix="${suffix}"
-      index="3" pitch="0.0" yaw="-0.52" update_rate="${update_rate}">
+      index="3" pitch="1.309" yaw="0.7854" update_rate="${update_rate}">
     </xacro:dvl_single_sonar>
 
     <gazebo>
