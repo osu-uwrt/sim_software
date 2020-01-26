@@ -20,20 +20,20 @@ dvl:
   topic: dvl
   rate: 8 # Hz
   sigma: 0.001 # Stdev in m/s. Used by gazebo
-  pose: [0.3302, 0.005, 0.1289, 0, 0, -2.35619]
+  pose: [0.33, 0, 0.44, 0, 0, 0]
 
 depth:
   topic: depth/pressure
   rate: 20 # Hz
   sigma: 2 # Stdev in kPa. Used by gazebo
-  pose: [0.43815, -0.1397, 0.13335, 0, 0, 0]
+  pose: [0.533, -0.219, 0.118, 0, 0, 0]
 
 imu:
   topic: imu/data
   # Noise modeling is weird and is hard coded in urdf with some numbers.
   # TODO: Model noise
   rate: 100 #Hz
-  pose: [0.69215, -0.19685, 0.33, 0, 0, 3.14159]
+  pose: [0.71, -0.19, 0.33, 0, 0, 3.14159]
 
 cameras: [
   {
@@ -44,8 +44,8 @@ cameras: [
     width: 644, # pixels
     height: 482, # pixels
     stddev: 0.02, # TODO: Estimate this number
-    baseline: 0.1016, # m. Distance between cameras
-    pose: [0.835025, -0.1381125, 0.2714625, 0, 0, 0]
+    baseline: 0.1, # m. Distance between cameras
+    pose: [0.781, -0.1326, 0.2466, 0, 0, 0]
   },
   {
     type: mono,
@@ -55,7 +55,7 @@ cameras: [
     width: 644,
     height: 482,
     stddev: 0.02,
-    pose: [0.476, -0.181, 0.127, 0, 1.570796, 0]
+    pose: [0.470, -0.181, 0.127, 0, 1.5708, 0]
   }
 ]
 
