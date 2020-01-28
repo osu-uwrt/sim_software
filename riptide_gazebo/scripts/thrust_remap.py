@@ -17,14 +17,14 @@ class ThrustConverter(object):
             self._coeff = yaml.safe_load(stream)['thruster']['rotor_constant']
 
         self._thrusters = [
-            "heave_port_fwd",
-            "heave_port_aft",
-            "heave_stbd_fwd",
-            "heave_stbd_aft",
             "vector_port_fwd",
-            "vector_port_aft",
             "vector_stbd_fwd",
-            "vector_stbd_aft"]
+            "vector_port_aft",
+            "vector_stbd_aft",
+            "heave_port_fwd",
+            "heave_stbd_fwd",
+            "heave_port_aft",
+            "heave_stbd_aft"]
 
         for i in range(len(self._thrusters)):
             input_topic = "thrusters/%d/input" % i
