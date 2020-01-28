@@ -33,6 +33,7 @@ class dvlConverter():
 
         # Publish as NED
         outMsg = Dvl()
+        outMsg.header = rospy.Time.now
         outMsg.velocity.x = velocity[0]
         outMsg.velocity.y = -velocity[1]
         outMsg.velocity.z = -velocity[2]
