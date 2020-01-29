@@ -11,6 +11,7 @@
             <param name="approximate_sync" value="true" />
             <param name="queue_size" value="10" />
         </node>
+        <node name="image_proc" pkg="image_proc" type="image_proc" ns="downward"/>
     </group>
 
 </launch>
